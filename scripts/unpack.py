@@ -14,11 +14,11 @@ args = parser.parse_args()
 pptx_path = args.pptx_path
 unpack_path = args.unpack_path
 
-if(pptx_path == None):
+if(pptx_path is None):
     print("Provide pptx_path (path to packed pptx file)")
     sys.exit(1)
 
-if(unpack_path==None):
+if(unpack_path is None):
     unpack_path = pptx_path[0:-5]
 
 #check if unpack_path is directory or not
