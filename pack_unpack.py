@@ -1,5 +1,5 @@
 #Script for unpacking/packing a pptx file
-#Sample run - python 1 Desktop/sample.pptx Desktop/unpack
+#Sample run - python pack_unpack.py 1 Desktop/sample.pptx Desktop/unpack
 import zipfile
 import argparse
 import os
