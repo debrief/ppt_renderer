@@ -37,24 +37,47 @@ def checkForMap(slides_path):
         soup = BeautifulSoup(open(slidePath, 'r').read(), 'lxml')
         # print "soup","\n\n\n", soup,"\n\n"
         shapes = soup.find_all("p:sp")
-        # print len(shapes)
-        for shape in shapes:
-            shapeDetails = {}
-            for child in shape.find_all("p:cnvpr"):
-                shapeDetails['name'] = child['name']
-            for child in shape.find_all("a:off"):
-                shapeDetails['x'] = child['x']
-                shapeDetails['y'] = child['y']
-            for child in shape.find_all("a:ext"):
-                shapeDetails['cx'] = child['cx']
-                shapeDetails['cy'] = child['cy']
-            # print "shapeDetails --", shapeDetails
-            if(shapeDetails['name']=="map"):
-                mapDetails = shapeDetails
-                flag=1
+
+        if(len(shapes)!=0):
+            # print len(shapes)
+            for shape in shapes:
+                shapeDetails = {}
+                for child in shape.find_all("p:cnvpr"):
+                    shapeDetails['name'] = child['name']
+                for child in shape.find_all("a:off"):
+                    shapeDetails['x'] = child['x']
+                    shapeDetails['y'] = child['y']
+                for child in shape.find_all("a:ext"):
+                    shapeDetails['cx'] = child['cx']
+                    shapeDetails['cy'] = child['cy']
+                # print "shapeDetails --", shapeDetails
+                if(shapeDetails['name']=="map"):
+                    mapDetails = shapeDetails
+                    flag=1
+                    break
+            if(flag==1):
                 break
-        if(flag==1):
-            break
+        else:
+            soup = BeautifulSoup(open(slidePath, 'r').read(), 'lxml-xml')
+            # print "soup","\n\n\n", soup,"\n\n"
+            shapes = soup.find_all("p:sp")
+            for shape in shapes:
+                shapeDetails = {}
+                for child in shape.find_all("p:cNvPr"):
+                    shapeDetails['name'] = child['name']
+                for child in shape.find_all("a:off"):
+                    shapeDetails['x'] = child['x']
+                    shapeDetails['y'] = child['y']
+                for child in shape.find_all("a:ext"):
+                    shapeDetails['cx'] = child['cx']
+                    shapeDetails['cy'] = child['cy']
+                # print "shapeDetails --", shapeDetails
+                if(shapeDetails['name']=="map"):
+                    mapDetails = shapeDetails
+                    flag=1
+                    break
+            if(flag==1):
+                break
 
     return mapDetails
 
