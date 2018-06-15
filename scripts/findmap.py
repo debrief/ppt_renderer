@@ -41,6 +41,7 @@ def checkForMap(slides_path):
                 shapeDetails['cx'] = child['cx']
                 shapeDetails['cy'] = child['cy']
 
+            print "shapeDetails --", shapeDetails
             if(shapeDetails['name']=="map"):
                 mapDetails = shapeDetails
                 flag=1
@@ -51,6 +52,8 @@ def checkForMap(slides_path):
     return mapDetails
 
 mapDetail = checkForMap(slides_path)
+print "mapDetails - ",mapDetail
+
 if(not 'name' in mapDetail):
     print "No shape named 'Map' found..."
 else:
