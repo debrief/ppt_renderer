@@ -39,7 +39,7 @@ def checkForMap(slides_path):
         shapes = soup.find_all("p:sp")
         cnvpr = "p:cnvpr"
 
-        if(len(shapes)==0):
+        if(not shapes):
             soup = BeautifulSoup(open(slidePath, 'r').read(), 'lxml-xml')
             # print "soup","\n\n\n", soup,"\n\n"
             shapes = soup.find_all("p:sp")
