@@ -16,6 +16,10 @@ python scripts/pack.py --pptx_path Desktop/sample.pptx --unpack_path Desktop/unp
 
 python scripts/pack.py --unpack_path unpacked_pptx/
 
+FindMap:
+
+python scripts/findmap.py --unpack_path map_rect
+
 Run Help -
 
 python pack.py -h
