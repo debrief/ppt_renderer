@@ -50,5 +50,5 @@ def checkForMap(slides_path):
 
     return mapDetails
 
-map = checkForMap(slides_path)
-print "Top Left Corner: x=",map['x']," y=",map['y']," \nExtentions: cx:",map['cx']," cy:",map['cy']
+mapDetail = checkForMap(slides_path)
+print "Top Left Corner: x=",mapDetail['x']," y=",mapDetail['y']," \nExtentions: cx:",mapDetail['cx']," cy:",mapDetail['cy']
