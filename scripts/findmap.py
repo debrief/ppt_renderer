@@ -51,4 +51,7 @@ def checkForMap(slides_path):
     return mapDetails
 
 mapDetail = checkForMap(slides_path)
-print "Top Left Corner: x=",mapDetail['x']," y=",mapDetail['y']," \nExtentions: cx:",mapDetail['cx']," cy:",mapDetail['cy']
+if(not 'name' in mapDetail):
+    print "No shape named 'Map' found..."
+else:
+    print "Top Left Corner: x=",mapDetail['x']," y=",mapDetail['y']," \nExtentions: cx:",mapDetail['cx']," cy:",mapDetail['cy']
