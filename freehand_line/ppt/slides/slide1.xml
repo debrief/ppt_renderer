@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld
+	xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+	xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+	xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+	<p:cSld>
+		<p:spTree>
+			<p:nvGrpSpPr>
+				<p:cNvPr id="1" name=""/>
+				<p:cNvGrpSpPr/>
+				<p:nvPr/>
+			</p:nvGrpSpPr>
+			<p:grpSpPr>
+				<a:xfrm>
+					<a:off x="0" y="0"/>
+					<a:ext cx="0" cy="0"/>
+					<a:chOff x="0" y="0"/>
+					<a:chExt cx="0" cy="0"/>
+				</a:xfrm>
+			</p:grpSpPr>
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="4" name="Freeform 3"/>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="2004164" y="1220048"/>
+						<a:ext cx="1478320" cy="1696772"/>
+					</a:xfrm>
+					<a:custGeom>
+						<a:avLst/>
+						<a:gdLst>
+							<a:gd name="connsiteX0" fmla="*/ 0 w 1478320"/>
+							<a:gd name="connsiteY0" fmla="*/ 30018 h 1696772"/>
+							<a:gd name="connsiteX1" fmla="*/ 49608 w 1478320"/>
+							<a:gd name="connsiteY1" fmla="*/ 20097 h 1696772"/>
+							<a:gd name="connsiteX2" fmla="*/ 89295 w 1478320"/>
+							<a:gd name="connsiteY2" fmla="*/ 254 h 1696772"/>
+							<a:gd name="connsiteX3" fmla="*/ 138903 w 1478320"/>
+							<a:gd name="connsiteY3" fmla="*/ 10176 h 1696772"/>
+							<a:gd name="connsiteX4" fmla="*/ 257962 w 1478320"/>
+							<a:gd name="connsiteY4" fmla="*/ 30018 h 1696772"/>
+							<a:gd name="connsiteX5" fmla="*/ 446473 w 1478320"/>
+							<a:gd name="connsiteY5" fmla="*/ 39939 h 1696772"/>
+							<a:gd name="connsiteX6" fmla="*/ 615140 w 1478320"/>
+							<a:gd name="connsiteY6" fmla="*/ 59781 h 1696772"/>
+							<a:gd name="connsiteX7" fmla="*/ 724278 w 1478320"/>
+							<a:gd name="connsiteY7" fmla="*/ 79624 h 1696772"/>
+							<a:gd name="connsiteX8" fmla="*/ 942553 w 1478320"/>
+							<a:gd name="connsiteY8" fmla="*/ 109387 h 1696772"/>
+							<a:gd name="connsiteX9" fmla="*/ 1071534 w 1478320"/>
+							<a:gd name="connsiteY9" fmla="*/ 158993 h 1696772"/>
+							<a:gd name="connsiteX10" fmla="*/ 1101299 w 1478320"/>
+							<a:gd name="connsiteY10" fmla="*/ 168914 h 1696772"/>
+							<a:gd name="connsiteX11" fmla="*/ 1140985 w 1478320"/>
+							<a:gd name="connsiteY11" fmla="*/ 178835 h 1696772"/>
+							<a:gd name="connsiteX12" fmla="*/ 1170750 w 1478320"/>
+							<a:gd name="connsiteY12" fmla="*/ 198677 h 1696772"/>
+							<a:gd name="connsiteX13" fmla="*/ 1200515 w 1478320"/>
+							<a:gd name="connsiteY13" fmla="*/ 208599 h 1696772"/>
+							<a:gd name="connsiteX14" fmla="*/ 1269966 w 1478320"/>
+							<a:gd name="connsiteY14" fmla="*/ 238362 h 1696772"/>
+							<a:gd name="connsiteX15" fmla="*/ 1299731 w 1478320"/>
+							<a:gd name="connsiteY15" fmla="*/ 268126 h 1696772"/>
+							<a:gd name="connsiteX16" fmla="*/ 1299731 w 1478320"/>
+							<a:gd name="connsiteY16" fmla="*/ 645130 h 1696772"/>
+							<a:gd name="connsiteX17" fmla="*/ 1279888 w 1478320"/>
+							<a:gd name="connsiteY17" fmla="*/ 704657 h 1696772"/>
+							<a:gd name="connsiteX18" fmla="*/ 1269966 w 1478320"/>
+							<a:gd name="connsiteY18" fmla="*/ 744341 h 1696772"/>
+							<a:gd name="connsiteX19" fmla="*/ 1250123 w 1478320"/>
+							<a:gd name="connsiteY19" fmla="*/ 774105 h 1696772"/>
+							<a:gd name="connsiteX20" fmla="*/ 1240201 w 1478320"/>
+							<a:gd name="connsiteY20" fmla="*/ 803868 h 1696772"/>
+							<a:gd name="connsiteX21" fmla="*/ 1190593 w 1478320"/>
+							<a:gd name="connsiteY21" fmla="*/ 942764 h 1696772"/>
+							<a:gd name="connsiteX22" fmla="*/ 1150907 w 1478320"/>
+							<a:gd name="connsiteY22" fmla="*/ 1091582 h 1696772"/>
+							<a:gd name="connsiteX23" fmla="*/ 1091377 w 1478320"/>
+							<a:gd name="connsiteY23" fmla="*/ 1280084 h 1696772"/>
+							<a:gd name="connsiteX24" fmla="*/ 962396 w 1478320"/>
+							<a:gd name="connsiteY24" fmla="*/ 1557876 h 1696772"/>
+							<a:gd name="connsiteX25" fmla="*/ 932631 w 1478320"/>
+							<a:gd name="connsiteY25" fmla="*/ 1587640 h 1696772"/>
+							<a:gd name="connsiteX26" fmla="*/ 883023 w 1478320"/>
+							<a:gd name="connsiteY26" fmla="*/ 1657088 h 1696772"/>
+							<a:gd name="connsiteX27" fmla="*/ 853258 w 1478320"/>
+							<a:gd name="connsiteY27" fmla="*/ 1686851 h 1696772"/>
+							<a:gd name="connsiteX28" fmla="*/ 773886 w 1478320"/>
+							<a:gd name="connsiteY28" fmla="*/ 1696772 h 1696772"/>
+							<a:gd name="connsiteX29" fmla="*/ 694513 w 1478320"/>
+							<a:gd name="connsiteY29" fmla="*/ 1686851 h 1696772"/>
+							<a:gd name="connsiteX30" fmla="*/ 625062 w 1478320"/>
+							<a:gd name="connsiteY30" fmla="*/ 1657088 h 1696772"/>
+							<a:gd name="connsiteX31" fmla="*/ 595297 w 1478320"/>
+							<a:gd name="connsiteY31" fmla="*/ 1647166 h 1696772"/>
+							<a:gd name="connsiteX32" fmla="*/ 525845 w 1478320"/>
+							<a:gd name="connsiteY32" fmla="*/ 1587640 h 1696772"/>
+							<a:gd name="connsiteX33" fmla="*/ 396865 w 1478320"/>
+							<a:gd name="connsiteY33" fmla="*/ 1309847 h 1696772"/>
+							<a:gd name="connsiteX34" fmla="*/ 297649 w 1478320"/>
+							<a:gd name="connsiteY34" fmla="*/ 1051897 h 1696772"/>
+							<a:gd name="connsiteX35" fmla="*/ 267884 w 1478320"/>
+							<a:gd name="connsiteY35" fmla="*/ 972528 h 1696772"/>
+							<a:gd name="connsiteX36" fmla="*/ 267884 w 1478320"/>
+							<a:gd name="connsiteY36" fmla="*/ 823710 h 1696772"/>
+							<a:gd name="connsiteX37" fmla="*/ 317492 w 1478320"/>
+							<a:gd name="connsiteY37" fmla="*/ 754262 h 1696772"/>
+							<a:gd name="connsiteX38" fmla="*/ 386943 w 1478320"/>
+							<a:gd name="connsiteY38" fmla="*/ 684814 h 1696772"/>
+							<a:gd name="connsiteX39" fmla="*/ 486159 w 1478320"/>
+							<a:gd name="connsiteY39" fmla="*/ 635208 h 1696772"/>
+							<a:gd name="connsiteX40" fmla="*/ 545689 w 1478320"/>
+							<a:gd name="connsiteY40" fmla="*/ 625287 h 1696772"/>
+							<a:gd name="connsiteX41" fmla="*/ 625062 w 1478320"/>
+							<a:gd name="connsiteY41" fmla="*/ 605445 h 1696772"/>
+							<a:gd name="connsiteX42" fmla="*/ 724278 w 1478320"/>
+							<a:gd name="connsiteY42" fmla="*/ 595524 h 1696772"/>
+							<a:gd name="connsiteX43" fmla="*/ 1131063 w 1478320"/>
+							<a:gd name="connsiteY43" fmla="*/ 526076 h 1696772"/>
+							<a:gd name="connsiteX44" fmla="*/ 1309652 w 1478320"/>
+							<a:gd name="connsiteY44" fmla="*/ 506233 h 1696772"/>
+							<a:gd name="connsiteX45" fmla="*/ 1478320 w 1478320"/>
+							<a:gd name="connsiteY45" fmla="*/ 506233 h 1696772"/>
+						</a:gdLst>
+						<a:ahLst/>
+						<a:cxnLst>
+						</a:cxnLst>
+						<a:rect l="l" t="t" r="r" b="b"/>
+						<a:pathLst>
+							<a:path w="1478320" h="1696772">
+					
+															</a:path>
+						</a:pathLst>
+					</a:custGeom>
+				<a:ln><a:solidFill><a:srgbClr val="FF0000"/></a:solidFill></a:ln>
+				</p:spPr>
+				<p:style>
+					<a:lnRef idx="2">
+						<a:schemeClr val="accent1"/>
+					</a:lnRef>
+					<a:fillRef idx="0">
+						<a:schemeClr val="accent1"/>
+					</a:fillRef>
+					<a:effectRef idx="1">
+						<a:schemeClr val="accent1"/>
+					</a:effectRef>
+					<a:fontRef idx="minor">
+						<a:schemeClr val="tx1"/>
+					</a:fontRef>
+				</p:style>
+				<p:txBody>
+					<a:bodyPr rtlCol="0" anchor="ctr"/>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr"/>
+						<a:endParaRPr lang="en-US"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+			
+		</p:spTree>
+		<p:extLst>
+			<p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
+				<p14:creationId
+					xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="1392507858"/>
+				</p:ext>
+			</p:extLst>
+		</p:cSld>
+		<p:clrMapOvr>
+			<a:masterClrMapping/>
+		</p:clrMapOvr>
+		<p:timing>
+			<p:tnLst>
+				<p:par>
+					<p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"
+						xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main"/>
+					</p:par>
+				</p:tnLst>
+			</p:timing>
+		</p:sld>

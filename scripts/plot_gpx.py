@@ -4,6 +4,7 @@ import os
 import argparse
 import copy
 import sys
+import shutil
 
 sys.setrecursionlimit(15000)
 
@@ -15,7 +16,14 @@ args = parser.parse_args()
 
 unpack_path = args.unpack_path
 tracks_path = args.tracks_path
-slide_path = unpack_path+"/ppt/slides/slide1.xml"
+
+temps = tracks_path.split("/")
+ppt_name = temps[len(temps)-1]
+
+temp_unpack_path = ppt_name.split(".")[0]+"_temp"
+shutil.copytree(unpack_path, temp_unpack_path)
+
+slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
 def createPptxFromTrackData(trackData):
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
@@ -26,35 +34,51 @@ def createPptxFromTrackData(trackData):
         temp_shape_tag = copy.deepcopy(shape_tag)
 
         path_tag = temp_shape_tag.find('path')
-        if(trackCount!=0):
-            temp_shape_tag.find('off')['x'] = str(int(temp_shape_tag.find('off')['x']) + 2000000)
+        # if(trackCount!=0):
+        #     temp_shape_tag.find('off')['x'] = str(int(temp_shape_tag.find('off')['x']) + 2000000)
             # temp_shape_tag.find('off')['y'] = str(int(temp_shape_tag.find('off')['y']) + 2000000)
+        # 
+        # w = path_tag['w']
+        # h = path_tag['h']
 
-        w = path_tag['w']
-        h = path_tag['h']
-
-        #Scaling --
-        # x = 1 ---> 297649
-        # y = 1 ---> 1051897
+        #Adding coordinates
         coordinates_detail = track['coordinates']
         coordinates = []
         for coordinate_detail in coordinates_detail:
             coordinates.append(coordinate_detail['coor_set'])
 
-        scale = 1
+        num_coordinate = 1
         for coordinate in coordinates:
             (x,y) = coordinate
             x = round(float(x))
-            x = x*128*scale
+            x = x*10000
             x = int(x)
             x = str(x)
             y = round(float(y))
-            y = y*128*scale
+            y = y*10000
             y = int(y)
             y = str(y)
-            coordinate_soup = BeautifulSoup("<a:lnTo><a:pt x='"+x+"' y='"+y+"'/></a:lnTo>", 'xml')
-            path_tag.append(coordinate_soup.find('lnTo'))
-            scale+=1
+            if(num_coordinate==1):
+                coordinate_soup = BeautifulSoup("<a:moveTo><a:pt x='"+x+"' y='"+y+"'/></a:moveTo>", 'xml')
+                path_tag.append(coordinate_soup.find('moveTo'))
+                num_coordinate+=1
+            else:
+                coordinate_soup = BeautifulSoup("<a:lnTo><a:pt x='"+x+"' y='"+y+"'/></a:lnTo>", 'xml')
+                path_tag.append(coordinate_soup.find('lnTo'))
+                num_coordinate+=1
+
+        #Adding color to the track
+        colors = track['color']
+        temp = colors.split("[")[1]
+        temp = temp[0:-1]
+        temp = temp.split(",")
+        r = int(temp[0].split("=")[1])
+        b = int(temp[1].split("=")[1])
+        g = int(temp[2].split("=")[1])
+
+        hex = "{:02x}{:02x}{:02x}".format(r,g,b)
+
+        temp_shape_tag.find('srgbClr')['val'] = hex.upper()
 
         soup.find('spTree').append(temp_shape_tag)
         trackCount+=1
@@ -66,6 +90,8 @@ def createPptxFromTrackData(trackData):
     soup_text = soup_text.replace("</html>","")
     soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
     soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
+    soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
+    soup_text = soup_text.replace("</moveTo>","</a:moveTo>")
     soup_text = soup_text.replace("<pt","<a:pt")
     soup_text = soup_text.replace("</pt","</a:pt")
     soup_text = soup_text.strip()
@@ -73,6 +99,9 @@ def createPptxFromTrackData(trackData):
     text_file = open(slide_path, "w")
     text_file.write(soup_text)
     text_file.close()
+
+    os.system("python scripts/pack.py --unpack_path "+temp_unpack_path)
+    # shutil.rmtree(temp_unpack_path)
 
 
 
