@@ -13,7 +13,7 @@ def getTrackData(trackPath):
 
         coordinates = track.find_all('trkpt')
         for coordinate in coordinates:
-            coor_set = (coordinate['lat'], coordinate['lon'])
+            coor_set = (coordinate['lon'], coordinate['lat'])
             coordinateDetails = {'coor_set': coor_set, 'time': coordinate.find('time').text}
             trackDetails['coordinates'].append(coordinateDetails)
 
