@@ -20,7 +20,47 @@
 			</p:grpSpPr>
 			<p:sp>
 				<p:nvSpPr>
-					<p:cNvPr id="4" name="Freeform 3"/>
+					<p:cNvPr id="2" name="map"/>
+					<p:cNvSpPr>
+						<a:spLocks noChangeAspect="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="300939" y="173619"/>
+						<a:ext cx="8640000" cy="6480000"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+				</p:spPr>
+				<p:style>
+					<a:lnRef idx="2">
+						<a:schemeClr val="dk1"/>
+					</a:lnRef>
+					<a:fillRef idx="1">
+						<a:schemeClr val="lt1"/>
+					</a:fillRef>
+					<a:effectRef idx="0">
+						<a:schemeClr val="dk1"/>
+					</a:effectRef>
+					<a:fontRef idx="minor">
+						<a:schemeClr val="dk1"/>
+					</a:fontRef>
+				</p:style>
+				<p:txBody>
+					<a:bodyPr rtlCol="0" anchor="ctr"/>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr"/>
+						<a:endParaRPr lang="en-US"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="4" name="sample_path"/>
 					<p:cNvSpPr/>
 					<p:nvPr/>
 				</p:nvSpPr>
@@ -126,16 +166,21 @@
 							<a:gd name="connsiteY45" fmla="*/ 506233 h 1696772"/>
 						</a:gdLst>
 						<a:ahLst/>
-						<a:cxnLst>
-						</a:cxnLst>
+						<a:cxnLst/>
 						<a:rect l="l" t="t" r="r" b="b"/>
 						<a:pathLst>
 							<a:path w="1478320" h="1696772">
-					
-															</a:path>
+								<a:moveTo>
+									<a:pt x="0" y="30018"/>
+								</a:moveTo>
+							</a:path>
 						</a:pathLst>
 					</a:custGeom>
-				<a:ln><a:solidFill><a:srgbClr val="FF0000"/></a:solidFill></a:ln>
+					<a:ln>
+						<a:solidFill>
+							<a:srgbClr val="FFFF00"/>
+						</a:solidFill>
+					</a:ln>
 				</p:spPr>
 				<p:style>
 					<a:lnRef idx="2">
@@ -160,7 +205,44 @@
 					</a:p>
 				</p:txBody>
 			</p:sp>
-			
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="3" name="sample_arrow"/>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="1957865" y="1033105"/>
+						<a:ext cx="92598" cy="186943"/>
+					</a:xfrm>
+					<a:prstGeom prst="downArrow">
+						<a:avLst/>
+					</a:prstGeom>
+				</p:spPr>
+				<p:style>
+					<a:lnRef idx="1">
+						<a:schemeClr val="accent1"/>
+					</a:lnRef>
+					<a:fillRef idx="3">
+						<a:schemeClr val="accent1"/>
+					</a:fillRef>
+					<a:effectRef idx="2">
+						<a:schemeClr val="accent1"/>
+					</a:effectRef>
+					<a:fontRef idx="minor">
+						<a:schemeClr val="lt1"/>
+					</a:fontRef>
+				</p:style>
+				<p:txBody>
+					<a:bodyPr rtlCol="0" anchor="ctr"/>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr"/>
+						<a:endParaRPr lang="en-US"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
 		</p:spTree>
 		<p:extLst>
 			<p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
@@ -175,9 +257,73 @@
 		<p:timing>
 			<p:tnLst>
 				<p:par>
-					<p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"
-						xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main"/>
-					</p:par>
-				</p:tnLst>
-			</p:timing>
-		</p:sld>
+					<p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot">
+						<p:childTnLst>
+							<p:seq concurrent="1" nextAc="seek">
+								<p:cTn id="2" dur="indefinite" nodeType="mainSeq">
+									<p:childTnLst>
+										<p:par>
+											<p:cTn id="3" fill="hold">
+												<p:stCondLst>
+													<p:cond delay="indefinite"/>
+												</p:stCondLst>
+												<p:childTnLst>
+													<p:par>
+														<p:cTn id="4" fill="hold">
+															<p:stCondLst>
+																<p:cond delay="0"/>
+															</p:stCondLst>
+															<p:childTnLst>
+																<p:par>
+																	<p:cTn id="5" presetID="0" presetClass="path" presetSubtype="0" accel="50000" decel="50000" fill="hold" grpId="0" nodeType="clickEffect">
+																		<p:stCondLst>
+																			<p:cond delay="0"/>
+																		</p:stCondLst>
+																		<p:childTnLst>
+																			<p:animMotion origin="layout" path="" pathEditMode="relative" ptsTypes="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+																				<p:cBhvr>
+																					<p:cTn id="6" dur="2000" fill="hold"/>
+																					<p:tgtEl>
+																						<p:spTgt spid="3"/>
+																					</p:tgtEl>
+																					<p:attrNameLst>
+																						<p:attrName>ppt_x</p:attrName>
+																						<p:attrName>ppt_y</p:attrName>
+																					</p:attrNameLst>
+																				</p:cBhvr>
+																			</p:animMotion>
+																		</p:childTnLst>
+																	</p:cTn>
+																</p:par>
+															</p:childTnLst>
+														</p:cTn>
+													</p:par>
+												</p:childTnLst>
+											</p:cTn>
+										</p:par>
+									</p:childTnLst>
+								</p:cTn>
+								<p:prevCondLst>
+									<p:cond evt="onPrev" delay="0">
+										<p:tgtEl>
+											<p:sldTgt/>
+										</p:tgtEl>
+									</p:cond>
+								</p:prevCondLst>
+								<p:nextCondLst>
+									<p:cond evt="onNext" delay="0">
+										<p:tgtEl>
+											<p:sldTgt/>
+										</p:tgtEl>
+									</p:cond>
+								</p:nextCondLst>
+							</p:seq>
+						</p:childTnLst>
+					</p:cTn>
+				</p:par>
+			</p:tnLst>
+			<p:bldLst>
+				<p:bldP spid="3" grpId="0" animBg="1"/>
+			</p:bldLst>
+		</p:timing>
+	</p:sld>
