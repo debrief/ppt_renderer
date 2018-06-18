@@ -5,6 +5,7 @@ import argparse
 import copy
 import sys
 import shutil
+from pack_function import packFunction
 
 sys.setrecursionlimit(15000)
 
@@ -30,14 +31,15 @@ def createPptxFromTrackData(trackData):
     shape_tag = soup.find('sp')
     shape_tag.extract()
     trackCount = 0
+    # trackData = [trackData[0]]
     for track in trackData:
         temp_shape_tag = copy.deepcopy(shape_tag)
-
+        animation_path = ""
         path_tag = temp_shape_tag.find('path')
         # if(trackCount!=0):
-        #     temp_shape_tag.find('off')['x'] = str(int(temp_shape_tag.find('off')['x']) + 2000000)
+            # temp_shape_tag.find('off')['x'] = str(int(temp_shape_tag.find('off')['x']) + 2000000)
             # temp_shape_tag.find('off')['y'] = str(int(temp_shape_tag.find('off')['y']) + 2000000)
-        # 
+        #
         # w = path_tag['w']
         # h = path_tag['h']
 
@@ -50,6 +52,10 @@ def createPptxFromTrackData(trackData):
         num_coordinate = 1
         for coordinate in coordinates:
             (x,y) = coordinate
+            if(num_coordinate==1):
+                animation_path += "M "+str(float(x)/1000)+" "+str(float(y)/1000)+" "
+            else:
+                animation_path += "L "+str(float(x)/1000)+" "+str(float(y)/1000)+" "
             x = round(float(x))
             x = x*10000
             x = int(x)
@@ -76,11 +82,16 @@ def createPptxFromTrackData(trackData):
         b = int(temp[1].split("=")[1])
         g = int(temp[2].split("=")[1])
 
-        hex = "{:02x}{:02x}{:02x}".format(r,g,b)
-
-        temp_shape_tag.find('srgbClr')['val'] = hex.upper()
+        hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
+        #
+        temp_shape_tag.find('srgbClr')['val'] = hex_value.upper()
 
         soup.find('spTree').append(temp_shape_tag)
+
+        # #adding animation path
+        # anim_motion = soup.find('animMotion')
+        # anim_motion['path'] = animation_path
+
         trackCount+=1
 
     soup_text = soup.prettify()
@@ -100,8 +111,8 @@ def createPptxFromTrackData(trackData):
     text_file.write(soup_text)
     text_file.close()
 
-    os.system("python scripts/pack.py --unpack_path "+temp_unpack_path)
-    # shutil.rmtree(temp_unpack_path)
+    packFunction(None, temp_unpack_path)
+    shutil.rmtree(temp_unpack_path)
 
 
 
