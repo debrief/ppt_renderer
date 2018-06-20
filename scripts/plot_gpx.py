@@ -106,10 +106,10 @@ def createPptxFromTrackData(GPXData):
         # temp_shape_tag.find('cNvPr')['name'] = "sample_shape"+current_shape_id
 
         #Get Shape offsets and exts
-        temp_shape_x = int(temp_shape_tag.find('off')['x'])
-        temp_shape_y = int(temp_shape_tag.find('off')['y'])
-        temp_shape_cx = int(temp_shape_tag.find('ext')['cx'])
-        temp_shape_cy = int(temp_shape_tag.find('ext')['cy'])
+        # temp_shape_x = int(temp_shape_tag.find('off')['x'])
+        # temp_shape_y = int(temp_shape_tag.find('off')['y'])
+        # temp_shape_cx = int(temp_shape_tag.find('ext')['cx'])
+        # temp_shape_cy = int(temp_shape_tag.find('ext')['cy'])
 
         #Set off and ext properties of shape equal to that of map
         # temp_shape_tag.find('off')['x'] = mapX
