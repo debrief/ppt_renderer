@@ -45,14 +45,19 @@ slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
 def createPptxFromTrackData(trackData):
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
-    #
-    # #Get Map shape details
+
+    #Fix creation id tag
+    creationIdsoup = soup.find('creationId')
+    creationIdsoup.name = "p14:creationId"
+    creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
+
+    #Get Map shape details
     mapDetails = getMapDetails(temp_unpack_path)
     mapX = mapDetails['x']
     mapY = mapDetails['y']
     mapCX = mapDetails['cx']
     mapCY = mapDetails['cy']
-    #
+
     shape_tag = None
     arrow_tag = None
     #retrive the sample arrow and path tag
@@ -63,41 +68,41 @@ def createPptxFromTrackData(trackData):
             shape_tag = shape
         if(name=='sample_arrow'):
             arrow_tag = shape
-    #
+
     shape_tag.extract()
     arrow_tag.extract()
-    #
+
     trackCount = 0
-    #
+
     shape_ids = []
     arrow_ids = []
-    #
+
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
         temp_arrow_tag = copy.deepcopy(arrow_tag)
         temp_shape_tag = copy.deepcopy(shape_tag)
-    #
-    #
+
+
         current_shape_id = "1"+str(trackCount)
         shape_ids.append(current_shape_id)
-    #
+
         arrow_ids.append("2"+str(trackCount))
-    # #
-    # #
-    # #     #Set off and ext properties of shape equal to that of map
+
+
+        #Set off and ext properties of shape equal to that of map
         temp_shape_tag.find('off')['x'] = mapX
         temp_shape_tag.find('off')['y'] = mapY
         temp_shape_tag.find('ext')['cx'] = mapCX
         temp_shape_tag.find('ext')['cy'] = mapCY
-    #
+
         animation_path = ""
         path_tag = temp_shape_tag.find('path')
         for child in path_tag.findChildren():
             child.extract()
         # print soup
-    #
-    #
+
+
         #Adding coordinates
         coordinates_detail = track['coordinates']
         coordinates = []
@@ -149,14 +154,14 @@ def createPptxFromTrackData(trackData):
         anim_motion = soup.find('animMotion')
         anim_motion['path'] = animation_path
         anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
-    #     # soup.find('bldP')['spid'] = current_shape_id
-    #
+        # soup.find('bldP')['spid'] = current_shape_id
+
         trackCount+=1
-    #
+
     soup_text = str(soup)
-    # #all the xml content in one line.
+    #all the xml content in one line.
     # soup_text = soup_text.replace("\n","")
-    #
+
     soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
     soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
     soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
@@ -164,7 +169,7 @@ def createPptxFromTrackData(trackData):
     soup_text = soup_text.replace("<pt","<a:pt")
     soup_text = soup_text.replace("</pt","</a:pt")
     soup_text = soup_text.strip()
-    # # print soup_text
+    # print soup_text
     text_file = open(slide_path, "w")
     text_file.write(soup_text)
     text_file.close()
