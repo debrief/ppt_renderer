@@ -3,6 +3,10 @@ import os
 
 def getTrackData(trackPath):
     soup = BeautifulSoup(open(trackPath, 'r').read(), 'lxml')
+    dimensions = soup.find('dimensions')
+    dimensionWidth = dimensions['width']
+    dimensionHeight = dimensions['height']
+
     tracks = soup.find_all('trk')
     trackData = []
     for track in tracks:
@@ -18,7 +22,7 @@ def getTrackData(trackPath):
             trackDetails['coordinates'].append(coordinateDetails)
 
         trackData.append(trackDetails)
-    return trackData
+    return {'trackData': trackData, 'dimensionWidth': dimensionWidth, 'dimensionHeight': dimensionHeight}
 
 '''
 Example of trackData returned -
