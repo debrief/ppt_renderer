@@ -20,7 +20,7 @@ from findmap import getMapDetails
 #
 # X in ppt = x*(4/10) + BaseX
 # Y in ppt = y*(4/10) + BaseY
-# 
+#
 
 sys.setrecursionlimit(15000)
 
@@ -83,12 +83,16 @@ def createPptxFromTrackData(trackData):
         temp_arrow_tag = copy.deepcopy(arrow_tag)
         temp_shape_tag = copy.deepcopy(shape_tag)
 
-
-        current_shape_id = "1"+str(trackCount)
+        current_shape_id = "1"+str(trackCount+1)
         shape_ids.append(current_shape_id)
+        current_arrow_id = "2"+str(trackCount+1)
+        arrow_ids.append(current_arrow_id)
 
-        arrow_ids.append("2"+str(trackCount))
-
+        #Assign ids to arrow shape and path shape
+        # temp_arrow_tag.find('cNvPr')['id'] = current_arrow_id
+        # temp_arrow_tag.find('cNvPr')['name'] = "sample_arrow"+current_arrow_id
+        # temp_shape_tag.find('cNvPr')['id'] = current_shape_id
+        # temp_shape_tag.find('cNvPr')['name'] = "sample_shape"+current_shape_id
 
         #Set off and ext properties of shape equal to that of map
         temp_shape_tag.find('off')['x'] = mapX
@@ -150,7 +154,6 @@ def createPptxFromTrackData(trackData):
 
         soup.find('spTree').append(temp_shape_tag)
         soup.find('spTree').append(temp_arrow_tag)
-
         anim_motion = soup.find('animMotion')
         anim_motion['path'] = animation_path
         anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
