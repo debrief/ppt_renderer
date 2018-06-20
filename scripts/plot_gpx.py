@@ -140,6 +140,11 @@ def createPptxFromTrackData(GPXData):
             x = round(float(x))
             y = round(float(y))
             x,y = coordinateTransformation(x, y, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY)
+
+            # remove the offsets for the track object
+            x = x - temp_shape_x
+            y = y - temp_shape_y
+
             x = int(x)
             x = str(x)
             y = int(y)
