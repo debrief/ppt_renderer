@@ -7,20 +7,20 @@ import sys
 import shutil
 from pack_function import packFunction
 from findmap import getMapDetails
-'''
 
-Screen Coordinates to PPTX Coordinates for path -
-X     Y	     x    y
-0	  0	    100	200
-1000  800	500	500
-500	  400	300	350
-
-BaseX = 100
-BaseY = 200
-
-X in ppt = x*(4/10) + BaseX
-Y in ppt = y*(4/10) + BaseY
-'''
+#
+# Screen Coordinates to PPTX Coordinates for path -
+# X     Y	     x    y
+# 0	  0	    100	200
+# 1000  800	500	500
+# 500	  400	300	350
+#
+# BaseX = 100
+# BaseY = 200
+#
+# X in ppt = x*(4/10) + BaseX
+# Y in ppt = y*(4/10) + BaseY
+# 
 
 sys.setrecursionlimit(15000)
 

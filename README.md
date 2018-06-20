@@ -20,6 +20,10 @@ FindMap:
 
 python scripts/findmap.py --unpack_path map_rect
 
+plot_gpy.py:
+
+python scripts/plot_gpx.py --tracks_path track_data/long_tracks.txt --unpack_path freehand_line
+
 Run Help -
 
 python pack.py -h
