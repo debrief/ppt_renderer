@@ -43,7 +43,18 @@ shutil.copytree(unpack_path, temp_unpack_path)
 
 slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
-def createPptxFromTrackData(trackData):
+def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, invertY = 1):
+    x = rectX + x*int(rectWidth/dimensionWidth)
+    if invertY==1:
+        y = y - dimensionHeight
+    y = rectY + y*int(rectHeight/-dimensionHeight)
+    return x,y
+
+def createPptxFromTrackData(GPXData):
+    trackData = GPXData['trackData']
+    dimensionWidth = int(GPXData['dimensionWidth'])
+    dimensionHeight = int(GPXData['dimensionHeight'])
+
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
     #Fix creation id tag
@@ -53,10 +64,10 @@ def createPptxFromTrackData(trackData):
 
     #Get Map shape details
     mapDetails = getMapDetails(temp_unpack_path)
-    mapX = mapDetails['x']
-    mapY = mapDetails['y']
-    mapCX = mapDetails['cx']
-    mapCY = mapDetails['cy']
+    mapX = int(mapDetails['x'])
+    mapY = int(mapDetails['y'])
+    mapCX = int(mapDetails['cx'])
+    mapCY = int(mapDetails['cy'])
 
     shape_tag = None
     arrow_tag = None
@@ -64,9 +75,9 @@ def createPptxFromTrackData(trackData):
     all_shape_tags = soup.find_all('sp')
     for shape in all_shape_tags:
         name = shape.find('cNvPr')['name']
-        if(name=='sample_path'):
+        if(name=='track'):
             shape_tag = shape
-        if(name=='sample_arrow'):
+        if(name=='marker'):
             arrow_tag = shape
 
     shape_tag.extract()
@@ -94,18 +105,23 @@ def createPptxFromTrackData(trackData):
         # temp_shape_tag.find('cNvPr')['id'] = current_shape_id
         # temp_shape_tag.find('cNvPr')['name'] = "sample_shape"+current_shape_id
 
+        #Get Shape offsets and exts
+        # temp_shape_x = int(temp_shape_tag.find('off')['x'])
+        # temp_shape_y = int(temp_shape_tag.find('off')['y'])
+        # temp_shape_cx = int(temp_shape_tag.find('ext')['cx'])
+        # temp_shape_cy = int(temp_shape_tag.find('ext')['cy'])
+
         #Set off and ext properties of shape equal to that of map
-        temp_shape_tag.find('off')['x'] = mapX
-        temp_shape_tag.find('off')['y'] = mapY
-        temp_shape_tag.find('ext')['cx'] = mapCX
-        temp_shape_tag.find('ext')['cy'] = mapCY
+        # temp_shape_tag.find('off')['x'] = mapX
+        # temp_shape_tag.find('off')['y'] = mapY
+        # temp_shape_tag.find('ext')['cx'] = mapCX
+        # temp_shape_tag.find('ext')['cy'] = mapCY
 
         animation_path = ""
         path_tag = temp_shape_tag.find('path')
         for child in path_tag.findChildren():
             child.extract()
         # print soup
-
 
         #Adding coordinates
         coordinates_detail = track['coordinates']
@@ -122,18 +138,23 @@ def createPptxFromTrackData(trackData):
             else:
                 animation_path += "L "+str((float(x)/750)-0.06)+" "+str((float(y)/750)-0.06)+" "
             x = round(float(x))
-            x = x*2000
+            y = round(float(y))
+            x,y = coordinateTransformation(x, y, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY)
+
+            # remove the offsets for the track object
+            x = x - temp_shape_x
+            y = y - temp_shape_y
+
             x = int(x)
             x = str(x)
-            y = round(float(y))
-            y = y*2000
             y = int(y)
             y = str(y)
+
             if(num_coordinate==0):
                 coordinate_soup = BeautifulSoup("<a:moveTo><a:pt x='"+x+"' y='"+y+"'/></a:moveTo>", 'xml')
                 path_tag.append(coordinate_soup.find('moveTo'))
-                temp_arrow_tag.find('off')['x'] = x
-                temp_arrow_tag.find('off')['y'] = y
+                # temp_arrow_tag.find('off')['x'] = x
+                # temp_arrow_tag.find('off')['y'] = y
             else:
                 coordinate_soup = BeautifulSoup("<a:lnTo><a:pt x='"+x+"' y='"+y+"'/></a:lnTo>", 'xml')
                 path_tag.append(coordinate_soup.find('lnTo'))
@@ -182,5 +203,5 @@ def createPptxFromTrackData(trackData):
 
 
 
-trackData = getTrackData(tracks_path)
-createPptxFromTrackData(trackData)
+GPXData = getTrackData(tracks_path)
+createPptxFromTrackData(GPXData)
