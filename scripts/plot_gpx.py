@@ -43,6 +43,13 @@ shutil.copytree(unpack_path, temp_unpack_path)
 
 slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
+def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, invertY = 1):
+    x = rectX + x*int(rectWidth/dimensionWidth)
+    if invertY==1:
+        y = y - dimensionHeight
+    y = rectY + y*int(rectHeight/-dimensionHeight)
+    return x,y
+
 def createPptxFromTrackData(GPXData):
     trackData = GPXData['trackData']
     dimensionWidth = int(GPXData['dimensionWidth'])
@@ -131,13 +138,10 @@ def createPptxFromTrackData(GPXData):
             else:
                 animation_path += "L "+str((float(x)/750)-0.06)+" "+str((float(y)/750)-0.06)+" "
             x = round(float(x))
-            x = mapX + x*int(mapCX/dimensionWidth)
+            y = round(float(y))
+            x,y = coordinateTransformation(x, y, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY)
             x = int(x)
             x = str(x)
-            y = round(float(y))
-            # invert y dimension
-            y = y - dimensionHeight
-            y = (y*int(mapCY/-dimensionHeight)) +  mapY
             y = int(y)
             y = str(y)
 
