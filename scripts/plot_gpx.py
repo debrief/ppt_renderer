@@ -135,9 +135,12 @@ def createPptxFromTrackData(GPXData):
             x = int(x)
             x = str(x)
             y = round(float(y))
-            y = mapY + y*int(mapCY/dimensionHeight)
+            # invert y dimension
+            y = y - dimensionHeight
+            y = (y*int(mapCY/-dimensionHeight)) +  mapY
             y = int(y)
             y = str(y)
+
             if(num_coordinate==0):
                 coordinate_soup = BeautifulSoup("<a:moveTo><a:pt x='"+x+"' y='"+y+"'/></a:moveTo>", 'xml')
                 path_tag.append(coordinate_soup.find('moveTo'))
