@@ -55,6 +55,8 @@ def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY
 
 def createPptxFromTrackData(GPXData):
     trackData = GPXData['trackData']
+    print 'Number of tracks:::', len(trackData)
+
     #Dimension data
     dimensionWidth = int(GPXData['dimensionWidth'])
     dimensionHeight = int(GPXData['dimensionHeight'])
@@ -228,6 +230,17 @@ def createPptxFromTrackData(GPXData):
         anim_motion['path'] = animation_path
         anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
         anim_motion.find('spTgt')['spid'] = current_arrow_id
+
+        #Adjust ids
+        temp_anim_tag.find('cTn')['id']=int(temp_anim_tag.find('cTn')['id'])+trackCount
+        anim_motion.find('cTn')['id'] = int(anim_motion.find('cTn')['id'])+trackCount
+
+        #Adjust accel and decel
+        del temp_anim_tag.find('cTn')['accel']
+        del temp_anim_tag.find('cTn')['decel']
+
+        #Adjust duration of the animation
+        anim_motion.find('cTn')['dur'] = "10000"
 
         anim_insertion_tag.append(temp_anim_tag)
         # print anim_motion
