@@ -796,7 +796,7 @@
             </trkpt>
         </trkseg>
         <extensions>
-            <color>java.awt.Color[r=224,g=28,b=62]</color>
+            <color>java.awt.Color[r=224,g=150,b=62]</color>
         </extensions>
     </trk>
     <trk>
@@ -1062,7 +1062,7 @@
             </trkpt>
         </trkseg>
         <extensions>
-            <color>java.awt.Color[r=0,g=100,b=189]</color>
+            <color>java.awt.Color[r=100,g=100,b=0]</color>
         </extensions>
     </trk>
     <extensions>
