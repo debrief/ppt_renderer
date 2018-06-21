@@ -130,6 +130,9 @@ def createPptxFromTrackData(GPXData):
     shape_ids = []
     arrow_ids = []
 
+    shape_objs = []
+    arrow_objs = []
+
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
@@ -223,8 +226,12 @@ def createPptxFromTrackData(GPXData):
 
         temp_shape_tag.find('srgbClr')['val'] = hex_value.upper()
 
-        soup.find('spTree').append(temp_shape_tag)
-        soup.find('spTree').append(temp_arrow_tag)
+        # soup.find('spTree').append(temp_shape_tag)
+        # soup.find('spTree').append(temp_arrow_tag)
+
+        #We will add the shape and arrow objects in arrays for now
+        shape_objs.append(temp_shape_tag)
+        arrow_objs.append(temp_arrow_tag)
 
         anim_motion = temp_anim_tag.find('animMotion')
         anim_motion['path'] = animation_path
@@ -247,6 +254,13 @@ def createPptxFromTrackData(GPXData):
         soup.find('bldP')['spid'] = current_shape_id
 
         trackCount+=2
+
+    #Adding all shape and arrow objects
+    spTree_obj = soup.find('spTree')
+    for shape in shape_objs:
+        spTree_obj.append(shape)
+    for arrow in arrow_objs:
+        spTree_obj.append(arrow)
 
     soup_text = str(soup)
     #all the xml content in one line.
