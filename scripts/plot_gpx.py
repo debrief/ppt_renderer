@@ -60,7 +60,7 @@ def createPptxFromTrackData(GPXData):
     dimensionHeight = int(GPXData['dimensionHeight'])
 
     # Get slide size from presentation.xml file
-    slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
+    # slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
 
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
