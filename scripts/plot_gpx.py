@@ -117,8 +117,10 @@ def createPptxFromTrackData(GPXData):
     for cTn in soup.find_all('cTn'):
         if(cTn.has_attr('nodeType') and cTn['nodeType']=='mainSeq'):
             anim_tag = cTn.find('par')
-            anim_insertion_tag = anim_tag.parent
             break
+
+    anim_tag = anim_tag.find('cTn').find('cTn').find('par')
+    anim_insertion_tag = anim_tag.parent
 
     anim_tag.extract()
     trackCount = 3
