@@ -7,6 +7,7 @@ import sys
 import shutil
 from pack_function import packFunction
 from findmap import getMapDetails
+from parse_presentation import parsePresentation
 
 #
 # Screen Coordinates to PPTX Coordinates for path -
@@ -44,16 +45,22 @@ shutil.copytree(unpack_path, temp_unpack_path)
 slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
 def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, invertY = 1):
-    x = rectX + x*int(rectWidth/dimensionWidth)
+    x = rectX + x*(rectWidth/dimensionWidth)
     if invertY==1:
         y = y - dimensionHeight
-    y = rectY + y*int(rectHeight/-dimensionHeight)
+        y = rectY + y*(rectHeight/-dimensionHeight)
+    else:
+        y = rectY + y*(rectHeight/dimensionHeight)
     return x,y
 
 def createPptxFromTrackData(GPXData):
     trackData = GPXData['trackData']
+    #Dimension data
     dimensionWidth = int(GPXData['dimensionWidth'])
     dimensionHeight = int(GPXData['dimensionHeight'])
+
+    # Get slide size from presentation.xml file
+    slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
 
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
@@ -69,8 +76,28 @@ def createPptxFromTrackData(GPXData):
     mapCX = int(mapDetails['cx'])
     mapCY = int(mapDetails['cy'])
 
+    # print 'Map::', mapX, mapY, mapCX, mapCY
+
+    #Calculating TL and BR
+    TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(mapCX), float(mapCY), 0, 0, 1, 1, invertY = 0)
+    BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(mapCX), float(mapCY), 0, 0, 1, 1, invertY = 0)
+
+    # print "TL::", TLx, TLy
+    # print "BR::", BRx, BRy
+
+    #Calculating rectangle representated as animated target values
+    animX = TLx
+    animY = TLy
+    animCX = BRx - TLx
+    animCY = BRy - TLy
+    # print "anim values: ",animX, animY
+    # print "animC values: ", animCX, animCY
+
     shape_tag = None
     arrow_tag = None
+    anim_tag = None
+    anim_insertion_tag = None
+
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
     for shape in all_shape_tags:
@@ -80,10 +107,21 @@ def createPptxFromTrackData(GPXData):
         if(name=='marker'):
             arrow_tag = shape
 
+    #Marker offsets
+    # marker_x_off, marker_y_off = coordinateTransformation(float(arrow_tag.find('off')['x']), float(arrow_tag.find('off')['y']), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1)
+    # print "Marker off::",marker_x_off, marker_y_off
     shape_tag.extract()
     arrow_tag.extract()
 
-    trackCount = 0
+    #Finding anim_tag
+    for cTn in soup.find_all('cTn'):
+        if(cTn.has_attr('nodeType') and cTn['nodeType']=='mainSeq'):
+            anim_tag = cTn.find('par')
+            anim_insertion_tag = anim_tag.parent
+            break
+
+    anim_tag.extract()
+    trackCount = 3
 
     shape_ids = []
     arrow_ids = []
@@ -91,23 +129,26 @@ def createPptxFromTrackData(GPXData):
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
+        temp_anim_tag = None
+
         temp_arrow_tag = copy.deepcopy(arrow_tag)
         temp_shape_tag = copy.deepcopy(shape_tag)
+        temp_anim_tag = copy.deepcopy(anim_tag)
 
-        current_shape_id = "1"+str(trackCount+1)
+        current_shape_id = trackCount+1
         shape_ids.append(current_shape_id)
-        current_arrow_id = "2"+str(trackCount+1)
+        current_arrow_id = trackCount+2
         arrow_ids.append(current_arrow_id)
 
         #Assign ids to arrow shape and path shape
-        # temp_arrow_tag.find('cNvPr')['id'] = current_arrow_id
+        temp_arrow_tag.find('cNvPr')['id'] = current_arrow_id
         # temp_arrow_tag.find('cNvPr')['name'] = "sample_arrow"+current_arrow_id
-        # temp_shape_tag.find('cNvPr')['id'] = current_shape_id
+        temp_shape_tag.find('cNvPr')['id'] = current_shape_id
         # temp_shape_tag.find('cNvPr')['name'] = "sample_shape"+current_shape_id
 
         #Get Shape offsets and exts
-        # temp_shape_x = int(temp_shape_tag.find('off')['x'])
-        # temp_shape_y = int(temp_shape_tag.find('off')['y'])
+        temp_shape_x = int(temp_shape_tag.find('off')['x'])
+        temp_shape_y = int(temp_shape_tag.find('off')['y'])
         # temp_shape_cx = int(temp_shape_tag.find('ext')['cx'])
         # temp_shape_cy = int(temp_shape_tag.find('ext')['cy'])
 
@@ -133,13 +174,18 @@ def createPptxFromTrackData(GPXData):
         # print coordinates
         for coordinate in coordinates:
             (x,y) = coordinate
+
+            anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
+            anim_x = (anim_x)/1.25  - 0.22
+            anim_y = (anim_y)/1.25  - 0.18
+            # print "Anim coords: ", anim_x, anim_y
             if(num_coordinate==0):
-                animation_path += "M "+str((float(x)/750)-0.06)+" "+str((float(y)/750)-0.06)+" "
+                animation_path += "M "+str(anim_x)+" "+str(anim_y)+" "
             else:
-                animation_path += "L "+str((float(x)/750)-0.06)+" "+str((float(y)/750)-0.06)+" "
+                animation_path += "L "+str(anim_x)+" "+str(anim_y)+" "
             x = round(float(x))
             y = round(float(y))
-            x,y = coordinateTransformation(x, y, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY)
+            x,y = coordinateTransformation(int(x), int(y), int(dimensionWidth), int(dimensionHeight), int(mapX), int(mapY), int(mapCX), int(mapCY),invertY=1)
 
             # remove the offsets for the track object
             x = x - temp_shape_x
@@ -175,12 +221,17 @@ def createPptxFromTrackData(GPXData):
 
         soup.find('spTree').append(temp_shape_tag)
         soup.find('spTree').append(temp_arrow_tag)
-        anim_motion = soup.find('animMotion')
+
+        anim_motion = temp_anim_tag.find('animMotion')
         anim_motion['path'] = animation_path
         anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
-        # soup.find('bldP')['spid'] = current_shape_id
+        anim_motion.find('spTgt')['spid'] = current_arrow_id
 
-        trackCount+=1
+        anim_insertion_tag.append(temp_anim_tag)
+        # print anim_motion
+        soup.find('bldP')['spid'] = current_shape_id
+
+        trackCount+=2
 
     soup_text = str(soup)
     #all the xml content in one line.
