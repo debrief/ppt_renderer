@@ -1,2794 +1,1250 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/0" creator="DebriefNG" version="1.0">
-    <name>Exported DebriefNG tracks</name>
-    <trk>
-        <name>T23_A</name>
-        <trkseg>
-            <trkpt lat="240.0" lon="111.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>10.8700</course>
-                <speed>7.5984</speed>
-            </trkpt>
-            <trkpt lat="250.0" lon="112.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>9.4000</course>
-                <speed>8.4009</speed>
-            </trkpt>
-            <trkpt lat="266.0" lon="115.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>7.2501</course>
-                <speed>9.7230</speed>
-            </trkpt>
-            <trkpt lat="278.0" lon="116.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>5.7700</course>
-                <speed>10.2889</speed>
-            </trkpt>
-            <trkpt lat="297.0" lon="117.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>3.3800</course>
-                <speed>10.2889</speed>
-            </trkpt>
-            <trkpt lat="306.0" lon="117.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>359.0500</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="313.0" lon="119.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>86.4400</course>
-                <speed>5.0313</speed>
-            </trkpt>
-            <trkpt lat="309.0" lon="124.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>133.9200</course>
-                <speed>5.8287</speed>
-            </trkpt>
-            <trkpt lat="309.0" lon="132.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="313.0" lon="136.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="319.0" lon="142.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="323.0" lon="146.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="329.0" lon="152.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="333.0" lon="156.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="339.0" lon="161.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="342.0" lon="165.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="348.0" lon="171.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="352.0" lon="175.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="358.0" lon="181.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="362.0" lon="185.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="368.0" lon="191.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="372.0" lon="195.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="377.0" lon="201.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="381.0" lon="205.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="387.0" lon="211.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="391.0" lon="214.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="397.0" lon="220.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="401.0" lon="224.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="407.0" lon="230.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="411.0" lon="234.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="416.0" lon="240.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="420.0" lon="244.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="426.0" lon="250.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="430.0" lon="254.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="436.0" lon="260.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="440.0" lon="264.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="446.0" lon="269.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="449.0" lon="273.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="455.0" lon="279.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="459.0" lon="283.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="465.0" lon="289.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="469.0" lon="293.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="475.0" lon="299.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="479.0" lon="303.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="484.0" lon="309.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="488.0" lon="313.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="494.0" lon="318.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="498.0" lon="322.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="504.0" lon="328.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="508.0" lon="332.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="514.0" lon="338.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="517.0" lon="342.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="523.0" lon="348.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="527.0" lon="352.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="533.0" lon="358.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="537.0" lon="362.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="543.0" lon="368.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="547.0" lon="371.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="552.0" lon="377.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="556.0" lon="381.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="562.0" lon="387.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="566.0" lon="391.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="572.0" lon="397.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="576.0" lon="401.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="582.0" lon="407.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=0,g=100,b=189]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>SSK_005</name>
-        <trkseg>
-            <trkpt lat="425.0" lon="123.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="424.0" lon="126.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="422.0" lon="129.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="421.0" lon="131.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="419.0" lon="134.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="418.0" lon="137.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="416.0" lon="140.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="415.0" lon="142.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="414.0" lon="145.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="413.0" lon="148.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="411.0" lon="151.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="410.0" lon="153.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="419.0" lon="158.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="426.0" lon="161.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="436.0" lon="166.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="442.0" lon="170.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="452.0" lon="175.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="459.0" lon="178.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="468.0" lon="183.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="475.0" lon="187.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="485.0" lon="192.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="491.0" lon="195.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="501.0" lon="200.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="507.0" lon="204.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>27.3600</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="509.0" lon="210.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="508.0" lon="212.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="506.0" lon="215.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="505.0" lon="217.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="503.0" lon="221.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="506.0" lon="222.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>350.9100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="517.0" lon="224.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="524.0" lon="226.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="535.0" lon="228.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="542.0" lon="230.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="553.0" lon="232.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="560.0" lon="233.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="571.0" lon="236.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="578.0" lon="237.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="589.0" lon="240.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="596.0" lon="241.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="606.0" lon="244.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="614.0" lon="245.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>12.1700</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="611.0" lon="251.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="610.0" lon="253.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="609.0" lon="256.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="607.0" lon="258.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="606.0" lon="262.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="605.0" lon="264.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="603.0" lon="267.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="602.0" lon="269.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="600.0" lon="273.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="601.0" lon="272.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>282.4100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="610.0" lon="265.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="616.0" lon="261.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="625.0" lon="255.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="631.0" lon="251.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="641.0" lon="245.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="647.0" lon="241.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="656.0" lon="235.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="662.0" lon="231.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="671.0" lon="225.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="677.0" lon="221.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="687.0" lon="214.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="693.0" lon="210.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>326.5100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="691.0" lon="216.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>116.5800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=224,g=28,b=62]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>HVU</name>
-        <trkseg>
-            <trkpt lat="260.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="266.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="274.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="279.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="288.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="293.0" lon="98.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>0.0000</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="300.0" lon="101.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="304.0" lon="105.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="310.0" lon="111.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="314.0" lon="115.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="320.0" lon="121.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="324.0" lon="125.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="329.0" lon="131.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="333.0" lon="135.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="339.0" lon="141.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="343.0" lon="145.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="349.0" lon="151.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="353.0" lon="154.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="359.0" lon="160.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="362.0" lon="164.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="368.0" lon="170.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="372.0" lon="174.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="378.0" lon="180.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="382.0" lon="184.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="388.0" lon="190.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="392.0" lon="194.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="397.0" lon="200.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="401.0" lon="204.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="407.0" lon="209.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="411.0" lon="213.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="417.0" lon="219.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="421.0" lon="223.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="427.0" lon="229.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="431.0" lon="233.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="436.0" lon="239.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="440.0" lon="243.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="446.0" lon="249.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="450.0" lon="253.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="456.0" lon="258.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="460.0" lon="262.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="466.0" lon="268.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="469.0" lon="272.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="475.0" lon="278.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="479.0" lon="282.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="485.0" lon="288.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="489.0" lon="292.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="495.0" lon="298.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="499.0" lon="302.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="504.0" lon="308.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="508.0" lon="311.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="514.0" lon="317.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="518.0" lon="321.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="524.0" lon="327.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="528.0" lon="331.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="534.0" lon="337.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="537.0" lon="341.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="543.0" lon="347.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="547.0" lon="351.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="553.0" lon="357.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="557.0" lon="361.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="563.0" lon="366.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="567.0" lon="370.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="572.0" lon="376.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="576.0" lon="380.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="582.0" lon="386.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=0,g=100,b=189]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>SSK_006</name>
-        <trkseg>
-            <trkpt lat="458.0" lon="359.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="460.0" lon="361.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="463.0" lon="363.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="465.0" lon="365.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="467.0" lon="367.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="469.0" lon="369.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="472.0" lon="371.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="474.0" lon="373.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="477.0" lon="375.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="478.0" lon="377.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="481.0" lon="379.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="483.0" lon="381.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="486.0" lon="383.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="487.0" lon="385.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="490.0" lon="388.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="492.0" lon="389.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="495.0" lon="392.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="497.0" lon="393.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="499.0" lon="396.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="501.0" lon="397.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="504.0" lon="400.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="506.0" lon="401.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="509.0" lon="404.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="510.0" lon="406.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="513.0" lon="408.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="515.0" lon="410.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="518.0" lon="412.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="519.0" lon="414.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="522.0" lon="416.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="524.0" lon="418.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="527.0" lon="420.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="529.0" lon="422.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="531.0" lon="424.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="533.0" lon="426.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="536.0" lon="429.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="538.0" lon="430.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="541.0" lon="433.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="542.0" lon="434.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="545.0" lon="437.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="547.0" lon="438.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="550.0" lon="441.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="551.0" lon="442.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="554.0" lon="445.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="556.0" lon="447.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="559.0" lon="449.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="561.0" lon="451.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="563.0" lon="453.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="565.0" lon="455.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="568.0" lon="457.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="570.0" lon="459.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="573.0" lon="461.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="574.0" lon="463.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="577.0" lon="465.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="579.0" lon="467.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="582.0" lon="469.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="583.0" lon="471.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="586.0" lon="474.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="588.0" lon="475.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="591.0" lon="478.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="593.0" lon="479.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="595.0" lon="482.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="597.0" lon="483.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="600.0" lon="486.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="602.0" lon="487.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="605.0" lon="490.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>41.6800</course>
-                <speed>2.0578</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=224,g=28,b=62]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>SSK_007</name>
-        <trkseg>
-            <trkpt lat="457.0" lon="561.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="458.0" lon="560.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="461.0" lon="557.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="462.0" lon="555.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="465.0" lon="552.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="467.0" lon="551.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="469.0" lon="548.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="471.0" lon="546.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="473.0" lon="543.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="475.0" lon="542.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="478.0" lon="539.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="479.0" lon="537.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="482.0" lon="535.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="483.0" lon="533.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="486.0" lon="530.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="488.0" lon="528.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="490.0" lon="526.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="492.0" lon="524.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="494.0" lon="521.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="496.0" lon="519.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="499.0" lon="517.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="500.0" lon="515.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="503.0" lon="512.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="505.0" lon="510.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="507.0" lon="508.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="509.0" lon="506.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="511.0" lon="503.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="513.0" lon="501.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="515.0" lon="499.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="517.0" lon="497.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="520.0" lon="494.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="521.0" lon="492.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="524.0" lon="490.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="526.0" lon="488.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="528.0" lon="485.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="530.0" lon="484.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="532.0" lon="481.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="534.0" lon="479.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="536.0" lon="476.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="538.0" lon="475.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="541.0" lon="472.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="542.0" lon="470.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="545.0" lon="467.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="547.0" lon="466.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="549.0" lon="463.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="551.0" lon="461.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="553.0" lon="458.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="555.0" lon="457.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="558.0" lon="454.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="559.0" lon="452.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="562.0" lon="450.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="563.0" lon="448.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="566.0" lon="445.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="568.0" lon="443.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="570.0" lon="441.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="572.0" lon="439.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="574.0" lon="436.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>313.4200</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="576.0" lon="438.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>89.8100</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="580.0" lon="448.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="583.0" lon="455.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="588.0" lon="465.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="591.0" lon="472.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="596.0" lon="482.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="599.0" lon="488.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-            <trkpt lat="604.0" lon="499.0">
-                <ele>-18.29</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>64.9800</course>
-                <speed>6.1734</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=224,g=28,b=62]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>T23_B</name>
-        <trkseg>
-            <trkpt lat="240.0" lon="86.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>349.1300</course>
-                <speed>7.5984</speed>
-            </trkpt>
-            <trkpt lat="250.0" lon="84.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>350.6000</course>
-                <speed>8.4009</speed>
-            </trkpt>
-            <trkpt lat="266.0" lon="82.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>352.7500</course>
-                <speed>9.7230</speed>
-            </trkpt>
-            <trkpt lat="278.0" lon="80.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>354.2300</course>
-                <speed>10.2889</speed>
-            </trkpt>
-            <trkpt lat="297.0" lon="79.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>356.6200</course>
-                <speed>10.2889</speed>
-            </trkpt>
-            <trkpt lat="306.0" lon="79.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>0.9500</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="313.0" lon="80.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>56.7300</course>
-                <speed>5.0313</speed>
-            </trkpt>
-            <trkpt lat="317.0" lon="86.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>54.1600</course>
-                <speed>5.8287</speed>
-            </trkpt>
-            <trkpt lat="324.0" lon="95.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>51.2900</course>
-                <speed>7.0325</speed>
-            </trkpt>
-            <trkpt lat="330.0" lon="102.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>49.6800</course>
-                <speed>7.8299</speed>
-            </trkpt>
-            <trkpt lat="341.0" lon="114.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>47.5100</course>
-                <speed>9.0749</speed>
-            </trkpt>
-            <trkpt lat="346.0" lon="120.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>44.4600</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="352.0" lon="126.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="356.0" lon="130.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="362.0" lon="136.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="366.0" lon="140.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="372.0" lon="146.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="376.0" lon="150.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="381.0" lon="155.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="385.0" lon="159.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="391.0" lon="165.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="395.0" lon="169.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="401.0" lon="175.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="405.0" lon="179.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="411.0" lon="185.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="414.0" lon="189.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="420.0" lon="195.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="424.0" lon="199.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="430.0" lon="204.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="434.0" lon="208.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="440.0" lon="214.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="444.0" lon="218.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="449.0" lon="224.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="453.0" lon="228.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="459.0" lon="234.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="463.0" lon="238.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="469.0" lon="244.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="473.0" lon="248.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="479.0" lon="254.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="483.0" lon="257.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="488.0" lon="263.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="492.0" lon="267.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="498.0" lon="273.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="502.0" lon="277.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="508.0" lon="283.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="512.0" lon="287.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="518.0" lon="293.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="521.0" lon="297.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="527.0" lon="303.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="531.0" lon="307.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="537.0" lon="312.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="541.0" lon="316.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="547.0" lon="322.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="551.0" lon="326.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="556.0" lon="332.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="560.0" lon="336.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="566.0" lon="342.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="570.0" lon="346.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="576.0" lon="352.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="580.0" lon="356.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="586.0" lon="362.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="590.0" lon="365.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="595.0" lon="371.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="599.0" lon="375.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-            <trkpt lat="605.0" lon="381.0">
-                <ele>6.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>45.0700</course>
-                <speed>4.6301</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=0,g=100,b=189]</color>
-        </extensions>
-    </trk>
-    <trk>
-        <name>SSK_010</name>
-        <trkseg>
-            <trkpt lat="675.0" lon="368.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T12:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="674.0" lon="371.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="674.0" lon="374.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="674.0" lon="377.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="673.0" lon="380.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="673.0" lon="383.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:22:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="673.0" lon="387.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:27:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="672.0" lon="389.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:32:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="672.0" lon="393.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:37:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="672.0" lon="395.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:42:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="671.0" lon="399.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:47:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="671.0" lon="401.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:52:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="671.0" lon="405.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T13:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="670.0" lon="407.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="670.0" lon="411.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="670.0" lon="414.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="669.0" lon="417.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="669.0" lon="420.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:22:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="669.0" lon="423.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:27:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="668.0" lon="426.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:32:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="668.0" lon="429.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:37:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="668.0" lon="432.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:42:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="667.0" lon="436.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:47:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="667.0" lon="438.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:52:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="667.0" lon="442.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T14:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="666.0" lon="444.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="666.0" lon="448.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="666.0" lon="450.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="665.0" lon="454.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="665.0" lon="456.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:22:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="665.0" lon="460.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:27:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="664.0" lon="463.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:32:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="664.0" lon="466.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:37:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="664.0" lon="469.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:42:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="663.0" lon="472.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:47:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="663.0" lon="475.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:52:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="663.0" lon="478.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T15:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="663.0" lon="481.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="662.0" lon="485.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="662.0" lon="487.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="661.0" lon="491.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="661.0" lon="493.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:22:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="661.0" lon="497.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:27:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="661.0" lon="499.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:32:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="660.0" lon="503.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:37:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="660.0" lon="505.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:42:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="660.0" lon="509.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:47:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="659.0" lon="512.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:52:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="659.0" lon="515.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T16:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="659.0" lon="518.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="658.0" lon="521.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="658.0" lon="524.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="658.0" lon="527.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="657.0" lon="530.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:22:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="657.0" lon="534.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:27:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="657.0" lon="536.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:32:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="656.0" lon="540.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:37:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="656.0" lon="542.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:42:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="656.0" lon="546.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:47:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="655.0" lon="548.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:52:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="655.0" lon="552.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T17:57:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="655.0" lon="554.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:02:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="654.0" lon="558.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:07:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="654.0" lon="561.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:12:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-            <trkpt lat="654.0" lon="564.0">
-                <ele>-40.0</ele>
-                <time>2010-01-12T18:17:24Z</time>
-                <course>96.1300</course>
-                <speed>2.0578</speed>
-            </trkpt>
-        </trkseg>
-        <extensions>
-            <color>java.awt.Color[r=224,g=28,b=62]</color>
-        </extensions>
-    </trk>
-    <extensions>
-        <dimensions height="803" width="950"/>
-        <interval millis="100"/>
-    </extensions>
+   <name>Exported DebriefNG tracks</name>
+   <trk>
+      <name>T23_A</name>
+      <trkseg>
+         <trkpt lat="178.0" lon="250.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:24:11Z</time>
+            <course>360.0000</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="186.0" lon="253.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:29:11Z</time>
+            <course>86.4400</course>
+            <speed>5.0313</speed>
+         </trkpt>
+         <trkpt lat="176.0" lon="266.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:34:11Z</time>
+            <course>117.6901</course>
+            <speed>6.2300</speed>
+         </trkpt>
+         <trkpt lat="180.0" lon="274.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="189.0" lon="284.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="196.0" lon="291.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="206.0" lon="300.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="212.0" lon="307.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="222.0" lon="317.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="229.0" lon="324.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="238.0" lon="333.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="245.0" lon="340.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="255.0" lon="350.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="261.0" lon="357.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="271.0" lon="366.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="278.0" lon="373.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="287.0" lon="383.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="294.0" lon="389.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="304.0" lon="399.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="310.0" lon="406.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="320.0" lon="416.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="327.0" lon="422.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="336.0" lon="432.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="343.0" lon="439.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="353.0" lon="449.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="359.0" lon="455.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="369.0" lon="465.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="376.0" lon="472.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="385.0" lon="482.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="392.0" lon="488.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="402.0" lon="498.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="408.0" lon="505.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="418.0" lon="515.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="425.0" lon="521.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="434.0" lon="531.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="441.0" lon="538.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="451.0" lon="548.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="457.0" lon="554.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="467.0" lon="564.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="474.0" lon="571.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+      </trkseg>
+   <extensions>
+<color>java.awt.Color[r=0,g=100,b=189]</color>
+</extensions>
+</trk>
+   <trk>
+      <name>SSK_005</name>
+      <trkseg>
+         <trkpt lat="348.0" lon="275.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:24:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="345.0" lon="278.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:29:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="341.0" lon="283.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:34:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="339.0" lon="286.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:39:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="335.0" lon="291.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:44:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="338.0" lon="294.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T13:49:11Z</time>
+            <course>7.0600</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="355.0" lon="302.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T13:54:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="366.0" lon="308.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T13:59:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="382.0" lon="317.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:04:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="393.0" lon="322.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:09:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="410.0" lon="331.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:14:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="421.0" lon="336.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:19:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="437.0" lon="345.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:24:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="448.0" lon="350.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:29:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="465.0" lon="359.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:34:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="476.0" lon="365.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:39:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="492.0" lon="373.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:44:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="503.0" lon="379.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T14:49:11Z</time>
+            <course>27.1200</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="497.0" lon="387.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:54:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="495.0" lon="390.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:59:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="491.0" lon="395.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T15:04:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="488.0" lon="398.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T15:09:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="498.0" lon="400.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:14:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="510.0" lon="402.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:19:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="528.0" lon="404.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:24:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="541.0" lon="406.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:29:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="559.0" lon="409.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:34:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="571.0" lon="411.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:39:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="589.0" lon="413.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:44:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="602.0" lon="415.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:49:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="620.0" lon="418.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:54:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="632.0" lon="419.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:59:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="650.0" lon="422.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:04:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="663.0" lon="424.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:09:11Z</time>
+            <course>8.2700</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="672.0" lon="430.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:14:11Z</time>
+            <course>129.1400</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="669.0" lon="434.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:19:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="665.0" lon="439.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:24:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="663.0" lon="442.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:29:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="659.0" lon="447.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:34:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="656.0" lon="450.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:39:11Z</time>
+            <course>129.1400</course>
+            <speed>2.0578</speed>
+         </trkpt>
+      </trkseg>
+   <extensions>
+<color>java.awt.Color[r=224,g=28,b=62]</color>
+</extensions>
+</trk>
+   <trk>
+      <name>SSK_006</name>
+      <trkseg>
+         <trkpt lat="429.0" lon="558.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:24:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="431.0" lon="554.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:29:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="434.0" lon="549.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:34:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="436.0" lon="545.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:39:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="439.0" lon="539.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:44:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="441.0" lon="536.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:49:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="444.0" lon="530.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:54:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="445.0" lon="527.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T13:59:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="448.0" lon="521.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:04:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="450.0" lon="517.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:09:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="453.0" lon="512.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:14:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="455.0" lon="508.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:19:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="458.0" lon="503.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:24:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="460.0" lon="499.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:29:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="463.0" lon="494.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:34:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="465.0" lon="490.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:39:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="468.0" lon="485.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:44:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="470.0" lon="481.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:49:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="472.0" lon="475.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:54:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="474.0" lon="472.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T14:59:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="477.0" lon="466.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T15:04:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="479.0" lon="463.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T15:09:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="482.0" lon="457.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T15:14:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="487.0" lon="459.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:19:11Z</time>
+            <course>46.4500</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="503.0" lon="468.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:24:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="514.0" lon="475.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:29:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="530.0" lon="484.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:34:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="540.0" lon="491.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:39:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="556.0" lon="500.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:44:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="567.0" lon="507.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:49:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="583.0" lon="516.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:54:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="593.0" lon="523.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T15:59:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="609.0" lon="532.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:04:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="620.0" lon="539.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:09:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="635.0" lon="548.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:14:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="646.0" lon="555.0">
+            <ele>-18.29</ele>
+            <time>2010-01-12T16:19:11Z</time>
+            <course>30.9300</course>
+            <speed>6.1734</speed>
+         </trkpt>
+         <trkpt lat="651.0" lon="546.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:24:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="653.0" lon="542.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:29:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="656.0" lon="537.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:34:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+         <trkpt lat="658.0" lon="533.0">
+            <ele>-40.0</ele>
+            <time>2010-01-12T16:39:11Z</time>
+            <course>298.0100</course>
+            <speed>2.0578</speed>
+         </trkpt>
+      </trkseg>
+   <extensions>
+<color>java.awt.Color[r=224,g=28,b=62]</color>
+</extensions>
+</trk>
+   <trk>
+      <name>HVU</name>
+      <trkseg>
+         <trkpt lat="157.0" lon="217.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:24:11Z</time>
+            <course>0.0000</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="164.0" lon="223.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="174.0" lon="233.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="180.0" lon="239.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="190.0" lon="249.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="197.0" lon="256.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="207.0" lon="266.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="213.0" lon="272.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="223.0" lon="282.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="229.0" lon="289.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="239.0" lon="299.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="246.0" lon="305.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="256.0" lon="315.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="262.0" lon="322.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="272.0" lon="332.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="278.0" lon="338.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="288.0" lon="348.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="295.0" lon="355.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="305.0" lon="364.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="311.0" lon="371.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="321.0" lon="381.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="327.0" lon="388.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="337.0" lon="397.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="344.0" lon="404.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="354.0" lon="414.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="360.0" lon="421.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="370.0" lon="430.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="376.0" lon="437.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="386.0" lon="447.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="393.0" lon="453.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="403.0" lon="463.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="409.0" lon="470.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="419.0" lon="480.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="425.0" lon="486.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="435.0" lon="496.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="442.0" lon="503.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="452.0" lon="513.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="458.0" lon="519.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="468.0" lon="529.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="474.0" lon="536.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+      </trkseg>
+   <extensions>
+<color>java.awt.Color[r=0,g=100,b=189]</color>
+</extensions>
+</trk>
+   <trk>
+      <name>T23_B</name>
+      <trkseg>
+         <trkpt lat="178.0" lon="185.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:24:11Z</time>
+            <course>0.0000</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="186.0" lon="187.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:29:11Z</time>
+            <course>56.7300</course>
+            <speed>5.0313</speed>
+         </trkpt>
+         <trkpt lat="196.0" lon="202.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:34:11Z</time>
+            <course>53.1300</course>
+            <speed>6.2300</speed>
+         </trkpt>
+         <trkpt lat="205.0" lon="213.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:39:11Z</time>
+            <course>51.2900</course>
+            <speed>7.0325</speed>
+         </trkpt>
+         <trkpt lat="220.0" lon="231.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:44:11Z</time>
+            <course>48.9300</course>
+            <speed>8.2312</speed>
+         </trkpt>
+         <trkpt lat="232.0" lon="244.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:49:11Z</time>
+            <course>47.5100</course>
+            <speed>9.0749</speed>
+         </trkpt>
+         <trkpt lat="245.0" lon="257.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="252.0" lon="264.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T13:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="261.0" lon="274.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="268.0" lon="280.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="278.0" lon="290.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="284.0" lon="297.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="294.0" lon="307.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="301.0" lon="313.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="310.0" lon="323.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="317.0" lon="330.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="327.0" lon="340.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="333.0" lon="346.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="343.0" lon="356.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="350.0" lon="363.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T14:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="359.0" lon="373.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="366.0" lon="379.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="376.0" lon="389.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="382.0" lon="396.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="392.0" lon="406.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="399.0" lon="412.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="408.0" lon="422.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="415.0" lon="429.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="425.0" lon="439.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:44:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="431.0" lon="445.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:49:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="441.0" lon="455.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:54:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="448.0" lon="462.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T15:59:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="457.0" lon="472.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:04:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="464.0" lon="478.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:09:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="474.0" lon="488.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:14:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="480.0" lon="495.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:19:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="490.0" lon="505.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:24:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="497.0" lon="511.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:29:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="506.0" lon="521.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:34:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+         <trkpt lat="513.0" lon="528.0">
+            <ele>6.0</ele>
+            <time>2010-01-12T16:39:11Z</time>
+            <course>45.0700</course>
+            <speed>4.6301</speed>
+         </trkpt>
+      </trkseg>
+   <extensions>
+<color>java.awt.Color[r=0,g=100,b=189]</color>
+</extensions>
+</trk>
+<extensions>
+<dimensions height="803" width="867"/>
+<interval millis="100"/>
+</extensions>
 </gpx>
+
+
