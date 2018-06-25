@@ -159,6 +159,12 @@ def createPptxFromTrackData(GPXData):
         arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
         arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
 
+        #Adding text to arrow shape -
+        trackName = track['name']
+        #trimming the trackname -
+        trackName = trackName[0:4]
+        temp_arrow_tag.find('txBody').find('p').find('r').find('t').string = trackName
+
         print "arrow ->", arrow_off_x+arrow_ext_cx
         bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
         print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
@@ -332,7 +338,6 @@ def createPptxFromTrackData(GPXData):
     #                 anim_tag_upper_temp.find('cTn').find('cTn').find('par').parent.append(track_anim_objs[i])
     #     anim_insertion_tag_upper.append(anim_tag_upper_temp)
     #     i+=1
-
 
     track_num = 1
     for track_anim_objs in all_animation_objs:
