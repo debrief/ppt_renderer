@@ -62,7 +62,7 @@ def createPptxFromTrackData(GPXData):
     dimensionHeight = int(GPXData['dimensionHeight'])
 
     # Get slide size from presentation.xml file
-    # slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
+    slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
 
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
@@ -116,15 +116,24 @@ def createPptxFromTrackData(GPXData):
     arrow_tag.extract()
 
     #Finding anim_tag
-    for cTn in soup.find_all('cTn'):
-        if(cTn.has_attr('nodeType') and cTn['nodeType']=='mainSeq'):
-            anim_tag = cTn.find('par')
-            break
+    # for cTn in soup.find_all('cTn'):
+    #     if(cTn.has_attr('nodeType') and cTn['nodeType']=='mainSeq'):
+    #         anim_tag = cTn.find('par')
+    #         break
+    #
+    # anim_tag_upper = anim_tag
+    # anim_insertion_tag_upper = anim_tag.parent
+    # anim_tag = anim_tag.find('cTn').find('cTn').find('par') #this line for all animations together
+    # anim_insertion_tag = anim_tag.parent
 
-    anim_tag = anim_tag.find('cTn').find('cTn').find('par')
+    anim_tag = soup.find('animMotion')
     anim_insertion_tag = anim_tag.parent
+    anim_tag_upper = anim_tag.parent.parent.parent
+    anim_insertion_tag_upper = anim_tag_upper.parent
 
-    anim_tag.extract()
+    # anim_tag.extract()
+    anim_tag_upper.extract()
+
     trackCount = 3
 
     shape_ids = []
@@ -132,15 +141,28 @@ def createPptxFromTrackData(GPXData):
 
     shape_objs = []
     arrow_objs = []
+    all_animation_objs = []
 
+    # trackData = [trackData[1] ,trackData[0]]
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
-        temp_anim_tag = None
+        # temp_anim_tag = None ---> one anim per track
 
         temp_arrow_tag = copy.deepcopy(arrow_tag)
         temp_shape_tag = copy.deepcopy(shape_tag)
-        temp_anim_tag = copy.deepcopy(anim_tag)
+        # temp_anim_tag = copy.deepcopy(anim_tag) ---> one anim per track
+
+        #Get arrow shape off and ext
+        arrow_off_x = float(temp_arrow_tag.find('off')['x'])
+        arrow_off_y = float(temp_arrow_tag.find('off')['y'])
+        arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
+        arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
+
+        print "arrow ->", arrow_off_x+arrow_ext_cx
+        bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
+        print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
+        bottom_right_arrow_y+=0.01
 
         current_shape_id = trackCount+1
         shape_ids.append(current_shape_id)
@@ -178,18 +200,48 @@ def createPptxFromTrackData(GPXData):
             coordinates.append(coordinate_detail['coor_set'])
 
         num_coordinate = 0
-        # print coordinates
+
+        #multiple anim per tracks
+        coord_count = 1
+        (first_x, first_y) = coordinates[0]
+        prev_anim_x, prev_anim_y = coordinateTransformation(float(first_x), float(first_y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
+        prev_anim_x = (prev_anim_x)/1.25  - 0.22
+        prev_anim_y = (prev_anim_y)/1.25  - 0.18
+
+        print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
+        track_anim_objs = []
         for coordinate in coordinates:
             (x,y) = coordinate
 
+            # print "Anim coords: ", anim_x, anim_y
+
+            #one anim per track
+            # if(num_coordinate==0):
+            #     animation_path += "M "+str(anim_x)+" "+str(anim_y)+" "
+            # else:
+            #     animation_path += "L "+str(anim_x)+" "+str(anim_y)+" "
+
+            temp_anim_tag = copy.deepcopy(anim_tag)
             anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
             anim_x = (anim_x)/1.25  - 0.22
             anim_y = (anim_y)/1.25  - 0.18
-            # print "Anim coords: ", anim_x, anim_y
-            if(num_coordinate==0):
-                animation_path += "M "+str(anim_x)+" "+str(anim_y)+" "
-            else:
-                animation_path += "L "+str(anim_x)+" "+str(anim_y)+" "
+
+
+            animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
+            prev_anim_x = anim_x
+            prev_anim_y = anim_y
+
+            temp_anim_tag['path'] = animation_path
+            temp_anim_tag.find('spTgt')['spid'] = current_arrow_id
+            temp_anim_tag.find('cTn')['id'] = int(temp_anim_tag.find('cTn')['id'])+trackCount+coord_count
+            # temp_anim_tag.find('cTn')['nodeType'] = "afterEffect"
+            #
+            # del temp_anim_tag.find('cTn')['accel']
+            # del temp_anim_tag.find('cTn')['decel']
+            temp_anim_tag.find('cTn')['dur'] = "100"
+            track_anim_objs.append(temp_anim_tag)
+            coord_count+=1
+
             x = round(float(x))
             y = round(float(y))
             x,y = coordinateTransformation(int(x), int(y), int(dimensionWidth), int(dimensionHeight), int(mapX), int(mapY), int(mapCX), int(mapCY),invertY=1)
@@ -213,6 +265,8 @@ def createPptxFromTrackData(GPXData):
                 path_tag.append(coordinate_soup.find('lnTo'))
             num_coordinate+=1
 
+        all_animation_objs.append(track_anim_objs)
+
         #Adding color to the track
         colors = track['color']
         temp = colors.split("[")[1]
@@ -225,33 +279,32 @@ def createPptxFromTrackData(GPXData):
         hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
 
         temp_shape_tag.find('srgbClr')['val'] = hex_value.upper()
-
-        # soup.find('spTree').append(temp_shape_tag)
-        # soup.find('spTree').append(temp_arrow_tag)
+        #changing arrow to rect callout -
+        temp_arrow_tag.find('prstGeom')['prst'] = "wedgeRectCallout"
 
         #We will add the shape and arrow objects in arrays for now
         shape_objs.append(temp_shape_tag)
         arrow_objs.append(temp_arrow_tag)
 
-        anim_motion = temp_anim_tag.find('animMotion')
-        anim_motion['path'] = animation_path
-        anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
-        anim_motion.find('spTgt')['spid'] = current_arrow_id
+        # anim_motion = temp_anim_tag.find('animMotion')
+        # anim_motion['path'] = animation_path
+        # anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
+        # anim_motion.find('spTgt')['spid'] = current_arrow_id
 
         #Adjust ids
-        temp_anim_tag.find('cTn')['id']=int(temp_anim_tag.find('cTn')['id'])+trackCount
-        anim_motion.find('cTn')['id'] = int(anim_motion.find('cTn')['id'])+trackCount
+        # temp_anim_tag.find('cTn')['id']=int(temp_anim_tag.find('cTn')['id'])+trackCount
+        # anim_motion.find('cTn')['id'] = int(anim_motion.find('cTn')['id'])+trackCount
 
         #Adjust accel and decel
-        del temp_anim_tag.find('cTn')['accel']
-        del temp_anim_tag.find('cTn')['decel']
+        # del temp_anim_tag.find('cTn')['accel']
+        # del temp_anim_tag.find('cTn')['decel']
 
         #Adjust duration of the animation
-        anim_motion.find('cTn')['dur'] = "10000"
+        # anim_motion.find('cTn')['dur'] = "10000"
 
-        anim_insertion_tag.append(temp_anim_tag)
+        # anim_insertion_tag.append(temp_anim_tag)
         # print anim_motion
-        soup.find('bldP')['spid'] = current_shape_id
+        # soup.find('bldP')['spid'] = current_shape_id
 
         trackCount+=2
 
@@ -261,6 +314,42 @@ def createPptxFromTrackData(GPXData):
         spTree_obj.append(shape)
     for arrow in arrow_objs:
         spTree_obj.append(arrow)
+
+    #Adding anim objects
+    # max_length = max([len(x) for x in all_animation_objs])
+    # i = 0
+    # while(i<max_length):
+    #     anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
+    #     flag = 0
+    #     for track_anim_objs in all_animation_objs:
+    #         if(i<len(track_anim_objs)):
+    #             if flag==0:
+    #                 parent_temp = anim_tag_upper_temp.find('cTn').find('cTn').find('par').parent
+    #                 anim_tag_upper_temp.find('cTn').find('cTn').find('par').extract()
+    #                 parent_temp.append(track_anim_objs[i])
+    #                 flag=1
+    #             else:
+    #                 anim_tag_upper_temp.find('cTn').find('cTn').find('par').parent.append(track_anim_objs[i])
+    #     anim_insertion_tag_upper.append(anim_tag_upper_temp)
+    #     i+=1
+
+
+    track_num = 1
+    for track_anim_objs in all_animation_objs:
+        print "adding anim"
+        anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
+        anim_tag_upper_temp.name = "seq"
+        parent_temp = anim_tag_upper_temp.find('animMotion').parent
+        anim_tag_upper_temp.find('animMotion').extract()
+        for anim in track_anim_objs:
+            # anim.name="par"
+            parent_temp.append(anim)
+
+        del anim_tag_upper_temp.find('cTn')['accel']
+        del anim_tag_upper_temp.find('cTn')['decel']
+        anim_tag_upper_temp.find('cTn')['id'] = track_num
+        track_num+=1
+        anim_insertion_tag_upper.append(anim_tag_upper_temp)
 
     soup_text = str(soup)
     #all the xml content in one line.
