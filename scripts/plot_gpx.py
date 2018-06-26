@@ -98,7 +98,7 @@ def createPptxFromTrackData(GPXData):
     shape_tag = None
     arrow_tag = None
     anim_tag = None
-    anim_insertion_tag = None
+    # anim_insertion_tag = None
 
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
