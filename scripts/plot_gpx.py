@@ -289,6 +289,9 @@ def createPptxFromTrackData(GPXData):
         #changing arrow to rect callout -
         temp_arrow_tag.find('prstGeom')['prst'] = "wedgeRectCallout"
 
+        #Adding border color to marker
+        temp_arrow_tag.find('spPr').find('ln').find('solidFill').find('srgbClr')['val'] = hex_value.upper()
+
         #We will add the shape and arrow objects in arrays for now
         shape_objs.append(temp_shape_tag)
         arrow_objs.append(temp_arrow_tag)
