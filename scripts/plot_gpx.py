@@ -127,7 +127,7 @@ def createPptxFromTrackData(GPXData):
     # anim_insertion_tag = anim_tag.parent
 
     anim_tag = soup.find('animMotion')
-    anim_insertion_tag = anim_tag.parent
+    # anim_insertion_tag = anim_tag.parent
     anim_tag_upper = anim_tag.parent.parent.parent
     anim_insertion_tag_upper = anim_tag_upper.parent
 
