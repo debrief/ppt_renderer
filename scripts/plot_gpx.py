@@ -165,7 +165,7 @@ def createPptxFromTrackData(GPXData):
         trackName = trackName[0:4]
         temp_arrow_tag.find('txBody').find('p').find('r').find('t').string = trackName
 
-        print "arrow ->", arrow_off_x+arrow_ext_cx
+        print "arrow ->", arrow_off_x+arrow_ext_cx, arrow_off_y+arrow_ext_cy
         bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
         print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
         bottom_right_arrow_y+=0.01
@@ -211,8 +211,8 @@ def createPptxFromTrackData(GPXData):
         coord_count = 1
         (first_x, first_y) = coordinates[0]
         prev_anim_x, prev_anim_y = coordinateTransformation(float(first_x), float(first_y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-        prev_anim_x = (prev_anim_x)/1.25  - 0.22
-        prev_anim_y = (prev_anim_y)/1.25  - 0.18
+        prev_anim_x = (prev_anim_x)/1.25 - 0.18
+        prev_anim_y = (prev_anim_y)/1.25 - 0.05
 
         print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
         track_anim_objs = []
@@ -229,11 +229,12 @@ def createPptxFromTrackData(GPXData):
 
             temp_anim_tag = copy.deepcopy(anim_tag)
             anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-            anim_x = (anim_x)/1.25  - 0.22
-            anim_y = (anim_y)/1.25  - 0.18
+            anim_x = (anim_x)/1.25 - 0.18
+            anim_y = (anim_y)/1.25 - 0.05
 
 
             animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
+            # animation_path = "M 0 0 L 1 1"
             prev_anim_x = anim_x
             prev_anim_y = anim_y
 
