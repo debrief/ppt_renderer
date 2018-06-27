@@ -63,6 +63,7 @@ def createPptxFromTrackData(GPXData):
 
     # Get slide size from presentation.xml file
     slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
+    print "Slide Dimens::::", slide_dimen_x, slide_dimen_y
 
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
@@ -153,22 +154,47 @@ def createPptxFromTrackData(GPXData):
         temp_shape_tag = copy.deepcopy(shape_tag)
         # temp_anim_tag = copy.deepcopy(anim_tag) ---> one anim per track
 
+        #getting coordinates arrow pointer
+        gds = temp_arrow_tag.find('spPr').find('prstGeom').find('avLst').find_all('gd')
+        arrow_pointer_x = gds[0]['fmla']
+        arrow_pointer_y = gds[1]['fmla']
+        arrow_pointer_x = int(arrow_pointer_x[4:])
+        arrow_pointer_y = int(arrow_pointer_y[4:])
+
         #Get arrow shape off and ext
         arrow_off_x = float(temp_arrow_tag.find('off')['x'])
         arrow_off_y = float(temp_arrow_tag.find('off')['y'])
         arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
         arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
 
+        arrow_ext_cx += arrow_pointer_x
+        arrow_ext_cy += arrow_pointer_y
+        arrow_ext_cx_small, arrow_ext_cy_small = coordinateTransformation(float(arrow_ext_cx), float(arrow_ext_cy), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
+
+        #Get middle point of arrow
+        arrow_center_x = (arrow_off_x+arrow_ext_cx/2)
+        arrow_center_y = (arrow_off_y+arrow_ext_cy/2)
+
+        # print "arrow_off_x and center", arrow_off_x, arrow_center_x
+
+        arrow_center_x_small, arrow_center_y_small = coordinateTransformation(float(arrow_center_x), float(arrow_center_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
+        print "ARROW CENTER:::::", arrow_center_x_small, arrow_center_y_small
+
+        # print "arrow ->", arrow_off_x+arrow_ext_cx, arrow_off_y+arrow_ext_cy
+        # bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
+        # print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
+        # bottom_right_arrow_y+=0.01
+
+        # print "BEFORE----->",arrow_pointer_x, arrow_pointer_y
+        arrow_pointer_x, arrow_pointer_y = coordinateTransformation(float(arrow_pointer_x), float(arrow_pointer_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
+        print "ARROW POINTER----->",arrow_pointer_x, arrow_pointer_y
+
+
         #Adding text to arrow shape -
         trackName = track['name']
         #trimming the trackname -
         trackName = trackName[0:4]
         temp_arrow_tag.find('txBody').find('p').find('r').find('t').string = trackName
-
-        print "arrow ->", arrow_off_x+arrow_ext_cx, arrow_off_y+arrow_ext_cy
-        bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-        print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
-        bottom_right_arrow_y+=0.01
 
         current_shape_id = trackCount+1
         shape_ids.append(current_shape_id)
@@ -211,8 +237,8 @@ def createPptxFromTrackData(GPXData):
         coord_count = 1
         (first_x, first_y) = coordinates[0]
         prev_anim_x, prev_anim_y = coordinateTransformation(float(first_x), float(first_y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-        prev_anim_x = (prev_anim_x)/1.25 - 0.18
-        prev_anim_y = (prev_anim_y)/1.25 - 0.05
+        prev_anim_x = ((prev_anim_x)/1.25 - arrow_center_x_small) - arrow_pointer_x - arrow_ext_cx_small/2
+        prev_anim_y = ((prev_anim_y)/1.25 - arrow_center_y_small) - arrow_pointer_y - arrow_ext_cy_small/2
 
         print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
         track_anim_objs = []
@@ -229,12 +255,12 @@ def createPptxFromTrackData(GPXData):
 
             temp_anim_tag = copy.deepcopy(anim_tag)
             anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-            anim_x = (anim_x)/1.25 - 0.18
-            anim_y = (anim_y)/1.25 - 0.05
+            anim_x = ((anim_x)/1.25 - arrow_center_x_small) - arrow_pointer_x - arrow_ext_cx_small/2
+            anim_y = ((anim_y)/1.25 - arrow_center_y_small) - arrow_pointer_y - arrow_ext_cy_small/2
 
 
             animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
-            # animation_path = "M 0 0 L 1 1"
+            # animation_path = "M 0 0 L "+str(arrow_pointer_x)+" "+str(arrow_pointer_y)
             prev_anim_x = anim_x
             prev_anim_y = anim_y
 
