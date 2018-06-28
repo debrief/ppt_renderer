@@ -9,20 +9,6 @@ from pack_function import packFunction
 from findmap import getMapDetails
 from parse_presentation import parsePresentation
 
-#
-# Screen Coordinates to PPTX Coordinates for path -
-# X     Y	     x    y
-# 0	  0	    100	200
-# 1000  800	500	500
-# 500	  400	300	350
-#
-# BaseX = 100
-# BaseY = 200
-#
-# X in ppt = x*(4/10) + BaseX
-# Y in ppt = y*(4/10) + BaseY
-#
-
 sys.setrecursionlimit(15000)
 
 parser = argparse.ArgumentParser(description='Script to plot gpx data on pptx')
@@ -101,7 +87,6 @@ def createPptxFromTrackData(GPXData):
     shape_tag = None
     arrow_tag = None
     anim_tag = None
-    # anim_insertion_tag = None
 
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
@@ -112,29 +97,13 @@ def createPptxFromTrackData(GPXData):
         if(name=='marker'):
             arrow_tag = shape
 
-    #Marker offsets
-    # marker_x_off, marker_y_off = coordinateTransformation(float(arrow_tag.find('off')['x']), float(arrow_tag.find('off')['y']), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1)
-    # print "Marker off::",marker_x_off, marker_y_off
     shape_tag.extract()
     arrow_tag.extract()
 
-    #Finding anim_tag
-    # for cTn in soup.find_all('cTn'):
-    #     if(cTn.has_attr('nodeType') and cTn['nodeType']=='mainSeq'):
-    #         anim_tag = cTn.find('par')
-    #         break
-    #
-    # anim_tag_upper = anim_tag
-    # anim_insertion_tag_upper = anim_tag.parent
-    # anim_tag = anim_tag.find('cTn').find('cTn').find('par') #this line for all animations together
-    # anim_insertion_tag = anim_tag.parent
-
     anim_tag = soup.find('animMotion')
-    # anim_insertion_tag = anim_tag.parent
     anim_tag_upper = anim_tag.parent.parent.parent
     anim_insertion_tag_upper = anim_tag_upper.parent
 
-    # anim_tag.extract()
     anim_tag_upper.extract()
 
     trackCount = 3
@@ -146,7 +115,6 @@ def createPptxFromTrackData(GPXData):
     arrow_objs = []
     all_animation_objs = []
 
-    # trackData = [trackData[1] ,trackData[0]]
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
@@ -173,36 +141,17 @@ def createPptxFromTrackData(GPXData):
         arrow_center_x = (arrow_off_x+arrow_ext_cx/2)
         arrow_center_y = (arrow_off_y+arrow_ext_cy/2)
 
-        DistanceX = arrow_pointer_x
-        DistanceY = arrow_pointer_y
+        #TailX and TailY contains the offset(relative distance from the centre and not the absolute)
+        TailX = float(arrow_ext_cx)*(float(float(arrow_pointer_x)/100000.0))
+        TailY = float(arrow_ext_cy)*(float(float(arrow_pointer_y)/100000.0))
 
-        # TailX = (DistanceX*arrow_ext_cx)/100000
-        # TailY = (DistanceY*arrow_ext_cy)/100000
-
-        TailX = arrow_center_x + arrow_ext_cx*(arrow_pointer_x/100000)
-        TailY = arrow_center_y + arrow_ext_cy*(arrow_pointer_y/100000)
-
+        #Scaling TailX and TailY (difference in tail's position from centre) to 0...1
         TailX, TailY = coordinateTransformation(float(TailX), float(TailY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-        print "TAIL:::::", TailX, TailY
 
+        #Scaling ext values to 0...1
         arrow_ext_cx_small, arrow_ext_cy_small = coordinateTransformation(float(arrow_ext_cx), float(arrow_ext_cy), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-
-
-
-
+        #Scaling centre coordinates of callout values to 0...1
         arrow_center_x_small, arrow_center_y_small = coordinateTransformation(float(arrow_center_x), float(arrow_center_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-        print "ARROW CENTER:::::", arrow_center_x_small, arrow_center_y_small
-
-        # print "arrow ->", arrow_off_x+arrow_ext_cx, arrow_off_y+arrow_ext_cy
-        # bottom_right_arrow_x, bottom_right_arrow_y = coordinateTransformation(float((0)), float((arrow_ext_cy/2)), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-        # print "bottom right", bottom_right_arrow_x, bottom_right_arrow_y
-        # bottom_right_arrow_y+=0.01
-
-        # print "BEFORE----->",arrow_pointer_x, arrow_pointer_y
-        arrow_pointer_x, arrow_pointer_y = coordinateTransformation(float(arrow_pointer_x), float(arrow_pointer_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
-        print "ARROW POINTER----->",arrow_pointer_x, arrow_pointer_y
-
-
         #Adding text to arrow shape -
         trackName = track['name']
         #trimming the trackname -
@@ -236,7 +185,6 @@ def createPptxFromTrackData(GPXData):
         path_tag = temp_shape_tag.find('path')
         for child in path_tag.findChildren():
             child.extract()
-        # print soup
 
         #Adding coordinates
         coordinates_detail = track['coordinates']
@@ -250,31 +198,20 @@ def createPptxFromTrackData(GPXData):
         coord_count = 1
         (first_x, first_y) = coordinates[0]
         prev_anim_x, prev_anim_y = coordinateTransformation(float(first_x), float(first_y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-        prev_anim_x = prev_anim_x  - TailX
-        prev_anim_y = prev_anim_y  - TailY
+        prev_anim_x = prev_anim_x  - TailX - arrow_center_x_small
+        prev_anim_y = prev_anim_y  - TailY - arrow_center_y_small
 
         print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
         track_anim_objs = []
         for coordinate in coordinates:
             (x,y) = coordinate
 
-            # print "Anim coords: ", anim_x, anim_y
-
-            #one anim per track
-            # if(num_coordinate==0):
-            #     animation_path += "M "+str(anim_x)+" "+str(anim_y)+" "
-            # else:
-            #     animation_path += "L "+str(anim_x)+" "+str(anim_y)+" "
-
             temp_anim_tag = copy.deepcopy(anim_tag)
             anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-            anim_x = anim_x - TailX
-            anim_y = anim_y  - TailY
-
+            anim_x = anim_x - TailX  - arrow_center_x_small
+            anim_y = anim_y - TailY - arrow_center_y_small
 
             animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
-            # animation_path = "M 0 0 L "+str(arrow_pointer_x)+" "+str(arrow_pointer_y)
-            # animation_path = "M "+str(TLx)+" "+str(TLx)+" L "+str(BRx)+" "+str(BRy)
             prev_anim_x = anim_x
             prev_anim_y = anim_y
 
@@ -305,8 +242,6 @@ def createPptxFromTrackData(GPXData):
             if(num_coordinate==0):
                 coordinate_soup = BeautifulSoup("<a:moveTo><a:pt x='"+x+"' y='"+y+"'/></a:moveTo>", 'xml')
                 path_tag.append(coordinate_soup.find('moveTo'))
-                # temp_arrow_tag.find('off')['x'] = x
-                # temp_arrow_tag.find('off')['y'] = y
             else:
                 coordinate_soup = BeautifulSoup("<a:lnTo><a:pt x='"+x+"' y='"+y+"'/></a:lnTo>", 'xml')
                 path_tag.append(coordinate_soup.find('lnTo'))
