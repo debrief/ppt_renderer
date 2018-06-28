@@ -169,20 +169,25 @@ def createPptxFromTrackData(GPXData):
         arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
         arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
 
-        DistanceX = arrow_pointer_x - (arrow_off_x + (arrow_ext_cx/2))
-        DistanceY = arrow_pointer_y - (arrow_off_y + (arrow_ext_cy/2))
+        #Get middle point of arrow
+        arrow_center_x = (arrow_off_x+arrow_ext_cx/2)
+        arrow_center_y = (arrow_off_y+arrow_ext_cy/2)
 
-        TailX = (DistanceX/arrow_ext_cx)*100000
-        TailY = (DistanceY/arrow_ext_cy)*100000
+        DistanceX = arrow_pointer_x
+        DistanceY = arrow_pointer_y
+
+        # TailX = (DistanceX*arrow_ext_cx)/100000
+        # TailY = (DistanceY*arrow_ext_cy)/100000
+
+        TailX = arrow_center_x + arrow_ext_cx*(arrow_pointer_x/100000)
+        TailY = arrow_center_y + arrow_ext_cy*(arrow_pointer_y/100000)
 
         TailX, TailY = coordinateTransformation(float(TailX), float(TailY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
         print "TAIL:::::", TailX, TailY
 
         arrow_ext_cx_small, arrow_ext_cy_small = coordinateTransformation(float(arrow_ext_cx), float(arrow_ext_cy), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
 
-        #Get middle point of arrow
-        arrow_center_x = (arrow_off_x+arrow_ext_cx/2)
-        arrow_center_y = (arrow_off_y+arrow_ext_cy/2)
+
 
 
         arrow_center_x_small, arrow_center_y_small = coordinateTransformation(float(arrow_center_x), float(arrow_center_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
@@ -245,8 +250,8 @@ def createPptxFromTrackData(GPXData):
         coord_count = 1
         (first_x, first_y) = coordinates[0]
         prev_anim_x, prev_anim_y = coordinateTransformation(float(first_x), float(first_y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-        prev_anim_x = prev_anim_x - arrow_center_x_small + TailX
-        prev_anim_y = prev_anim_y - arrow_center_y_small + TailY
+        prev_anim_x = prev_anim_x  - TailX
+        prev_anim_y = prev_anim_y  - TailY
 
         print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
         track_anim_objs = []
@@ -263,8 +268,8 @@ def createPptxFromTrackData(GPXData):
 
             temp_anim_tag = copy.deepcopy(anim_tag)
             anim_x, anim_y = coordinateTransformation(float(x), float(y), float(dimensionWidth), float(dimensionHeight), float(animX), float(animY), float(animCX), float(animCY), invertY=1)
-            anim_x = anim_x - arrow_center_x_small + TailX
-            anim_y = anim_y - arrow_center_y_small + TailY
+            anim_x = anim_x - TailX
+            anim_y = anim_y  - TailY
 
 
             animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
