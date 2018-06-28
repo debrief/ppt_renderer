@@ -61,6 +61,8 @@ def createPptxFromTrackData(GPXData):
     dimensionWidth = int(GPXData['dimensionWidth'])
     dimensionHeight = int(GPXData['dimensionHeight'])
 
+    print "GPX dimensions", dimensionWidth, dimensionHeight
+
     # Get slide size from presentation.xml file
     slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
     print "Slide Dimens::::", slide_dimen_x, slide_dimen_y
@@ -79,22 +81,22 @@ def createPptxFromTrackData(GPXData):
     mapCX = int(mapDetails['cx'])
     mapCY = int(mapDetails['cy'])
 
-    # print 'Map::', mapX, mapY, mapCX, mapCY
+    print 'Map::', mapX, mapY, mapCX, mapCY
 
     #Calculating TL and BR
-    TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(mapCX), float(mapCY), 0, 0, 1, 1, invertY = 0)
-    BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(mapCX), float(mapCY), 0, 0, 1, 1, invertY = 0)
+    TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
+    BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
 
-    # print "TL::", TLx, TLy
-    # print "BR::", BRx, BRy
+    print "Anim TL::", TLx, TLy
+    print "Anim BR::", BRx, BRy
 
     #Calculating rectangle representated as animated target values
     animX = TLx
     animY = TLy
     animCX = BRx - TLx
     animCY = BRy - TLy
-    # print "anim values: ",animX, animY
-    # print "animC values: ", animCX, animCY
+    print "anim values: ",animX, animY
+    print "animC values: ", animCX, animCY
 
     shape_tag = None
     arrow_tag = None
