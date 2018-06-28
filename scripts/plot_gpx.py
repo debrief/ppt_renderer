@@ -148,8 +148,6 @@ def createPptxFromTrackData(GPXData):
         #Scaling TailX and TailY (difference in tail's position from centre) to 0...1
         TailX, TailY = coordinateTransformation(float(TailX), float(TailY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
 
-        #Scaling ext values to 0...1
-        arrow_ext_cx_small, arrow_ext_cy_small = coordinateTransformation(float(arrow_ext_cx), float(arrow_ext_cy), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
         #Scaling centre coordinates of callout values to 0...1
         arrow_center_x_small, arrow_center_y_small = coordinateTransformation(float(arrow_center_x), float(arrow_center_y), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
         #Adding text to arrow shape -
