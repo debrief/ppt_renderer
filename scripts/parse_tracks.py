@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import os
+import datetime
 
 def getTrackData(trackPath):
     soup = BeautifulSoup(open(trackPath, 'r').read(), 'lxml')
@@ -18,7 +19,7 @@ def getTrackData(trackPath):
         coordinates = track.find_all('trkpt')
         for coordinate in coordinates:
             coor_set = (coordinate['lon'], coordinate['lat'])
-            coordinateDetails = {'coor_set': coor_set, 'time': coordinate.find('time').text}
+            coordinateDetails = {'coor_set': coor_set, 'time': datetime.datetime.strptime(coordinate.find('time').text, "%Y-%m-%dT%H:%M:%SZ")}
             trackDetails['coordinates'].append(coordinateDetails)
 
         trackData.append(trackDetails)

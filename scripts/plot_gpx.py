@@ -47,11 +47,8 @@ def createPptxFromTrackData(GPXData):
     dimensionWidth = int(GPXData['dimensionWidth'])
     dimensionHeight = int(GPXData['dimensionHeight'])
 
-    print "GPX dimensions", dimensionWidth, dimensionHeight
-
     # Get slide size from presentation.xml file
     slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
-    print "Slide Dimens::::", slide_dimen_x, slide_dimen_y
 
     soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
 
@@ -67,26 +64,20 @@ def createPptxFromTrackData(GPXData):
     mapCX = int(mapDetails['cx'])
     mapCY = int(mapDetails['cy'])
 
-    print 'Map::', mapX, mapY, mapCX, mapCY
-
     #Calculating TL and BR
     TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
     BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
-
-    print "Anim TL::", TLx, TLy
-    print "Anim BR::", BRx, BRy
 
     #Calculating rectangle representated as animated target values
     animX = TLx
     animY = TLy
     animCX = BRx - TLx
     animCY = BRy - TLy
-    print "anim values: ",animX, animY
-    print "animC values: ", animCX, animCY
 
     shape_tag = None
     arrow_tag = None
     anim_tag = None
+    time_tag = None
 
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
@@ -96,9 +87,26 @@ def createPptxFromTrackData(GPXData):
             shape_tag = shape
         if(name=='marker'):
             arrow_tag = shape
+        if(name=='time'):
+            time_tag = shape
 
     shape_tag.extract()
     arrow_tag.extract()
+    time_tag.extract()
+
+    #Find time_animation objs -
+    time_id_original = time_tag.find('cNvPr')['id']
+    print "time_id_original:::::", time_id_original
+    spTgts = soup.find_all('spTgt')
+    time_anim_tag_big = None
+    time_anim_tag_first = None
+    for spTgt in spTgts:
+        if(spTgt['spid']==time_id_original):
+            time_anim_tag_first = spTgt.parent.parent.parent.parent.parent.parent
+            time_anim_tag_big = time_anim_tag_first.parent.parent.parent
+            break
+    time_anim_tag_big_insertion = time_anim_tag_big.parent
+    time_anim_tag_big.extract()
 
     anim_tag = soup.find('animMotion')
     anim_tag_upper = anim_tag.parent.parent.parent
@@ -106,7 +114,20 @@ def createPptxFromTrackData(GPXData):
 
     anim_tag_upper.extract()
 
-    trackCount = 3
+    # time_anim_tag.extract()
+    # #we will get the timestamps from the first track
+    # for coordinate in trackData[0]['coordinates']:
+    #     timestamp=coordinate['time']
+    #     temp_time_tag = copy.deepcopy(time_tag)
+    #     temp_time_anim_tag = copy.copy(time_anim_tag)
+    #     temp_time_tag.find('cNvPr')['id'] = str(time_tag_id+1)
+    #     temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
+    #     temp_time_anim_tag.find('spTgt')['spid'] = str(time_tag_id+1)
+    #     soup.find('spTree').append(temp_time_tag)
+    #     time_anim_tag_parent.append(time_anim_tag)
+    #     time_tag_id+=1
+
+    trackCount = 3 #TODO: set equal to existing id.
 
     shape_ids = []
     arrow_ids = []
@@ -145,7 +166,7 @@ def createPptxFromTrackData(GPXData):
         TailX = float(arrow_ext_cx)*(float(float(arrow_pointer_x)/100000.0))
         TailY = float(arrow_ext_cy)*(float(float(arrow_pointer_y)/100000.0))
 
-        #Scaling TailX and TailY (difference in tail's position from centre) to 0...1
+        # Scaling TailX and TailY (difference in tail's position from centre) to 0...1
         TailX, TailY = coordinateTransformation(float(TailX), float(TailY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY=0)
 
         #Scaling centre coordinates of callout values to 0...1
@@ -199,7 +220,6 @@ def createPptxFromTrackData(GPXData):
         prev_anim_x = prev_anim_x  - TailX - arrow_center_x_small
         prev_anim_y = prev_anim_y  - TailY - arrow_center_y_small
 
-        print "TrackNo.:::",trackCount," Coords count::", len(coordinates)
         track_anim_objs = []
         for coordinate in coordinates:
             (x,y) = coordinate
@@ -298,6 +318,62 @@ def createPptxFromTrackData(GPXData):
     for arrow in arrow_objs:
         spTree_obj.append(arrow)
 
+    track_num = 1
+    for track_anim_objs in all_animation_objs:
+        anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
+        anim_tag_upper_temp.name = "seq"
+        parent_temp = anim_tag_upper_temp.find('animMotion').parent
+        anim_tag_upper_temp.find('animMotion').extract()
+        for anim in track_anim_objs:
+            # anim.name="par"
+            parent_temp.append(anim)
+
+        del anim_tag_upper_temp.find('cTn')['accel']
+        del anim_tag_upper_temp.find('cTn')['decel']
+        anim_tag_upper_temp.find('cTn')['id'] = track_num
+        track_num+=1
+        anim_insertion_tag_upper.append(anim_tag_upper_temp)
+
+    time_id_start = arrow_ids[len(arrow_ids) - 1]+1
+    print "ID::::::", time_id_start
+
+    #Create parent animation object for all time box animationss
+    time_shape_objs = []
+    num_coords = len(trackData[0]['coordinates'])
+    coord_num = 0
+    time_delay = 100
+    #we will get the timestamps from the first track
+    for coordinate in trackData[0]['coordinates']:
+        timestamp=coordinate['time']
+        timestamp = timestamp.time()
+        temp_time_tag = copy.deepcopy(time_tag)
+        temp_time_tag.find('cNvPr')['id'] = str(time_id_start)
+        temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
+        time_shape_objs.append(temp_time_tag)
+
+        # handle animation objs for time
+        if(coord_num==0):
+            temp_time_anim = copy.deepcopy(time_anim_tag_first)
+            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+            temp_time_anim.find('cond')['delay'] = "0"
+            temp_time_anim.find('cTn')['nodeType'] = "withEffect"
+            anim_insertion_tag_upper.append(temp_time_anim)
+        else:
+            temp_time_anim = copy.deepcopy(time_anim_tag_big)
+            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+            temp_time_anim.find('cond')['delay'] = str(time_delay)
+            time_delay+=100
+            temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
+            temp_time_anim.find('par').find('cond')['delay'] = "100"
+            time_anim_tag_big_insertion.append(temp_time_anim)
+
+        coord_num+=1
+        time_id_start+=1
+
+    spTreeobj = soup.find('spTree')
+    for timeshape in time_shape_objs:
+        spTreeobj.append(timeshape)
+
     #Adding anim objects
     # max_length = max([len(x) for x in all_animation_objs])
     # i = 0
@@ -316,22 +392,7 @@ def createPptxFromTrackData(GPXData):
     #     anim_insertion_tag_upper.append(anim_tag_upper_temp)
     #     i+=1
 
-    track_num = 1
-    for track_anim_objs in all_animation_objs:
-        print "adding anim"
-        anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
-        anim_tag_upper_temp.name = "seq"
-        parent_temp = anim_tag_upper_temp.find('animMotion').parent
-        anim_tag_upper_temp.find('animMotion').extract()
-        for anim in track_anim_objs:
-            # anim.name="par"
-            parent_temp.append(anim)
 
-        del anim_tag_upper_temp.find('cTn')['accel']
-        del anim_tag_upper_temp.find('cTn')['decel']
-        anim_tag_upper_temp.find('cTn')['id'] = track_num
-        track_num+=1
-        anim_insertion_tag_upper.append(anim_tag_upper_temp)
 
     soup_text = str(soup)
     #all the xml content in one line.
@@ -344,7 +405,6 @@ def createPptxFromTrackData(GPXData):
     soup_text = soup_text.replace("<pt","<a:pt")
     soup_text = soup_text.replace("</pt","</a:pt")
     soup_text = soup_text.strip()
-    # print soup_text
     text_file = open(slide_path, "w")
     text_file.write(soup_text)
     text_file.close()
