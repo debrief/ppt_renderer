@@ -37,6 +37,6 @@ def renameFiles(src_path, skip_factor=1, first_file_name='19951212_093600'):
         for f in files:
             file_name_str = file_name.strftime('%Y%m%d_%H%M%S')
             os.rename(dest_path+'/'+f, dest_path+ '/' + file_name_str+'.jpg')
-            file_name = file_name + timedelta(seconds=20)
+            file_name = file_name + timedelta(seconds=20*skip_factor)
 
     print "All files renamed successfully..."
