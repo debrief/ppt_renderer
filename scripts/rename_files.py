@@ -46,8 +46,8 @@ def renameFiles(src_path, skip_factor=1, first_file_name='19951212_093600'):
             img = Image.open(dest_path+'/'+f)
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype("Arial.ttf", 96)
-            draw.text((0, 0),date_time_strs[0],(255,255,255),font=font)
-            draw.text((950, 0),date_time_strs[1],(255,255,255),font=font)
+            draw.text((0, 0),date_time_strs[0],(0,0,0),font=font)
+            draw.text((950, 0),date_time_strs[1],(0,0,0),font=font)
             img.save(dest_path+'/'+f)
 
             os.rename(dest_path+'/'+f, dest_path+ '/' + file_name_str+'.jpg')
