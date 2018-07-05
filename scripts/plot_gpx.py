@@ -127,7 +127,7 @@ def createPptxFromTrackData(GPXData):
     #     time_anim_tag_parent.append(time_anim_tag)
     #     time_tag_id+=1
 
-    trackCount = 3 #TODO: set equal to existing id.
+    trackCount = 3
 
     shape_ids = []
     arrow_ids = []
@@ -339,7 +339,7 @@ def createPptxFromTrackData(GPXData):
 
     #Create parent animation object for all time box animationss
     time_shape_objs = []
-    num_coords = len(trackData[0]['coordinates'])
+    # num_coords = len(trackData[0]['coordinates'])
     coord_num = 0
     time_delay = 100
     #we will get the timestamps from the first track
