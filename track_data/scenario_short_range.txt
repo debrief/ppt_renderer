@@ -983,7 +983,7 @@
 <NarrativeEntries>
 <Entry Text="ENTER TRAIL" dateStr="121029.00" elapsed="2400"/>
 <Entry Text="TARGET ZIG DETECTED" dateStr="121037.00" elapsed="4000"/>
-<Entry Text="FINEX CALLED, ENTER TRANSITION" dateStr="121119.00" elapsed="12400"/>
+<Entry Text="FINEX CALLED, ENTER TRANSITION" dateStr="121044.00" elapsed="8400"/>
 <Entry Text="System ECHO over-heating.  Recycling secondary pumps." dateStr="121120.00" elapsed="12600"/>
 <Entry Text="System ECHO Stable.  Return to Transit Speed." dateStr="121137.00" elapsed="16000"/>
 </NarrativeEntries>
