@@ -1,5 +1,6 @@
 from parse_tracks import getTrackData
 from parse_tracks import getNarratives
+from parse_tracks import getInterval
 from unpack_function import unpackFunction
 from bs4 import BeautifulSoup
 import os
@@ -37,9 +38,6 @@ temps = tracks_path.split("/")
 ppt_name = temps[len(temps)-1]
 
 temp_unpack_path = ppt_name.split(".")[0]+"_temp"
-# if(os.path.isdir(temp_unpack_path)):
-#     shutil.rmtree(temp_unpack_path)
-# shutil.copytree(unpack_path, temp_unpack_path)
 unpackFunction(donor, temp_unpack_path)
 
 slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
@@ -53,8 +51,7 @@ def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY
         y = rectY + y*(rectHeight/dimensionHeight)
     return x,y
 
-def createPptxFromTrackData(GPXData, narrativeEntries):
-    print narrativeEntries
+def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
 
     trackData = GPXData['trackData']
     print 'Number of tracks:::', len(trackData)
@@ -94,6 +91,7 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
     arrow_tag = None
     anim_tag = None
     time_tag = None
+    narrative_tag = None
 
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
@@ -105,10 +103,13 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
             arrow_tag = shape
         if(name=='time'):
             time_tag = shape
+        if(name=='narrative'):
+            narrative_tag = shape
 
     shape_tag.extract()
     arrow_tag.extract()
     time_tag.extract()
+    narrative_tag.extract()
 
     #Find time_animation objs -
     time_id_original = time_tag.find('cNvPr')['id']
@@ -129,19 +130,6 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
 
     anim_tag_upper.extract()
 
-    # time_anim_tag.extract()
-    # #we will get the timestamps from the first track
-    # for coordinate in trackData[0]['coordinates']:
-    #     timestamp=coordinate['time']
-    #     temp_time_tag = copy.deepcopy(time_tag)
-    #     temp_time_anim_tag = copy.copy(time_anim_tag)
-    #     temp_time_tag.find('cNvPr')['id'] = str(time_tag_id+1)
-    #     temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
-    #     temp_time_anim_tag.find('spTgt')['spid'] = str(time_tag_id+1)
-    #     soup.find('spTree').append(temp_time_tag)
-    #     time_anim_tag_parent.append(time_anim_tag)
-    #     time_tag_id+=1
-
     trackCount = 3
 
     shape_ids = []
@@ -154,11 +142,9 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
     for track in trackData:
         temp_arrow_tag = None
         temp_shape_tag = None
-        # temp_anim_tag = None ---> one anim per track
 
         temp_arrow_tag = copy.deepcopy(arrow_tag)
         temp_shape_tag = copy.deepcopy(shape_tag)
-        # temp_anim_tag = copy.deepcopy(anim_tag) ---> one anim per track
 
         #getting coordinates arrow pointer
         gds = temp_arrow_tag.find('spPr').find('prstGeom').find('avLst').find_all('gd')
@@ -199,21 +185,11 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
 
         #Assign ids to arrow shape and path shape
         temp_arrow_tag.find('cNvPr')['id'] = current_arrow_id
-        # temp_arrow_tag.find('cNvPr')['name'] = "sample_arrow"+current_arrow_id
         temp_shape_tag.find('cNvPr')['id'] = current_shape_id
-        # temp_shape_tag.find('cNvPr')['name'] = "sample_shape"+current_shape_id
 
         #Get Shape offsets and exts
         temp_shape_x = int(temp_shape_tag.find('off')['x'])
         temp_shape_y = int(temp_shape_tag.find('off')['y'])
-        # temp_shape_cx = int(temp_shape_tag.find('ext')['cx'])
-        # temp_shape_cy = int(temp_shape_tag.find('ext')['cy'])
-
-        #Set off and ext properties of shape equal to that of map
-        # temp_shape_tag.find('off')['x'] = mapX
-        # temp_shape_tag.find('off')['y'] = mapY
-        # temp_shape_tag.find('ext')['cx'] = mapCX
-        # temp_shape_tag.find('ext')['cy'] = mapCY
 
         animation_path = ""
         path_tag = temp_shape_tag.find('path')
@@ -251,11 +227,7 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
             temp_anim_tag['path'] = animation_path
             temp_anim_tag.find('spTgt')['spid'] = current_arrow_id
             temp_anim_tag.find('cTn')['id'] = int(temp_anim_tag.find('cTn')['id'])+trackCount+coord_count
-            # temp_anim_tag.find('cTn')['nodeType'] = "afterEffect"
-            #
-            # del temp_anim_tag.find('cTn')['accel']
-            # del temp_anim_tag.find('cTn')['decel']
-            temp_anim_tag.find('cTn')['dur'] = "100"
+            temp_anim_tag.find('cTn')['dur'] = str(intervalDuration)
             track_anim_objs.append(temp_anim_tag)
             coord_count+=1
 
@@ -304,26 +276,6 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
         shape_objs.append(temp_shape_tag)
         arrow_objs.append(temp_arrow_tag)
 
-        # anim_motion = temp_anim_tag.find('animMotion')
-        # anim_motion['path'] = animation_path
-        # anim_motion['ptsTypes'] = 'A'*(num_coordinate+1)
-        # anim_motion.find('spTgt')['spid'] = current_arrow_id
-
-        #Adjust ids
-        # temp_anim_tag.find('cTn')['id']=int(temp_anim_tag.find('cTn')['id'])+trackCount
-        # anim_motion.find('cTn')['id'] = int(anim_motion.find('cTn')['id'])+trackCount
-
-        #Adjust accel and decel
-        # del temp_anim_tag.find('cTn')['accel']
-        # del temp_anim_tag.find('cTn')['decel']
-
-        #Adjust duration of the animation
-        # anim_motion.find('cTn')['dur'] = "10000"
-
-        # anim_insertion_tag.append(temp_anim_tag)
-        # print anim_motion
-        # soup.find('bldP')['spid'] = current_shape_id
-
         trackCount+=2
 
     #Adding all shape and arrow objects
@@ -340,7 +292,6 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
         parent_temp = anim_tag_upper_temp.find('animMotion').parent
         anim_tag_upper_temp.find('animMotion').extract()
         for anim in track_anim_objs:
-            # anim.name="par"
             parent_temp.append(anim)
 
         del anim_tag_upper_temp.find('cTn')['accel']
@@ -353,9 +304,8 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
 
     #Create parent animation object for all time box animationss
     time_shape_objs = []
-    # num_coords = len(trackData[0]['coordinates'])
     coord_num = 0
-    time_delay = 100
+    time_delay = intervalDuration
     #we will get the timestamps from the first track
     for coordinate in trackData[0]['coordinates']:
         timestamp=coordinate['time']
@@ -376,9 +326,9 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
             temp_time_anim = copy.deepcopy(time_anim_tag_big)
             temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
             temp_time_anim.find('cond')['delay'] = str(time_delay)
-            time_delay+=100
+            time_delay+=intervalDuration
             temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
-            temp_time_anim.find('par').find('cond')['delay'] = "100"
+            temp_time_anim.find('par').find('cond')['delay'] = str(intervalDuration)
             time_anim_tag_big_insertion.append(temp_time_anim)
 
         coord_num+=1
@@ -388,30 +338,41 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
     for timeshape in time_shape_objs:
         spTreeobj.append(timeshape)
 
-    #Adding anim objects
-    # max_length = max([len(x) for x in all_animation_objs])
-    # i = 0
-    # while(i<max_length):
-    #     anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
-    #     flag = 0
-    #     for track_anim_objs in all_animation_objs:
-    #         if(i<len(track_anim_objs)):
-    #             if flag==0:
-    #                 parent_temp = anim_tag_upper_temp.find('cTn').find('cTn').find('par').parent
-    #                 anim_tag_upper_temp.find('cTn').find('cTn').find('par').extract()
-    #                 parent_temp.append(track_anim_objs[i])
-    #                 flag=1
-    #             else:
-    #                 anim_tag_upper_temp.find('cTn').find('cTn').find('par').parent.append(track_anim_objs[i])
-    #     anim_insertion_tag_upper.append(anim_tag_upper_temp)
-    #     i+=1
+    #Adding narratives -
+    narrative_id = time_id_start
+    narrative_objects = []
+    time_delay = 0
+    for narrative in narrativeEntries:
+        time_delay+=(int(narrative['elapsed']) - time_delay)
+        time_str = narrative['dateStr']
+        time_str = time_str.split('.')[0]
+        time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
+        temp_narrative_tag = copy.deepcopy(narrative_tag)
+        temp_narrative_tag.find('cNvPr')['id'] = narrative_id
+        temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
+        narrative_objects.append(temp_narrative_tag)
+        if(narrative_id == time_id_start):
+            temp_narrative_anim = copy.deepcopy(time_anim_tag_first)
+            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+            temp_narrative_anim.find('cTn')['nodeType'] = "withEffect"
+            anim_insertion_tag_upper.append(temp_narrative_anim)
+        else:
+            temp_narrative_anim = copy.deepcopy(time_anim_tag_big)
+            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+            temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
+            temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
+            time_anim_tag_big_insertion.append(temp_narrative_anim)
+
+        narrative_id+=1
 
 
+    spTreeobj = soup.find('spTree')
+    for narrative in narrative_objects:
+        spTreeobj.append(narrative)
 
     soup_text = str(soup)
-    #all the xml content in one line.
-    # soup_text = soup_text.replace("\n","")
-
     soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
     soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
     soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
@@ -424,10 +385,8 @@ def createPptxFromTrackData(GPXData, narrativeEntries):
     text_file.close()
 
     packFunction(None, temp_unpack_path)
-    # shutil.rmtree(temp_unpack_path)
-
-
 
 GPXData = getTrackData(tracks_path)
 narrativeEntries = getNarratives(tracks_path)
-createPptxFromTrackData(GPXData, narrativeEntries)
+interval = getInterval(tracks_path)
+createPptxFromTrackData(GPXData, narrativeEntries, interval)
