@@ -364,9 +364,7 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
             temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
             temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
             time_anim_tag_big_insertion.append(temp_narrative_anim)
-
         narrative_id+=1
-
 
     spTreeobj = soup.find('spTree')
     for narrative in narrative_objects:
