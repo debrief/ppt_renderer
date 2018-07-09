@@ -1,4 +1,6 @@
 from parse_tracks import getTrackData
+from parse_tracks import getNarratives
+from unpack_function import unpackFunction
 from bs4 import BeautifulSoup
 import os
 import argparse
@@ -12,21 +14,33 @@ from parse_presentation import parsePresentation
 sys.setrecursionlimit(15000)
 
 parser = argparse.ArgumentParser(description='Script to plot gpx data on pptx')
-parser.add_argument('--unpack_path', help='Path to sample unpack pptx file', required=True)
+parser.add_argument('--donor', help='Path to donor pptx file', required=True)
 parser.add_argument('--tracks_path', help='Path to gpx tracks file', required=True)
 
 args = parser.parse_args()
-
-unpack_path = args.unpack_path
 tracks_path = args.tracks_path
+donor = args.donor
+
+#Edge cases check
+if(not os.path.exists(donor)):
+    print "donor file does not exist"
+    sys.exit(1)
+if(not os.path.exists(tracks_path)):
+    print "tracks file does not exist"
+    sys.exit(1)
+
+unpack_path = donor.split('.')[0]
+if(os.path.exists(unpack_path)):
+    shutil.rmtree(unpack_path)
 
 temps = tracks_path.split("/")
 ppt_name = temps[len(temps)-1]
 
 temp_unpack_path = ppt_name.split(".")[0]+"_temp"
-if(os.path.isdir(temp_unpack_path)):
-    shutil.rmtree(temp_unpack_path)
-shutil.copytree(unpack_path, temp_unpack_path)
+# if(os.path.isdir(temp_unpack_path)):
+#     shutil.rmtree(temp_unpack_path)
+# shutil.copytree(unpack_path, temp_unpack_path)
+unpackFunction(donor, temp_unpack_path)
 
 slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
@@ -39,7 +53,9 @@ def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY
         y = rectY + y*(rectHeight/dimensionHeight)
     return x,y
 
-def createPptxFromTrackData(GPXData):
+def createPptxFromTrackData(GPXData, narrativeEntries):
+    print narrativeEntries
+
     trackData = GPXData['trackData']
     print 'Number of tracks:::', len(trackData)
 
@@ -96,7 +112,6 @@ def createPptxFromTrackData(GPXData):
 
     #Find time_animation objs -
     time_id_original = time_tag.find('cNvPr')['id']
-    print "time_id_original:::::", time_id_original
     spTgts = soup.find_all('spTgt')
     time_anim_tag_big = None
     time_anim_tag_first = None
@@ -335,7 +350,6 @@ def createPptxFromTrackData(GPXData):
         anim_insertion_tag_upper.append(anim_tag_upper_temp)
 
     time_id_start = arrow_ids[len(arrow_ids) - 1]+1
-    print "ID::::::", time_id_start
 
     #Create parent animation object for all time box animationss
     time_shape_objs = []
@@ -415,4 +429,5 @@ def createPptxFromTrackData(GPXData):
 
 
 GPXData = getTrackData(tracks_path)
-createPptxFromTrackData(GPXData)
+narrativeEntries = getNarratives(tracks_path)
+createPptxFromTrackData(GPXData, narrativeEntries)

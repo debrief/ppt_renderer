@@ -27,7 +27,7 @@ def renameFiles(src_path, skip_factor=1, first_file_name='19951212_093600'):
 
     #Copying the required files
     i = 0
-    for root, dirs, files in os.walk(src_path):
+    for files in os.walk(src_path)[2]:
         files.sort()
         for f in files:
             if(f.endswith('.jpg')):
@@ -36,7 +36,7 @@ def renameFiles(src_path, skip_factor=1, first_file_name='19951212_093600'):
                 i+=1
 
     #Renaming files
-    for root, dirs, files in os.walk(dest_path):
+    for files in os.walk(dest_path)[2]:
         files.sort()
         for f in files:
 
