@@ -255,22 +255,25 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
         all_animation_objs.append(track_anim_objs)
 
         #Adding color to the track
-        colors = track['color']
-        temp = colors.split("[")[1]
-        temp = temp[0:-1]
-        temp = temp.split(",")
-        r = int(temp[0].split("=")[1])
-        b = int(temp[1].split("=")[1])
-        g = int(temp[2].split("=")[1])
+        def getColorinHex(track):
+            colors = track['color']
+            temp = colors.split("[")[1]
+            temp = temp[0:-1]
+            temp = temp.split(",")
+            r = int(temp[0].split("=")[1])
+            b = int(temp[1].split("=")[1])
+            g = int(temp[2].split("=")[1])
 
-        hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
+            hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
+            return hex_value
 
-        temp_shape_tag.find('srgbClr')['val'] = hex_value.upper()
+        colorHexValue = getColorinHex(track).upper()
+        temp_shape_tag.find('srgbClr')['val'] = colorHexValue
         #changing arrow to rect callout -
         temp_arrow_tag.find('prstGeom')['prst'] = "wedgeRectCallout"
 
         #Adding border color to marker
-        temp_arrow_tag.find('spPr').find('ln').find('solidFill').find('srgbClr')['val'] = hex_value.upper()
+        temp_arrow_tag.find('spPr').find('ln').find('solidFill').find('srgbClr')['val'] = colorHexValue
 
         #We will add the shape and arrow objects in arrays for now
         shape_objs.append(temp_shape_tag)
@@ -279,109 +282,126 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
         trackCount+=2
 
     #Adding all shape and arrow objects
-    spTree_obj = soup.find('spTree')
-    for shape in shape_objs:
-        spTree_obj.append(shape)
-    for arrow in arrow_objs:
-        spTree_obj.append(arrow)
+    spTreeobj = soup.find('spTree')
+    def addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs):
+        for shape in shape_objs:
+            spTreeobj.append(shape)
+        for arrow in arrow_objs:
+            spTreeobj.append(arrow)
+    addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs)
 
-    track_num = 1
-    for track_anim_objs in all_animation_objs:
-        anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
-        anim_tag_upper_temp.name = "seq"
-        parent_temp = anim_tag_upper_temp.find('animMotion').parent
-        anim_tag_upper_temp.find('animMotion').extract()
-        for anim in track_anim_objs:
-            parent_temp.append(anim)
+    def addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper):
+        track_num = 1
+        for track_anim_objs in all_animation_objs:
+            anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
+            anim_tag_upper_temp.name = "seq"
+            parent_temp = anim_tag_upper_temp.find('animMotion').parent
+            anim_tag_upper_temp.find('animMotion').extract()
+            for anim in track_anim_objs:
+                parent_temp.append(anim)
 
-        del anim_tag_upper_temp.find('cTn')['accel']
-        del anim_tag_upper_temp.find('cTn')['decel']
-        anim_tag_upper_temp.find('cTn')['id'] = track_num
-        track_num+=1
-        anim_insertion_tag_upper.append(anim_tag_upper_temp)
+            del anim_tag_upper_temp.find('cTn')['accel']
+            del anim_tag_upper_temp.find('cTn')['decel']
+            anim_tag_upper_temp.find('cTn')['id'] = track_num
+            track_num+=1
+            anim_insertion_tag_upper.append(anim_tag_upper_temp)
+    addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper)
 
     time_id_start = arrow_ids[len(arrow_ids) - 1]+1
+    def createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries):
+        #Create parent animation object for all time box animationss
+        time_shape_objs = []
+        coord_num = 0
+        time_delay = intervalDuration
+        #we will get the timestamps from the first track
+        for coordinate in trackData[0]['coordinates']:
+            timestamp=coordinate['time']
+            timestamp = timestamp.time()
+            temp_time_tag = copy.deepcopy(time_tag)
+            temp_time_tag.find('cNvPr')['id'] = str(time_id_start)
+            temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
+            time_shape_objs.append(temp_time_tag)
 
-    #Create parent animation object for all time box animationss
-    time_shape_objs = []
-    coord_num = 0
-    time_delay = intervalDuration
-    #we will get the timestamps from the first track
-    for coordinate in trackData[0]['coordinates']:
-        timestamp=coordinate['time']
-        timestamp = timestamp.time()
-        temp_time_tag = copy.deepcopy(time_tag)
-        temp_time_tag.find('cNvPr')['id'] = str(time_id_start)
-        temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
-        time_shape_objs.append(temp_time_tag)
+            # handle animation objs for time
+            if(coord_num==0):
+                temp_time_anim = copy.deepcopy(time_anim_tag_first)
+                temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+                temp_time_anim.find('cond')['delay'] = "0"
+                temp_time_anim.find('cTn')['nodeType'] = "withEffect"
+                anim_insertion_tag_upper.append(temp_time_anim)
+            else:
+                temp_time_anim = copy.deepcopy(time_anim_tag_big)
+                temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+                temp_time_anim.find('cond')['delay'] = str(time_delay)
+                time_delay+=intervalDuration
+                temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
+                temp_time_anim.find('par').find('cond')['delay'] = str(intervalDuration)
+                time_anim_tag_big_insertion.append(temp_time_anim)
 
-        # handle animation objs for time
-        if(coord_num==0):
-            temp_time_anim = copy.deepcopy(time_anim_tag_first)
-            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
-            temp_time_anim.find('cond')['delay'] = "0"
-            temp_time_anim.find('cTn')['nodeType'] = "withEffect"
-            anim_insertion_tag_upper.append(temp_time_anim)
-        else:
-            temp_time_anim = copy.deepcopy(time_anim_tag_big)
-            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
-            temp_time_anim.find('cond')['delay'] = str(time_delay)
-            time_delay+=intervalDuration
-            temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
-            temp_time_anim.find('par').find('cond')['delay'] = str(intervalDuration)
-            time_anim_tag_big_insertion.append(temp_time_anim)
+            coord_num+=1
+            time_id_start+=1
 
-        coord_num+=1
-        time_id_start+=1
+        for timeshape in time_shape_objs:
+            spTreeobj.append(timeshape)
 
-    spTreeobj = soup.find('spTree')
-    for timeshape in time_shape_objs:
-        spTreeobj.append(timeshape)
+        #Adding narratives -
+        narrative_id = time_id_start
+        narrative_objects = []
+        time_delay = 0
 
-    #Adding narratives -
-    narrative_id = time_id_start
-    narrative_objects = []
-    time_delay = 0
-    for narrative in narrativeEntries:
-        time_delay+=(int(narrative['elapsed']) - time_delay)
-        time_str = narrative['dateStr']
-        time_str = time_str.split('.')[0]
-        time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
-        temp_narrative_tag = copy.deepcopy(narrative_tag)
-        temp_narrative_tag.find('cNvPr')['id'] = narrative_id
-        temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
-        narrative_objects.append(temp_narrative_tag)
-        if(narrative_id == time_id_start):
-            temp_narrative_anim = copy.deepcopy(time_anim_tag_first)
-            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
-            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
-            temp_narrative_anim.find('cTn')['nodeType'] = "withEffect"
-            anim_insertion_tag_upper.append(temp_narrative_anim)
-        else:
-            temp_narrative_anim = copy.deepcopy(time_anim_tag_big)
-            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
-            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
-            temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
-            temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
-            time_anim_tag_big_insertion.append(temp_narrative_anim)
+        #Blank narrative box
+        blank_narrative = copy.deepcopy(narrative_tag)
+        blank_narrative.find('cNvPr')['id'] = narrative_id
+        blank_narrative.find('txBody').find('p').find('r').find('t').string = ""
+        narrative_objects.append(blank_narrative)
         narrative_id+=1
 
-    spTreeobj = soup.find('spTree')
-    for narrative in narrative_objects:
-        spTreeobj.append(narrative)
+        for narrative in narrativeEntries:
+            time_delay+=(int(narrative['elapsed']) - time_delay)
+            time_str = narrative['dateStr']
+            time_str = time_str.split('.')[0]
+            time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
+            temp_narrative_tag = copy.deepcopy(narrative_tag)
+            temp_narrative_tag.find('cNvPr')['id'] = narrative_id
+            temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
+            narrative_objects.append(temp_narrative_tag)
+            if(narrative_id == time_id_start):
+                temp_narrative_anim = copy.deepcopy(time_anim_tag_first)
+                temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+                temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+                temp_narrative_anim.find('cTn')['nodeType'] = "withEffect"
+                anim_insertion_tag_upper.append(temp_narrative_anim)
+            else:
+                temp_narrative_anim = copy.deepcopy(time_anim_tag_big)
+                temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+                temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+                temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
+                temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
+                time_anim_tag_big_insertion.append(temp_narrative_anim)
+            narrative_id+=1
 
-    soup_text = str(soup)
-    soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
-    soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
-    soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
-    soup_text = soup_text.replace("</moveTo>","</a:moveTo>")
-    soup_text = soup_text.replace("<pt","<a:pt")
-    soup_text = soup_text.replace("</pt","</a:pt")
-    soup_text = soup_text.strip()
-    text_file = open(slide_path, "w")
-    text_file.write(soup_text)
-    text_file.close()
+        for narrative in narrative_objects:
+            spTreeobj.append(narrative)
 
+    createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries)
+
+    def cleanSoup(soup):
+        soup_text = str(soup)
+        soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
+        soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
+        soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
+        soup_text = soup_text.replace("</moveTo>","</a:moveTo>")
+        soup_text = soup_text.replace("<pt","<a:pt")
+        soup_text = soup_text.replace("</pt","</a:pt")
+        soup_text = soup_text.strip()
+        return soup_text
+
+    def writeSoup(slide_path, soup):
+        text_file = open(slide_path, "w")
+        text_file.write(cleanSoup(soup))
+        text_file.close()
+
+    writeSoup(slide_path, soup)
     packFunction(None, temp_unpack_path)
 
 GPXData = getTrackData(tracks_path)
