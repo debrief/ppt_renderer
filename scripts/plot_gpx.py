@@ -14,85 +14,156 @@ from parse_presentation import parsePresentation
 
 sys.setrecursionlimit(15000)
 
-parser = argparse.ArgumentParser(description='Script to plot gpx data on pptx')
-parser.add_argument('--donor', help='Path to donor pptx file', required=True)
-parser.add_argument('--tracks_path', help='Path to gpx tracks file', required=True)
+#Helper function declarations -
+def checkPathandInitialization(donor, tracks_path):
+    if(not os.path.exists(donor)):
+        print "donor file does not exist"
+        sys.exit(1)
+    if(not os.path.exists(tracks_path)):
+        print "tracks file does not exist"
+        sys.exit(1)
 
-args = parser.parse_args()
-tracks_path = args.tracks_path
-donor = args.donor
+    unpack_path = donor.split('.')[0]
+    if(os.path.exists(unpack_path)):
+        shutil.rmtree(unpack_path)
 
-#Edge cases check
-if(not os.path.exists(donor)):
-    print "donor file does not exist"
-    sys.exit(1)
-if(not os.path.exists(tracks_path)):
-    print "tracks file does not exist"
-    sys.exit(1)
+    temps = tracks_path.split("/")
+    ppt_name = temps[len(temps)-1]
 
-unpack_path = donor.split('.')[0]
-if(os.path.exists(unpack_path)):
-    shutil.rmtree(unpack_path)
+    temp_unpack_path = ppt_name.split(".")[0]+"_temp"
+    unpackFunction(donor, temp_unpack_path)
 
-temps = tracks_path.split("/")
-ppt_name = temps[len(temps)-1]
+    slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
 
-temp_unpack_path = ppt_name.split(".")[0]+"_temp"
-unpackFunction(donor, temp_unpack_path)
+    return slide_path, temp_unpack_path
 
-slide_path = temp_unpack_path+"/ppt/slides/slide1.xml"
+def cleanSoup(soup):
+    soup_text = str(soup)
+    soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
+    soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
+    soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
+    soup_text = soup_text.replace("</moveTo>","</a:moveTo>")
+    soup_text = soup_text.replace("<pt","<a:pt")
+    soup_text = soup_text.replace("</pt","</a:pt")
+    soup_text = soup_text.strip()
+    return soup_text
 
-def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, invertY = 1):
-    x = rectX + x*(rectWidth/dimensionWidth)
-    if invertY==1:
-        y = y - dimensionHeight
-        y = rectY + y*(rectHeight/-dimensionHeight)
-    else:
-        y = rectY + y*(rectHeight/dimensionHeight)
-    return x,y
+def writeSoup(slide_path, soup):
+    text_file = open(slide_path, "w")
+    text_file.write(cleanSoup(soup))
+    text_file.close()
 
-def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
+def createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries, narrative_tag):
+    #Create parent animation object for all time box animationss
+    time_shape_objs = []
+    coord_num = 0
+    time_delay = intervalDuration
+    #we will get the timestamps from the first track
+    for coordinate in trackData[0]['coordinates']:
+        timestamp=coordinate['time']
+        timestamp = timestamp.time()
+        temp_time_tag = copy.deepcopy(time_tag)
+        temp_time_tag.find('cNvPr')['id'] = str(time_id_start)
+        temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
+        time_shape_objs.append(temp_time_tag)
 
-    trackData = GPXData['trackData']
-    print 'Number of tracks:::', len(trackData)
+        # handle animation objs for time
+        if(coord_num==0):
+            temp_time_anim = copy.deepcopy(time_anim_tag_first)
+            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+            temp_time_anim.find('cond')['delay'] = "0"
+            temp_time_anim.find('cTn')['nodeType'] = "withEffect"
+            anim_insertion_tag_upper.append(temp_time_anim)
+        else:
+            temp_time_anim = copy.deepcopy(time_anim_tag_big)
+            temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
+            temp_time_anim.find('cond')['delay'] = str(time_delay)
+            time_delay+=intervalDuration
+            temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
+            temp_time_anim.find('par').find('cond')['delay'] = str(intervalDuration)
+            time_anim_tag_big_insertion.append(temp_time_anim)
 
-    #Dimension data
-    dimensionWidth = int(GPXData['dimensionWidth'])
-    dimensionHeight = int(GPXData['dimensionHeight'])
+        coord_num+=1
+        time_id_start+=1
 
-    # Get slide size from presentation.xml file
-    slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
+    for timeshape in time_shape_objs:
+        spTreeobj.append(timeshape)
 
-    soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
+    #Adding narratives -
+    narrative_id = time_id_start
+    narrative_objects = []
+    time_delay = 0
 
-    #Fix creation id tag
-    creationIdsoup = soup.find('creationId')
-    creationIdsoup.name = "p14:creationId"
-    creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
+    #Blank narrative box
+    blank_narrative = copy.deepcopy(narrative_tag)
+    blank_narrative.find('cNvPr')['id'] = narrative_id
+    blank_narrative.find('txBody').find('p').find('r').find('t').string = ""
+    narrative_objects.append(blank_narrative)
+    narrative_id+=1
 
-    #Get Map shape details
-    mapDetails = getMapDetails(temp_unpack_path)
-    mapX = int(mapDetails['x'])
-    mapY = int(mapDetails['y'])
-    mapCX = int(mapDetails['cx'])
-    mapCY = int(mapDetails['cy'])
+    for narrative in narrativeEntries:
+        time_delay+=(int(narrative['elapsed']) - time_delay)
+        time_str = narrative['dateStr']
+        time_str = time_str.split('.')[0]
+        time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
+        temp_narrative_tag = copy.deepcopy(narrative_tag)
+        temp_narrative_tag.find('cNvPr')['id'] = narrative_id
+        temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
+        narrative_objects.append(temp_narrative_tag)
+        if(narrative_id == time_id_start):
+            temp_narrative_anim = copy.deepcopy(time_anim_tag_first)
+            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+            temp_narrative_anim.find('cTn')['nodeType'] = "withEffect"
+            anim_insertion_tag_upper.append(temp_narrative_anim)
+        else:
+            temp_narrative_anim = copy.deepcopy(time_anim_tag_big)
+            temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
+            temp_narrative_anim.find('cond')['delay'] = str(time_delay)
+            temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
+            temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
+            time_anim_tag_big_insertion.append(temp_narrative_anim)
+        narrative_id+=1
 
-    #Calculating TL and BR
-    TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
-    BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
+    for narrative in narrative_objects:
+        spTreeobj.append(narrative)
 
-    #Calculating rectangle representated as animated target values
-    animX = TLx
-    animY = TLy
-    animCX = BRx - TLx
-    animCY = BRy - TLy
 
-    shape_tag = None
-    arrow_tag = None
-    anim_tag = None
-    time_tag = None
-    narrative_tag = None
+def addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper):
+    track_num = 1
+    for track_anim_objs in all_animation_objs:
+        anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
+        anim_tag_upper_temp.name = "seq"
+        parent_temp = anim_tag_upper_temp.find('animMotion').parent
+        anim_tag_upper_temp.find('animMotion').extract()
+        for anim in track_anim_objs:
+            parent_temp.append(anim)
 
+        del anim_tag_upper_temp.find('cTn')['accel']
+        del anim_tag_upper_temp.find('cTn')['decel']
+        anim_tag_upper_temp.find('cTn')['id'] = track_num
+        track_num+=1
+        anim_insertion_tag_upper.append(anim_tag_upper_temp)
+
+def addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs):
+    for shape in shape_objs:
+        spTreeobj.append(shape)
+    for arrow in arrow_objs:
+        spTreeobj.append(arrow)
+
+def getColorinHex(track):
+    colors = track['color']
+    temp = colors.split("[")[1]
+    temp = temp[0:-1]
+    temp = temp.split(",")
+    r = int(temp[0].split("=")[1])
+    b = int(temp[1].split("=")[1])
+    g = int(temp[2].split("=")[1])
+
+    hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
+    return hex_value
+
+def getShapes(soup):
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
     for shape in all_shape_tags:
@@ -110,8 +181,14 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
     arrow_tag.extract()
     time_tag.extract()
     narrative_tag.extract()
+    return shape_tag, arrow_tag, time_tag, narrative_tag
 
-    #Find time_animation objs -
+def fixCreationId(soup):
+    creationIdsoup = soup.find('creationId')
+    creationIdsoup.name = "p14:creationId"
+    creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
+
+def findTimeAnimationObjects(soup, time_tag):
     time_id_original = time_tag.find('cNvPr')['id']
     spTgts = soup.find_all('spTgt')
     time_anim_tag_big = None
@@ -123,12 +200,87 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
             break
     time_anim_tag_big_insertion = time_anim_tag_big.parent
     time_anim_tag_big.extract()
+    return time_anim_tag_first, time_anim_tag_big, time_anim_tag_big_insertion
 
+def findAnimationTagObjects(soup):
     anim_tag = soup.find('animMotion')
     anim_tag_upper = anim_tag.parent.parent.parent
     anim_insertion_tag_upper = anim_tag_upper.parent
-
     anim_tag_upper.extract()
+    return anim_tag, anim_tag_upper, anim_insertion_tag_upper
+
+def getArrowPointerCoordinates(temp_arrow_tag):
+    gds = temp_arrow_tag.find('spPr').find('prstGeom').find('avLst').find_all('gd')
+    arrow_pointer_x = gds[0]['fmla']
+    arrow_pointer_y = gds[1]['fmla']
+    arrow_pointer_x = int(arrow_pointer_x[4:])
+    arrow_pointer_y = int(arrow_pointer_y[4:])
+    return arrow_pointer_x, arrow_pointer_y
+
+def arrowCoordinates(temp_arrow_tag):
+    arrow_off_x = float(temp_arrow_tag.find('off')['x'])
+    arrow_off_y = float(temp_arrow_tag.find('off')['y'])
+    arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
+    arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
+    return arrow_off_x, arrow_off_y, arrow_ext_cx, arrow_ext_cy
+
+def coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, invertY = 1):
+    x = rectX + x*(rectWidth/dimensionWidth)
+    if invertY==1:
+        y = y - dimensionHeight
+        y = rectY + y*(rectHeight/-dimensionHeight)
+    else:
+        y = rectY + y*(rectHeight/dimensionHeight)
+    return x,y
+
+def getDimensionsFromGPXData(GPXData):
+    return int(GPXData['dimensionWidth']), int(GPXData['dimensionHeight'])
+
+def getMapDimesions(mapDetails):
+    return int(mapDetails['x']), int(mapDetails['y']), int(mapDetails['cx']), int(mapDetails['cy'])
+
+def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_path, temp_unpack_path):
+
+    trackData = GPXData['trackData']
+    print 'Number of tracks:::', len(trackData)
+
+    #Dimension data
+    dimensionWidth, dimensionHeight = getDimensionsFromGPXData(GPXData)
+
+    # Get slide size from presentation.xml file
+    slide_dimen_x, slide_dimen_y = parsePresentation(temp_unpack_path)
+
+    soup = BeautifulSoup(open(slide_path, 'r').read(), 'xml')
+
+    #Fix creation id tag
+    fixCreationId(soup)
+
+    #Get Map shape details
+    mapDetails = getMapDetails(temp_unpack_path)
+    mapX, mapY, mapCX, mapCY = getMapDimesions(mapDetails)
+
+    #Calculating TL and BR
+    TLx, TLy = coordinateTransformation(float(mapX), float(mapY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
+    BRx, BRy = coordinateTransformation(float(mapX+mapCX), float(mapY+mapCY), float(slide_dimen_x), float(slide_dimen_y), 0, 0, 1, 1, invertY = 0)
+
+    #Calculating rectangle representated as animated target values
+    animX = TLx
+    animY = TLy
+    animCX = BRx - TLx
+    animCY = BRy - TLy
+
+    shape_tag = None
+    arrow_tag = None
+    anim_tag = None
+    time_tag = None
+    narrative_tag = None
+
+    #getting shape tags
+    shape_tag, arrow_tag, time_tag, narrative_tag = getShapes(soup)
+    #Find time_animation objs -
+    time_anim_tag_first, time_anim_tag_big, time_anim_tag_big_insertion = findTimeAnimationObjects(soup, time_tag)
+    #Find anim_tags -
+    anim_tag, anim_tag_upper, anim_insertion_tag_upper = findAnimationTagObjects(soup)
 
     trackCount = 3
 
@@ -147,17 +299,10 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
         temp_shape_tag = copy.deepcopy(shape_tag)
 
         #getting coordinates arrow pointer
-        gds = temp_arrow_tag.find('spPr').find('prstGeom').find('avLst').find_all('gd')
-        arrow_pointer_x = gds[0]['fmla']
-        arrow_pointer_y = gds[1]['fmla']
-        arrow_pointer_x = int(arrow_pointer_x[4:])
-        arrow_pointer_y = int(arrow_pointer_y[4:])
+        arrow_pointer_x, arrow_pointer_y = getArrowPointerCoordinates(temp_arrow_tag)
 
         #Get arrow shape off and ext
-        arrow_off_x = float(temp_arrow_tag.find('off')['x'])
-        arrow_off_y = float(temp_arrow_tag.find('off')['y'])
-        arrow_ext_cx = float(temp_arrow_tag.find('ext')['cx'])
-        arrow_ext_cy = float(temp_arrow_tag.find('ext')['cy'])
+        arrow_off_x, arrow_off_y, arrow_ext_cx, arrow_ext_cy = arrowCoordinates(temp_arrow_tag)
 
         #Get middle point of arrow
         arrow_center_x = (arrow_off_x+arrow_ext_cx/2)
@@ -253,28 +398,13 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
             num_coordinate+=1
 
         all_animation_objs.append(track_anim_objs)
-
         #Adding color to the track
-        def getColorinHex(track):
-            colors = track['color']
-            temp = colors.split("[")[1]
-            temp = temp[0:-1]
-            temp = temp.split(",")
-            r = int(temp[0].split("=")[1])
-            b = int(temp[1].split("=")[1])
-            g = int(temp[2].split("=")[1])
-
-            hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
-            return hex_value
-
         colorHexValue = getColorinHex(track).upper()
         temp_shape_tag.find('srgbClr')['val'] = colorHexValue
         #changing arrow to rect callout -
         temp_arrow_tag.find('prstGeom')['prst'] = "wedgeRectCallout"
-
         #Adding border color to marker
         temp_arrow_tag.find('spPr').find('ln').find('solidFill').find('srgbClr')['val'] = colorHexValue
-
         #We will add the shape and arrow objects in arrays for now
         shape_objs.append(temp_shape_tag)
         arrow_objs.append(temp_arrow_tag)
@@ -283,128 +413,25 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration):
 
     #Adding all shape and arrow objects
     spTreeobj = soup.find('spTree')
-    def addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs):
-        for shape in shape_objs:
-            spTreeobj.append(shape)
-        for arrow in arrow_objs:
-            spTreeobj.append(arrow)
     addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs)
-
-    def addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper):
-        track_num = 1
-        for track_anim_objs in all_animation_objs:
-            anim_tag_upper_temp = copy.deepcopy(anim_tag_upper)
-            anim_tag_upper_temp.name = "seq"
-            parent_temp = anim_tag_upper_temp.find('animMotion').parent
-            anim_tag_upper_temp.find('animMotion').extract()
-            for anim in track_anim_objs:
-                parent_temp.append(anim)
-
-            del anim_tag_upper_temp.find('cTn')['accel']
-            del anim_tag_upper_temp.find('cTn')['decel']
-            anim_tag_upper_temp.find('cTn')['id'] = track_num
-            track_num+=1
-            anim_insertion_tag_upper.append(anim_tag_upper_temp)
     addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper)
-
-    time_id_start = arrow_ids[len(arrow_ids) - 1]+1
-    def createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries):
-        #Create parent animation object for all time box animationss
-        time_shape_objs = []
-        coord_num = 0
-        time_delay = intervalDuration
-        #we will get the timestamps from the first track
-        for coordinate in trackData[0]['coordinates']:
-            timestamp=coordinate['time']
-            timestamp = timestamp.time()
-            temp_time_tag = copy.deepcopy(time_tag)
-            temp_time_tag.find('cNvPr')['id'] = str(time_id_start)
-            temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
-            time_shape_objs.append(temp_time_tag)
-
-            # handle animation objs for time
-            if(coord_num==0):
-                temp_time_anim = copy.deepcopy(time_anim_tag_first)
-                temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
-                temp_time_anim.find('cond')['delay'] = "0"
-                temp_time_anim.find('cTn')['nodeType'] = "withEffect"
-                anim_insertion_tag_upper.append(temp_time_anim)
-            else:
-                temp_time_anim = copy.deepcopy(time_anim_tag_big)
-                temp_time_anim.find('spTgt')['spid'] = str(time_id_start)
-                temp_time_anim.find('cond')['delay'] = str(time_delay)
-                time_delay+=intervalDuration
-                temp_time_anim.find('cTn')['nodeType'] = "afterEffect"
-                temp_time_anim.find('par').find('cond')['delay'] = str(intervalDuration)
-                time_anim_tag_big_insertion.append(temp_time_anim)
-
-            coord_num+=1
-            time_id_start+=1
-
-        for timeshape in time_shape_objs:
-            spTreeobj.append(timeshape)
-
-        #Adding narratives -
-        narrative_id = time_id_start
-        narrative_objects = []
-        time_delay = 0
-
-        #Blank narrative box
-        blank_narrative = copy.deepcopy(narrative_tag)
-        blank_narrative.find('cNvPr')['id'] = narrative_id
-        blank_narrative.find('txBody').find('p').find('r').find('t').string = ""
-        narrative_objects.append(blank_narrative)
-        narrative_id+=1
-
-        for narrative in narrativeEntries:
-            time_delay+=(int(narrative['elapsed']) - time_delay)
-            time_str = narrative['dateStr']
-            time_str = time_str.split('.')[0]
-            time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
-            temp_narrative_tag = copy.deepcopy(narrative_tag)
-            temp_narrative_tag.find('cNvPr')['id'] = narrative_id
-            temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
-            narrative_objects.append(temp_narrative_tag)
-            if(narrative_id == time_id_start):
-                temp_narrative_anim = copy.deepcopy(time_anim_tag_first)
-                temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
-                temp_narrative_anim.find('cond')['delay'] = str(time_delay)
-                temp_narrative_anim.find('cTn')['nodeType'] = "withEffect"
-                anim_insertion_tag_upper.append(temp_narrative_anim)
-            else:
-                temp_narrative_anim = copy.deepcopy(time_anim_tag_big)
-                temp_narrative_anim.find('spTgt')['spid'] = str(narrative_id)
-                temp_narrative_anim.find('cond')['delay'] = str(time_delay)
-                temp_narrative_anim.find('cTn')['nodeType'] = "afterEffect"
-                temp_narrative_anim.find('par').find('cond')['delay'] = str(intervalDuration)
-                time_anim_tag_big_insertion.append(temp_narrative_anim)
-            narrative_id+=1
-
-        for narrative in narrative_objects:
-            spTreeobj.append(narrative)
-
-    createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries)
-
-    def cleanSoup(soup):
-        soup_text = str(soup)
-        soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
-        soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
-        soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
-        soup_text = soup_text.replace("</moveTo>","</a:moveTo>")
-        soup_text = soup_text.replace("<pt","<a:pt")
-        soup_text = soup_text.replace("</pt","</a:pt")
-        soup_text = soup_text.strip()
-        return soup_text
-
-    def writeSoup(slide_path, soup):
-        text_file = open(slide_path, "w")
-        text_file.write(cleanSoup(soup))
-        text_file.close()
-
+    time_id_start = arrow_ids[len(arrow_ids) - 1]+1#id for first time shape is equal to id of last arrow shape + 1
+    createTimeNarrativeShapes(spTreeobj, time_id_start, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries, narrative_tag)
     writeSoup(slide_path, soup)
     packFunction(None, temp_unpack_path)
 
+#Main -
+parser = argparse.ArgumentParser(description='Script to plot gpx data on pptx')
+parser.add_argument('--donor', help='Path to donor pptx file', required=True)
+parser.add_argument('--tracks_path', help='Path to gpx tracks file', required=True)
+
+args = parser.parse_args()
+tracks_path = args.tracks_path
+donor = args.donor
+
+#check paths check
+slide_path, temp_unpack_path = checkPathandInitialization(donor, tracks_path)
 GPXData = getTrackData(tracks_path)
 narrativeEntries = getNarratives(tracks_path)
 interval = getInterval(tracks_path)
-createPptxFromTrackData(GPXData, narrativeEntries, interval)
+createPptxFromTrackData(GPXData, narrativeEntries, interval, slide_path, temp_unpack_path)
