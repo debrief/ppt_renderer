@@ -87,6 +87,7 @@ def createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, 
 
         if(coord_num == 0):
             current_time_id = 300
+        current_time_id+=1
         coord_num+=1
 
 
