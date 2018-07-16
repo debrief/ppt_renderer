@@ -38,7 +38,24 @@ def checkPathandInitialization(donor, tracks_path):
     return slide_path, temp_unpack_path
 
 def cleanSoup(soup):
+    #save the p:extLst
+    mainExt = None
+    mainExtParent = None
+
+    mainExt = soup.find('p14:creationId').parent.parent
+    mainExtParent = mainExt.parent
+
+    mainExt.extract()
+    #remove extlst
+    for ext in soup.find_all('extLst'):
+        ext.parent.append(BeautifulSoup('<extLst1/>', 'xml').find('extLst1'))
+        ext.extract()
+        print ext
+
+    #Readding the main ext
+    mainExtParent.append(mainExt)
     soup_text = str(soup)
+    soup_text = soup_text.replace("<extLst1/>","<a:extLst/>")
     soup_text = soup_text.replace("<lnTo>","<a:lnTo>")
     soup_text = soup_text.replace("</lnTo>","</a:lnTo>")
     soup_text = soup_text.replace("<moveTo>","<a:moveTo>")
