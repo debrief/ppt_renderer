@@ -80,7 +80,8 @@ def createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, 
     #we will get the timestamps from the first track
     for coordinate in trackData[0]['coordinates']:
         timestamp=coordinate['time']
-        timestamp = timestamp.time()
+        #timestamp = timestamp.time()
+        timestamp = timestamp.strftime("%y %b %d%H%M")
         temp_time_tag = copy.deepcopy(time_tag)
         temp_time_tag.find('cNvPr')['id'] = str(current_time_id)
         temp_time_tag.find('txBody').find('p').find('r').find('t').string = str(timestamp)
@@ -127,8 +128,8 @@ def createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, 
     for narrative in narrativeEntries:
         time_delay+=(int(narrative['elapsed']) - time_delay)
         time_str = narrative['dateStr']
-        time_str = time_str.split('.')[0]
-        time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
+        #time_str = time_str.split('.')[0]
+        #time_str = time_str[0:2]+":"+time_str[2:4]+":"+time_str[4:6]
         temp_narrative_tag = copy.deepcopy(narrative_tag)
         temp_narrative_tag.find('cNvPr')['id'] = current_narrative_id
         temp_narrative_tag.find('txBody').find('p').find('r').find('t').string = time_str+" "+narrative['Text']
