@@ -47,17 +47,22 @@ def checkForMap(slides_path):
 
         for shape in shapes:
             shapeDetails = {}
-            for child in shape.find_all(cnvpr):
-                shapeDetails['name'] = child['name']
-            for child in shape.find_all("a:off"):
-                shapeDetails['x'] = child['x']
-                shapeDetails['y'] = child['y']
-            for child in shape.find_all("a:ext"):
-                shapeDetails['cx'] = child['cx']
-                shapeDetails['cy'] = child['cy']
-            # print "shapeDetails --", shapeDetails
+            # for child in shape.find_all(cnvpr):
+            #     shapeDetails['name'] = child['name']
+            # for child in shape.find_all("a:off"):
+            #     shapeDetails['x'] = child['x']
+            #     shapeDetails['y'] = child['y']
+            # for child in shape.find_all("a:ext"):
+            #     shapeDetails['cx'] = child['cx']
+            #     shapeDetails['cy'] = child['cy']
+            shapeDetails['name'] = shape.find(cnvpr)['name']
             if(shapeDetails['name']=="map"):
+                shapeDetails['x'] = shape.find('a:off')['x']
+                shapeDetails['y'] = shape.find('a:off')['y']
+                shapeDetails['cx'] = shape.find('a:ext')['cx']
+                shapeDetails['cy'] = shape.find('a:ext')['cy']
                 mapDetails = shapeDetails
+                print "mapDetails - ", mapDetails
                 flag=1
                 break
         if(flag==1):
