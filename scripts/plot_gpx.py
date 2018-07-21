@@ -175,7 +175,6 @@ def getColorinHex(track):
 def getShapes(soup):
     shape_tag = None
     arrow_tag = None
-    anim_tag = None
     time_tag = None
     narrative_tag = None
     #retrive the sample arrow and path tag
