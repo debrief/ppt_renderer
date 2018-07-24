@@ -148,6 +148,34 @@ public class PlotGpx {
 				anim_tag, anim_tag_upper, anim_insertion_tag_upper
 		};
 	}
+
+	/**
+	 * Extract the coordinates of the arrow tag.
+	 * @param temp_arrow_tag Arrow tag
+	 * @return An array with two integers, (x,y) arrow pointers.
+	 */
+	private int[] getArrowPointerCoordinates(Element temp_arrow_tag) {
+		Elements gds = temp_arrow_tag.select("p|spPr").select("a|prstGeom").select("a|avLst").select("a|gd");
+		int arrow_pointer_x = Integer.parseInt(gds.get(0).attr("fmla").substring(4));
+		int arrow_pointer_y = Integer.parseInt(gds.get(1).attr("fmla").substring(4));;
+		return new int[]{ arrow_pointer_x, arrow_pointer_y };
+	}
+
+	/**
+	 * Get arrow shape off and ext coordinates
+	 * @param temp_arrow_tag Arrow tag
+	 * @return An array with four integers, (offX, offY, extX, extY) arrow pointers.
+	 */
+	private float[] arrowCoordinates(Element temp_arrow_tag) {
+		float arrow_off_x = Float.parseFloat(temp_arrow_tag.selectFirst("a|off").attr("x"));
+		float arrow_off_y = Float.parseFloat(temp_arrow_tag.selectFirst("a|off").attr("y"));
+		float arrow_ext_cx = Float.parseFloat(temp_arrow_tag.selectFirst("a|ext").attr("cx"));
+		float arrow_ext_cy = Float.parseFloat(temp_arrow_tag.selectFirst("a|ext").attr("cy"));
+
+		return new float[]{
+				arrow_off_x, arrow_off_y, arrow_ext_cx, arrow_ext_cy
+		};
+	}
 	
 	/**
 	 * It creates the new pptx file adding the track data previously parsed.
@@ -216,6 +244,93 @@ public class PlotGpx {
 			Element anim_tag_upper = timeAnimTemp[1];
 			Element anim_insertion_tag_upper = timeAnimTemp[2];
 
+			int trackCount = 0;
+			int current_shape_id = Integer.parseInt(shape_tag.selectFirst("p|cNvPr").attr("id"));
+			int current_arrow_id = Integer.parseInt(arrow_tag.selectFirst("p|cNvPr").attr("id"));
+			System.out.println("Last Shape Id::::: " + current_shape_id);
+			System.out.println("Last Arrow Id::::: " + current_arrow_id);
+
+			ArrayList<Integer> shape_ids = new ArrayList<>();
+			ArrayList<Integer> arrow_ids = new ArrayList<>();
+			ArrayList<Element> shape_objs = new ArrayList<>();
+			ArrayList<Element> arrow_objs = new ArrayList<>();
+			ArrayList<Element> all_animation_objs = new ArrayList<>();
+
+			for ( Object trackObject : trackData ){
+				HashMap<String, Object> track = (HashMap<String, Object>)trackObject;
+
+				Element temp_arrow_tag = arrow_tag.clone();
+				Element temp_shape_tag = shape_tag.clone();
+
+				// getting coordinates arrow pointer
+				int [] arrow_pointer_temp = getArrowPointerCoordinates(temp_arrow_tag);
+				int arrow_pointer_x = arrow_pointer_temp[0];
+				int arrow_pointer_y = arrow_pointer_temp[1];
+
+				// Get arrow shape off and ext
+				float[] arrowCoordinatesTemp = arrowCoordinates(temp_arrow_tag);
+				float arrow_off_x = arrowCoordinatesTemp[0];
+				float arrow_off_y = arrowCoordinatesTemp[1];
+				float arrow_ext_cx = arrowCoordinatesTemp[2];
+				float arrow_ext_cy = arrowCoordinatesTemp[3];
+
+				// Get middle point of arrow
+				float arrow_center_x = (arrow_off_x+arrow_ext_cx/2);
+				float arrow_center_y = (arrow_off_y+arrow_ext_cy/2);
+
+				// TailX and TailY contains the offset(relative distance from the centre and not the absolute)
+				float TailX = arrow_ext_cx * (float)( (float)arrow_pointer_x / 100000.0 );
+				float TailY = arrow_ext_cy * (float)( (float)arrow_pointer_y / 100000.0 );
+
+				float[] tempCoordinates = coordinateTransformation(TailX, TailY, Float.parseFloat(slide_dimen_x), Float.parseFloat(slide_dimen_y), 0, 0, 1, 1, 0 );
+				TailX = tempCoordinates[0];
+				TailY = tempCoordinates[1];
+
+				// Scaling centre coordinates of call out values to 0...1
+				tempCoordinates = coordinateTransformation(arrow_center_x, arrow_center_y, Float.parseFloat(slide_dimen_x), Float.parseFloat(slide_dimen_y), 0, 0, 1, 1, 0);
+				float arrow_center_x_small = tempCoordinates[0];
+				float arrow_center_y_small = tempCoordinates[1];
+
+				// Adding text to arrow shape -
+				String trackName = track.get("name").toString();
+
+				// trimming the trackname -
+				trackName = trackName.substring(0, 4);
+				temp_arrow_tag.selectFirst("p|txBody").selectFirst("a|p").selectFirst("a|r").selectFirst("a|t").text(trackName);
+
+				shape_ids.add(current_shape_id);
+				arrow_ids.add(current_arrow_id);
+
+				// Assign ids to arrow shape and path shape
+				temp_arrow_tag.selectFirst("p|cNvPr").attr("id", current_arrow_id + "");
+				temp_shape_tag.selectFirst("p|cNvPr").attr("id", current_shape_id + "");
+
+				// Get Shape offsets and exts
+				int temp_shape_x = Integer.parseInt(temp_shape_tag.selectFirst("a|off").attr("x"));
+				int temp_shape_y = Integer.parseInt(temp_shape_tag.selectFirst("a|off").attr("y"));
+
+				String animation_path = "";
+				Element path_tag = temp_shape_tag.selectFirst("a|path");
+				for ( Element child : path_tag.children() ){
+					child.remove();
+				}
+
+				// Adding coordinates (ArrayList< HashMap<String, Object> >)
+				ArrayList< ? > coordinates_detail = (ArrayList<?>) track.get("coordinates");
+				ArrayList< ArrayList<String> > coordinates = new ArrayList<>();
+
+				for ( Object coordinate_detail_object : coordinates_detail ){
+					HashMap<String, Object> coordinate_detail = (HashMap<String, Object>) coordinate_detail_object;
+					coordinates.add((ArrayList<String>) coordinate_detail.get("coor_set"));
+				}
+
+				int num_coordinate = 0;
+
+				// multiple anim per tracks
+				int coord_count = 1;
+
+				System.out.println("Stop");
+			}
 
 		} catch (IOException e) {
 			System.out.println("Corrupted xml file " + slide_path);
@@ -223,6 +338,19 @@ public class PlotGpx {
 		}
 	}
 
+	/**
+	 * Scaling the coordinates.
+	 * @param x
+	 * @param y
+	 * @param dimensionWidth
+	 * @param dimensionHeight
+	 * @param rectX
+	 * @param rectY
+	 * @param rectWidth
+	 * @param rectHeight
+	 * @param invertY
+	 * @return Scaled coordinates
+	 */
 	private float[] coordinateTransformation(float x, float y, float dimensionWidth, float dimensionHeight, int rectX, int rectY, int rectWidth, int rectHeight, int invertY) {
 		x = rectX + x * ( rectWidth / dimensionWidth );
 		if ( invertY == 1 ){
