@@ -121,3 +121,9 @@ venv.bak/
 *.ear
 *.sar
 *.class
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/

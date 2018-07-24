@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.jsoup.Jsoup;
@@ -33,8 +34,8 @@ public class FindMap {
 	 * @param slides_path slides` path
 	 * @return shape of the rectangles (Map details)
 	 */
-	private HashMap<String, Object> checkForMap(ArrayList<String> slides_path) {
-		HashMap<String, Object> mapDetails = new HashMap<>();
+	private HashMap<String, String> checkForMap(ArrayList<String> slides_path) {
+		HashMap<String, String> mapDetails = new HashMap<>();
 		
 		for (String slidePath : slides_path) {
 			int flag = 0;
@@ -59,10 +60,20 @@ public class FindMap {
 					HashMap<String, String> shapeDetails = new HashMap<>();
 					shapeDetails.put("name", shape.select(cnvpr).attr("name"));
 					if ( "map".equals(shapeDetails.get("name")) ) {
-						
+						shapeDetails.put("x", shape.select("a|off").get(0).attr("x"));
+						shapeDetails.put("y", shape.select("a|off").get(0).attr("y"));
+						shapeDetails.put("cx", shape.select("a|ext").get(0).attr("cx"));
+						shapeDetails.put("cy", shape.select("a|ext").get(0).attr("cy"));
+						mapDetails = shapeDetails;
+						System.out.println("mapDetails - " + Arrays.toString(mapDetails.entrySet().toArray()));
+						flag = 1;
+						break;
 					}
 				}
-				
+
+				if ( flag == 1 ){
+					break;
+				}
 			} catch (IOException e) {
 				System.out.println("Corrupted xml file " + slidePath);
 				System.exit(1);
@@ -72,9 +83,10 @@ public class FindMap {
 		return mapDetails;
 	}
 	
-	public void getMapDetails(String unpack_path) {
+	public HashMap<String, String> getMapDetails(String unpack_path) {
 		String slides_base_path = unpack_path + "/ppt/slides";
 		ArrayList<String> slides_path = getSlides(slides_base_path);
-		
+		HashMap<String, String> mapDetail = checkForMap(slides_path);
+		return mapDetail;
 	}
 }
