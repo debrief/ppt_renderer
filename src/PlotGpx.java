@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -58,6 +60,32 @@ public class PlotGpx {
 				children.remove();
 			}
 		}
+	}
+
+	private void addShapeMarkerObjects(Element spTreeobj, ArrayList<Element> shape_objs, ArrayList<Element> arrow_objs) {
+		for ( Element shape : shape_objs ){
+			spTreeobj.insertChildren(spTreeobj.childNodeSize(), shape);
+		}
+		for ( Element arrow : arrow_objs){
+			spTreeobj.insertChildren(spTreeobj.childNodeSize(), arrow);
+		}
+	}
+
+	/**
+	 * Extract the color from the data track map
+	 * @param track data track map
+	 * @return Hexadecimal color in the format %02X%02X%02X
+	 */
+	private String getColorinHex(HashMap<String, Object> track) {
+		String colors = track.get("color").toString();
+		colors = colors.substring(colors.indexOf("[") + 1, colors.length() - 1);
+		String[] temp = colors.split(",");
+		int r = Integer.parseInt(temp[0].split("=")[1]);
+		int g = Integer.parseInt(temp[1].split("=")[1]);
+		int b = Integer.parseInt(temp[2].split("=")[1]);
+
+		String hex_value = String.format("%02X%02X%02X", r, g, b).toLowerCase();
+		return hex_value;
 	}
 
 	/**
@@ -157,7 +185,7 @@ public class PlotGpx {
 	private int[] getArrowPointerCoordinates(Element temp_arrow_tag) {
 		Elements gds = temp_arrow_tag.select("p|spPr").select("a|prstGeom").select("a|avLst").select("a|gd");
 		int arrow_pointer_x = Integer.parseInt(gds.get(0).attr("fmla").substring(4));
-		int arrow_pointer_y = Integer.parseInt(gds.get(1).attr("fmla").substring(4));;
+		int arrow_pointer_y = Integer.parseInt(gds.get(1).attr("fmla").substring(4));
 		return new int[]{ arrow_pointer_x, arrow_pointer_y };
 	}
 
@@ -181,12 +209,12 @@ public class PlotGpx {
 	 * It creates the new pptx file adding the track data previously parsed.
 	 * @param GPXData Track Data
 	 * @param narrativeEntries Narratives from the XML Track File
-	 * @param interval Interval from the XML Track File
+	 * @param intervalDuration Interval from the XML Track File
 	 * @param slide_path First slide of the pptx file
 	 * @param temp_unpack_path Working directory
 	 */
 	private void createPptxFromTrackData(HashMap<String, Object> GPXData,
-			ArrayList<HashMap<String, Object>> narrativeEntries, int interval, String slide_path,
+			ArrayList<HashMap<String, Object>> narrativeEntries, int intervalDuration, String slide_path,
 			String temp_unpack_path) {
 		
 		ArrayList<?> trackData = (ArrayList<?>) GPXData.get("trackData");
@@ -254,7 +282,7 @@ public class PlotGpx {
 			ArrayList<Integer> arrow_ids = new ArrayList<>();
 			ArrayList<Element> shape_objs = new ArrayList<>();
 			ArrayList<Element> arrow_objs = new ArrayList<>();
-			ArrayList<Element> all_animation_objs = new ArrayList<>();
+			ArrayList<ArrayList<Element>> all_animation_objs = new ArrayList<>();
 
 			for ( Object trackObject : trackData ){
 				HashMap<String, Object> track = (HashMap<String, Object>)trackObject;
@@ -329,12 +357,168 @@ public class PlotGpx {
 				// multiple anim per tracks
 				int coord_count = 1;
 
-				System.out.println("Stop");
+				String first_x = coordinates.get(0).get(0), first_y = coordinates.get(0).get(1);
+				tempCoordinates = coordinateTransformation(Float.parseFloat(first_x), Float.parseFloat(first_y), (float)dimensionWidth, (float)dimensionHeight, animX, animY, animCX, animCY, 1);
+				float prev_anim_x = tempCoordinates[0], prev_anim_y = tempCoordinates[1];
+				prev_anim_x = prev_anim_x - TailX - arrow_center_x_small;
+				prev_anim_y = prev_anim_y - TailY - arrow_center_y_small;
+
+				ArrayList<Element> track_anim_objs = new ArrayList<>();
+
+				for ( ArrayList<String> coordinate : coordinates ){
+					String x = coordinate.get(0), y = coordinate.get(1);
+
+					Element temp_anim_tag = anim_tag.clone();
+					tempCoordinates = coordinateTransformation(Float.parseFloat(x), Float.parseFloat(y), (float)dimensionWidth, (float)dimensionHeight, animX, animY, animCX, animCY, 1);
+					float anim_x = tempCoordinates[0], anim_y = tempCoordinates[1];
+					anim_x = anim_x - TailX - arrow_center_x_small;
+					anim_y = anim_y - TailY - arrow_center_y_small;
+
+					animation_path = "M " + prev_anim_x + " " + prev_anim_y + " L " + anim_x + " " + anim_y;
+					prev_anim_x = anim_x;
+					prev_anim_y = anim_y;
+
+					temp_anim_tag.attr("path", animation_path);
+					temp_anim_tag.selectFirst("p|spTgt").attr("spid", current_arrow_id + "");
+					temp_anim_tag.selectFirst("p|cTn").attr("id", Integer.parseInt(temp_anim_tag.selectFirst("p|cTn").attr("id")) + trackCount + coord_count + "");
+					temp_anim_tag.selectFirst("p|cTn").attr("dur", intervalDuration + "");
+					track_anim_objs.add(temp_anim_tag);
+					coord_count++;
+
+					int x_int = Math.round(Float.parseFloat(x));
+					int y_int = Math.round(Float.parseFloat(y));
+
+					int[] tempCoordinatesInt = coordinateTransformation( x_int, y_int, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY, 1);
+					x_int = tempCoordinatesInt[0]; y_int = tempCoordinatesInt[1];
+
+					// remove the offsets for the track object
+					x_int = x_int - temp_shape_x;
+					y_int = y_int - temp_shape_y;
+
+					x = x_int + "";
+					y = y_int + "";
+
+					Element coordinate_soup = Jsoup.parse("<a:pt x='" + x + "' y='" + y + "'/>", "", Parser.xmlParser());
+					if ( num_coordinate == 0 ){
+						coordinate_soup.tagName("a:moveTo");
+					}else{
+						coordinate_soup.tagName("a:lnTo");
+					}
+					path_tag.insertChildren(path_tag.childNodeSize(), coordinate_soup);
+					num_coordinate++;
+				}
+
+				all_animation_objs.add(track_anim_objs);
+				// Adding color to the track
+				String colorHexValue = getColorinHex(track).toUpperCase();
+				temp_shape_tag.selectFirst("a|srgbClr").attr("val", colorHexValue);
+
+				// changing arrow to rect callout -
+				temp_arrow_tag.selectFirst("a|prstGeom").attr("prst", "wedgeRectCallout");
+
+				// Adding border color to marker
+				temp_arrow_tag.selectFirst("p|spPr").selectFirst("a|ln").selectFirst("a|solidFill").selectFirst("a|srgbClr").attr("val", colorHexValue);
+
+				// We will add the shape and arrow objects in arrays for now
+				shape_objs.add(temp_shape_tag);
+				arrow_objs.add(temp_arrow_tag);
+
+				if ( trackCount == 0 ){
+					current_shape_id = 500;
+					current_shape_id = 600;
+				}
+				current_shape_id++;
+				current_arrow_id++;
+				trackCount++;
 			}
 
+			// Adding all shape and arrow objects
+			Element spTreeobj = soup.selectFirst("p|spTree");
+			addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs);
+			addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper);
+			createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries, narrative_tag);
 		} catch (IOException e) {
 			System.out.println("Corrupted xml file " + slide_path);
 			System.exit(1);
+		}
+	}
+
+	private void createTimeNarrativeShapes(Element spTreeobj, int intervalDuration, ArrayList<?> trackData, Element time_tag, Element time_anim_tag_first, Element anim_insertion_tag_upper, Element time_anim_tag_big, Element time_anim_tag_big_insertion, ArrayList<HashMap<String, Object>> narrativeEntries, Element narrative_tag) {
+		// Create parent animation object for all time box animations
+		ArrayList<Element> time_shape_objs = new ArrayList<>();
+		int coord_num = 0;
+		int time_delay = intervalDuration;
+		int current_time_id = Integer.parseInt(time_tag.selectFirst("p|cNvPr").attr("id"));
+		System.out.println("Last Time Id::::: " + current_time_id);
+		// we will get the timestamps from the first track
+
+		HashMap<String, Object> firstItem = (HashMap<String, Object>) trackData.get(0);
+		ArrayList<HashMap<String, Object>> coordinates = (ArrayList<HashMap<String, Object>>) firstItem.get("coordinates");
+		for ( Object coordinateObj : coordinates ){
+			HashMap<String, Object> coordinate = (HashMap<String, Object>) coordinateObj;
+			LocalDateTime timestamp = (LocalDateTime) coordinate.get("time");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy MMM ddHHmm");
+			String timestampString = timestamp.format(formatter);
+			Element temp_time_tag = time_tag.clone();
+			temp_time_tag.selectFirst("p|cNvPr").attr("id", current_time_id + "");
+			temp_time_tag.selectFirst("p|txBody").selectFirst("a|p").selectFirst("a|r").selectFirst("a|t").text(timestampString);
+			time_shape_objs.add(temp_time_tag);
+
+			// handle animation objs for time
+			if ( coord_num == 0 ){
+				Element temp_time_anim = time_anim_tag_first.clone();
+				temp_time_anim.selectFirst("p|spTgt").attr("spid", current_time_id + "");
+				temp_time_anim.selectFirst("p|cond").attr("delay", "0");
+				temp_time_anim.selectFirst("p|cTn").attr("nodeType", "withEffect");
+				anim_insertion_tag_upper.insertChildren(anim_insertion_tag_upper.childNodeSize(), temp_time_anim);
+			}else{
+				Element temp_time_anim = time_anim_tag_big.clone();
+				temp_time_anim.selectFirst("p|spTgt").attr("spid", current_time_id + "");
+				temp_time_anim.selectFirst("p|cond").attr("delay", time_delay + "");
+				time_delay += intervalDuration;
+				temp_time_anim.selectFirst("p|cTn").attr("nodeType", "afterEffect");
+				temp_time_anim.selectFirst("p|par").selectFirst("p|cond").attr("delay", intervalDuration + "");
+				time_anim_tag_big_insertion.insertChildren(time_anim_tag_big_insertion.childNodeSize(), temp_time_anim);
+			}
+
+			if ( coord_num == 0 ){
+				current_time_id = 300;
+			}
+			current_time_id++;
+			coord_num++;
+		}
+
+		for ( Element timeshape : time_shape_objs ){
+			spTreeobj.insertChildren(spTreeobj.childNodeSize(), timeshape);
+		}
+
+		// Adding narratives -
+		ArrayList<Element> narrative_objects = new ArrayList<>();
+		time_delay = 0;
+		int current_narrative_id = Integer.parseInt(narrative_tag.selectFirst("p|cNvPr").attr("id"));
+		System.out.println("Last Narrative Id::::: " + current_narrative_id);
+
+		// Blank narrative box
+		Element blank_narrative = narrative_tag.clone();
+		//blank_narrative.selectFirst("")
+	}
+
+	private void addAnimationObjects(ArrayList<ArrayList<Element>> all_animation_objs, Element anim_tag_upper, Element anim_insertion_tag_upper) {
+		int track_num = 1;
+		for ( ArrayList<Element> track_anim_objs : all_animation_objs ){
+			Element anim_tag_upper_temp = anim_tag_upper.clone();
+			anim_tag_upper_temp.tagName("p:seq");
+			Element parent_temp = anim_tag_upper_temp.selectFirst("p|animMotion").parent();
+			anim_tag_upper_temp.selectFirst("p|animMotion").remove();
+			for ( Element anim : track_anim_objs ){
+				parent_temp.insertChildren(parent_temp.childNodeSize(), anim);
+			}
+
+			anim_tag_upper_temp.selectFirst("p|cTn").removeAttr("accel");
+			anim_tag_upper_temp.selectFirst("p|cTn").removeAttr("decel");
+			anim_tag_upper_temp.selectFirst("p|cTn").attr("id", track_num + "");
+			track_num++;
+			anim_insertion_tag_upper.insertChildren(anim_insertion_tag_upper.childNodeSize(), anim_tag_upper_temp);
 		}
 	}
 
@@ -351,7 +535,7 @@ public class PlotGpx {
 	 * @param invertY
 	 * @return Scaled coordinates
 	 */
-	private float[] coordinateTransformation(float x, float y, float dimensionWidth, float dimensionHeight, int rectX, int rectY, int rectWidth, int rectHeight, int invertY) {
+	private float[] coordinateTransformation(float x, float y, float dimensionWidth, float dimensionHeight, float rectX, float rectY, float rectWidth, float rectHeight, int invertY) {
 		x = rectX + x * ( rectWidth / dimensionWidth );
 		if ( invertY == 1 ){
 			y = y - dimensionHeight;
@@ -364,7 +548,21 @@ public class PlotGpx {
 		};
 	}
 
-	private float[] coordinateTransformation(float x, float y, float dimensionWidth, float dimensionHeight, int rectX, int rectY, int rectWidth, int rectHeight) {
+	private int[] coordinateTransformation(int x, int y, int dimensionWidth, int dimensionHeight, int rectX, int rectY, int rectWidth, int rectHeight, int invertY) {
+		x = rectX + x * ( rectWidth / dimensionWidth );
+		if ( invertY == 1 ){
+			y = y - dimensionHeight;
+			// floor was needed because Java rounds to the nearest integer, instead of flooring.
+			y = rectY + y * ( (int)Math.floor((float)rectHeight / -dimensionHeight));
+		}else{
+			y = rectY + y * (rectHeight / dimensionHeight);
+		}
+		return new int[]{
+				x , y
+		};
+	}
+
+	private float[] coordinateTransformation(float x, float y, float dimensionWidth, float dimensionHeight, float rectX, float rectY, float rectWidth, float rectHeight) {
 		return coordinateTransformation(x, y, dimensionWidth, dimensionHeight, rectX, rectY, rectWidth, rectHeight, 1);
 	}
 
