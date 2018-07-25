@@ -166,8 +166,8 @@ def getColorinHex(track):
     temp = temp[0:-1]
     temp = temp.split(",")
     r = int(temp[0].split("=")[1])
-    b = int(temp[1].split("=")[1])
-    g = int(temp[2].split("=")[1])
+    g = int(temp[1].split("=")[1])
+    b = int(temp[2].split("=")[1])
 
     hex_value = "{:02x}{:02x}{:02x}".format(r,g,b)
     return hex_value
