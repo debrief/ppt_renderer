@@ -48,9 +48,10 @@ We have created a bunch of scripts using Python to render information obtained f
 5.	plot_gpx.py – This script is the core of the overall project. It takes donor folder and gpx data file as input parameters. It extracts information about the map and appends one track(freehand shape) tag, one time(shape containing current time) tag, marker (callout) tag, and animation tags (<p:seq> per track, <animMotion> tag per coordinate in the track).
 6.	unpack.py – This script is used to unzip a pptx file.
 
-## Things derived from GPX data file – 
-Track Information –
-a.	Color representing the track
-b.	Track coordinates
-c.	Timestamps for each coordinates
-d.	Name of the track
+## Things derived from GPX data file 
+
+Track Information:
+1.	Color representing the track
+2.	Track coordinates
+3.	Timestamps for each coordinates
+4.	Name of the track
