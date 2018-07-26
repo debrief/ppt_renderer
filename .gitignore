@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -113,7 +113,7 @@ venv.bak/
 *.dmg
 *.gz
 *.iso
-*.jar
+# *.jar
 *.rar
 *.tar
 *.zip
