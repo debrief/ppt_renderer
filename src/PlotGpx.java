@@ -582,7 +582,7 @@ public class PlotGpx {
 				int temp_shape_x = Integer.parseInt(temp_shape_tag.selectFirst("a|off").attr("x"));
 				int temp_shape_y = Integer.parseInt(temp_shape_tag.selectFirst("a|off").attr("y"));
 
-				String animation_path = "";
+				String animation_path;
 				Element path_tag = temp_shape_tag.selectFirst("a|path");
 				for ( Element child : path_tag.children() ){
 					child.remove();
@@ -634,7 +634,8 @@ public class PlotGpx {
 					int y_int = Math.round(Float.parseFloat(y));
 
 					int[] tempCoordinatesInt = coordinateTransformation( x_int, y_int, dimensionWidth, dimensionHeight, mapX, mapY, mapCX, mapCY, 1);
-					x_int = tempCoordinatesInt[0]; y_int = tempCoordinatesInt[1];
+					x_int = tempCoordinatesInt[0];
+					y_int = tempCoordinatesInt[1];
 
 					// remove the offsets for the track object
 					x_int = x_int - temp_shape_x;
