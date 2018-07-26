@@ -20,6 +20,11 @@ def unpackFunction(pptx_path=None, unpack_path=None):
     print("Unpacking pptx file...")
     if not os.path.exists(unpack_path):
         os.makedirs(unpack_path)
+
+    #We remove the folder if it exists
+    if(os.path.exists(unpack_path)):
+        shutil.rmtree(unpack_path)
+
     zip_ref = zipfile.ZipFile(pptx_path, 'r')
     zip_ref.extractall(unpack_path)
     zip_ref.close()
