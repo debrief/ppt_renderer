@@ -1,9 +1,11 @@
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
+import org.apache.commons.io.FileUtils;
 
 
 public class UnpackFunction {
@@ -33,13 +35,15 @@ public class UnpackFunction {
 		}
 		
 		try {
-			// TODO
-			/**
-			 * We are not checking if the directory was empty
-			 * because extracting the Zip file. Is it needed?
-			 * 
-			 * Saul Hidalgo
-			 */
+			if ( Files.exists(Paths.get(unpack_path)) ) {
+				try {
+					FileUtils.deleteDirectory(new File(unpack_path));
+				} catch (IOException e) {
+					System.out.println("Impossible to remove the directory " + unpack_path);
+					System.exit(1);
+				}
+			}
+
 			ZipFile zip_ref = new ZipFile(pptx_path);
 			zip_ref.extractAll(unpack_path);
 			System.out.println("File unpacked at " + unpack_path);
