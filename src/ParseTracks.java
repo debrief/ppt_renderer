@@ -94,6 +94,7 @@ public class ParseTracks {
 					narrative.put("elapsed", entry.attr("elapsed"));
 					narratives.add(narrative);
 				}
+				return narratives;
 			}else {
 				return new ArrayList<>();
 			}
