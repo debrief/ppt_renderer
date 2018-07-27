@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class PackFunction {
+public class PackPresentation {
 
     /**
      * Given an unpacked pptx, it creates a pptx file.
      * @param pptx_path pptx file path (Optional). Null to create the unpack_path filename
      * @param unpack_path Folder that contains the pptx slides/documents
      */
-    public String packFunction(String pptx_path, String unpack_path) throws IOException, ZipException {
+    public String pack(String pptx_path, String unpack_path) throws IOException, ZipException {
         if ( unpack_path == null ){
             System.out.println("Provide unpack_path (path to directory containing unpacked pptx)");
             System.exit(1);
