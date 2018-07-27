@@ -1,3 +1,9 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -5,12 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.parser.Parser;
-import org.jsoup.select.Elements;
 
 public class FindMap {
 	
@@ -46,15 +46,6 @@ public class FindMap {
 
 				Elements shapes = soup.select("p|sp");
 				String cnvpr = "p|cNvPr";
-				
-				// TODO Confirm if it is needed to try reparsing for lxml.
-				/*
-				if(not shapes):
-		            soup = BeautifulSoup(open(slidePath, 'r').read(), 'lxml-xml')
-		            # print "soup","\n\n\n", soup,"\n\n"
-		            shapes = soup.find_all("p:sp")
-		            cnvpr = "p:cNvPr"
-				 */
 				
 				for (Element shape : shapes) {
 					HashMap<String, String> shapeDetails = new HashMap<>();

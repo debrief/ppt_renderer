@@ -44,22 +44,11 @@ public class PlotGpx {
 		return new String[]{slide_path, temp_unpack_path.toString()};
 	}
 
-	/**
-	 * Not implemented
-	 *
-	 * @param soup
-	 */
-	private void cleanSoup(Document soup) {
-		// TODO Not implemented, because it wasn't needed.
-
-	}
-
 	private void writeSoup(String slide_path, Document soup) {
 		try {
 			soup.outputSettings().indentAmount(0).prettyPrint(false);
 			FileWriter fileWriter = new FileWriter(slide_path);
 			PrintWriter printWriter = new PrintWriter(fileWriter);
-			cleanSoup(soup);
 			printWriter.println(soup);
 			printWriter.close();
 		} catch (IOException e) {
@@ -414,21 +403,6 @@ public class PlotGpx {
 				Integer.parseInt(mapDetails.get("cy"))
 		};
 	}
-
-	/**
-	 * Remove all the remaining items inside the spTree tag
-	 * TODO Not tested.
-	 *
-	 * @param soup Soup Document
-	 */
-	private void cleanSpTree(Document soup) {
-		for (Element treeElement : soup.select("p|spTree")) {
-			for (Element children : treeElement.children()) {
-				children.remove();
-			}
-		}
-	}
-
 	/**
 	 * Given the track data, the slide path and the temporary unpack folder path, it creates the pptx file and returns the path
 	 *

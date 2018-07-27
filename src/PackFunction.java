@@ -25,8 +25,6 @@ public class PackFunction {
             if ( unpack_path.charAt(unpack_path.length() - 1) == '/' || unpack_path.charAt(unpack_path.length() - 1) == '\\' ){
                 pptx_path = unpack_path.substring(0, unpack_path.length() - 1) + ".pptx";
             }else{
-                // TODO Confirm this with Mr Ian
-                // https://github.com/debrief/ppt_renderer/blob/master/scripts/pack_function.py#L17
                 pptx_path = unpack_path + ".pptx";
             }
         }
