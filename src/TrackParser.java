@@ -1,10 +1,15 @@
-package model;
+
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+
+import model.NarrativeEntry;
+import model.Track;
+import model.TrackData;
+import model.TrackPoint;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
