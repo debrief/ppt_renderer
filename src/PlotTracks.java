@@ -2,6 +2,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,7 +37,7 @@ public class PlotTracks {
 	 * @return Path to the new pptx
 	 * @throws IOException
 	 */
-	public String createPptxFromTrackData(TrackData trackData, String slide_path, String temp_unpack_path) throws IOException, ZipException {
+	private String createPptxFromTrackData(TrackData trackData, String slide_path, String temp_unpack_path) throws IOException, ZipException {
 		System.out.println("Number of tracks::: " + trackData.getTracks().size());
 	
 		// Get slide size from presentation.xml file
@@ -565,6 +566,39 @@ public class PlotTracks {
 			System.out.println("Unable to write the slide file");
 			System.exit(1);
 		}
+	}
+
+	public String export(TrackData trackData, String donorTemplateFilePath) throws IOException, ZipException {
+		String[] output = checkPathandInitialization(donorTemplateFilePath);
+	
+		String slide_path = output[0];
+		String temp_unpack_path = output[1];
+		
+		return createPptxFromTrackData(trackData, slide_path, temp_unpack_path);
+	}
+
+	/**
+	 * Helper function declarations -
+	 *
+	 * @param donor donor file
+	 */
+	private String[] checkPathandInitialization(String donor) throws IOException, ZipException {
+		if (Files.notExists(Paths.get(donor))) {
+			System.out.println("donor file does not exist");
+			System.exit(1);
+		}
+		if (Files.notExists(Paths.get(donor))) {
+			System.out.println("donor file does not exist");
+			System.exit(1);
+		}
+	
+		Path temp_unpack_path = Files.createTempDirectory(Paths.get("").toAbsolutePath(), "");
+	
+		new UnpackFunction().unpackFunction(donor, temp_unpack_path.toString());
+	
+		String slide_path = temp_unpack_path + "/ppt/slides/slide1.xml";
+	
+		return new String[]{slide_path, temp_unpack_path.toString()};
 	}
 
 }
