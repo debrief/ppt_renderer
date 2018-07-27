@@ -21,6 +21,9 @@ def packFunction(pptx_path=None, unpack_path=None):
         print "unpack_path provided is not a directory"
         sys.exit(1)
 
+    #We remove the old pptx folder, in case it exists
+    os.remove(pptx_path)
+
     #Pack the unpack_path folder to pptx_path pptx file
     shutil.make_archive(pptx_path, 'zip', unpack_path)
     os.rename(pptx_path+".zip", pptx_path)
