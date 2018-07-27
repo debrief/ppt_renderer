@@ -19,7 +19,7 @@ public class FindMap {
 	 * @param slides_base_path slide's path
 	 * @return list of the slides` paths
 	 */
-	private ArrayList<String> getSlides(String slides_base_path) {
+	private static ArrayList<String> getSlides(String slides_base_path) {
 		ArrayList<String> slides_path = new ArrayList<>();
 		for ( File slide : new File(slides_base_path).listFiles() ) {
 			if ( slide.getName().endsWith(".xml") ) {
@@ -34,7 +34,7 @@ public class FindMap {
 	 * @param slides_path slides` path
 	 * @return shape of the rectangles (Map details)
 	 */
-	private HashMap<String, String> checkForMap(ArrayList<String> slides_path) {
+	private static HashMap<String, String> checkForMap(ArrayList<String> slides_path) {
 		HashMap<String, String> mapDetails = new HashMap<>();
 		
 		for (String slidePath : slides_path) {
@@ -74,7 +74,7 @@ public class FindMap {
 		return mapDetails;
 	}
 	
-	public HashMap<String, String> getMapDetails(String unpack_path) {
+	public static HashMap<String, String> getMapDetails(String unpack_path) {
 		String slides_base_path = unpack_path + "/ppt/slides";
 		ArrayList<String> slides_path = getSlides(slides_base_path);
 		HashMap<String, String> mapDetail = checkForMap(slides_path);

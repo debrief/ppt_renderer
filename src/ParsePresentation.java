@@ -8,7 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
 public class ParsePresentation {
-	public String[] parsePresentation(String unpack_path) {
+	public String[] retrieveDimensions(String unpack_path) {
 		try {
 			byte[] encoded = Files.readAllBytes(Paths.get(unpack_path + "/ppt/presentation.xml"));
 			
