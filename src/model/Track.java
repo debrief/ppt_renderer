@@ -1,59 +1,60 @@
 package model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 
-public class Track {
-	private String name;
-	private ArrayList<TrackPoint> segments;
-	private Color color;
+public class Track
+{
+  private final String name;
+  private final ArrayList<TrackPoint> segments = new ArrayList<>();
+  private final Color color;
 
-	public Track() {
-		segments = new ArrayList<>();
-	}
+  public Track(String name, String color)
+  {
+    this(name, makeColor(color));
+  }
+  
+  public Track(String name, Color color)
+  {
+    this.name = name;
+    this.color = color;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public Color getColor()
+  {
+    return color;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  /**
+   * Hexadecimal color in the format %02X%02X%02X lowerCased
+   *
+   * @return Hexadecimal color in the format %02X%02X%02X
+   */
+  public String getColorAsString()
+  {
+    return String.format("%02X%02X%02X", this.color.getRed(), this.color
+        .getGreen(), this.color.getBlue()).toLowerCase();
+  }
 
-	public ArrayList<TrackPoint> getSegments() {
-		return segments;
-	}
+  public String getName()
+  {
+    return name;
+  }
 
-	public void setSegments(ArrayList<TrackPoint> segments) {
-		this.segments = segments;
-	}
+  public ArrayList<TrackPoint> getSegments()
+  {
+    return segments;
+  }
 
-	public Color getColor() {
-		return color;
-	}
+  private static Color makeColor(final String colorStr)
+  {
+    final String colors = colorStr.substring(colorStr.indexOf("[") + 1, colorStr
+        .length() - 1);
+    final String[] temp = colors.split(",");
+    final int r = Integer.parseInt(temp[0].split("=")[1]);
+    final int g = Integer.parseInt(temp[1].split("=")[1]);
+    final int b = Integer.parseInt(temp[2].split("=")[1]);
+    return new Color(r, g, b);
+  }
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
-	public void setColor(String colorStr) {
-		String colors = colorStr.substring(colorStr.indexOf("[") + 1, colorStr.length() - 1);
-		String[] temp = colors.split(",");
-		int r = Integer.parseInt(temp[0].split("=")[1]);
-		int g = Integer.parseInt(temp[1].split("=")[1]);
-		int b = Integer.parseInt(temp[2].split("=")[1]);
-		this.color = new Color(r, g, b);
-	}
-
-	/**
-	 * Hexadecimal color in the format %02X%02X%02X lowerCased
-	 *
-	 * @return Hexadecimal color in the format %02X%02X%02X
-	 */
-	public String getColorAsString() {
-		return String.format("%02X%02X%02X",
-				this.color.getRed(),
-				this.color.getGreen(),
-				this.color.getBlue()).toLowerCase();
-	}
 }

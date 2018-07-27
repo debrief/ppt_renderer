@@ -2,62 +2,76 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class TrackPoint {
-	private float latitude;
-	private float longitude;
-	private float elevation;
-	private LocalDateTime time;
-	private float course;
-	private float speed;
+public class TrackPoint
+{
+  private float latitude;
+  private float longitude;
+  private float elevation;
+  private LocalDateTime time;
+  private float course;
+  private float speed;
 
-	public TrackPoint() {
-	}
+  public TrackPoint()
+  {
+  }
 
-	public float getLatitude() {
-		return latitude;
-	}
+  public float getCourse()
+  {
+    return course;
+  }
 
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
+  public float getElevation()
+  {
+    return elevation;
+  }
 
-	public float getLongitude() {
-		return longitude;
-	}
+  public float getLatitude()
+  {
+    return latitude;
+  }
 
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
+  public float getLongitude()
+  {
+    return longitude;
+  }
 
-	public float getElevation() {
-		return elevation;
-	}
+  public float getSpeed()
+  {
+    return speed;
+  }
 
-	public void setElevation(float elevation) {
-		this.elevation = elevation;
-	}
+  public LocalDateTime getTime()
+  {
+    return time;
+  }
 
-	public LocalDateTime getTime() {
-		return time;
-	}
+  public void setCourse(final float course)
+  {
+    this.course = course;
+  }
 
-	public void setTime(LocalDateTime time) {
-		this.time = time;
-	}
+  public void setElevation(final float elevation)
+  {
+    this.elevation = elevation;
+  }
 
-	public float getCourse() {
-		return course;
-	}
+  public void setLatitude(final float latitude)
+  {
+    this.latitude = latitude;
+  }
 
-	public void setCourse(float course) {
-		this.course = course;
-	}
+  public void setLongitude(final float longitude)
+  {
+    this.longitude = longitude;
+  }
 
-	public float getSpeed() {
-		return speed;
-	}
+  public void setSpeed(final float speed)
+  {
+    this.speed = speed;
+  }
 
-	public void setSpeed(float speed) {
-		this.speed = speed;
-	}
+  public void setTime(final LocalDateTime time)
+  {
+    this.time = time;
+  }
 }

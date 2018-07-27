@@ -1,34 +1,30 @@
 package model;
 
-public class NarrativeEntry {
-	private String text;
-	private String date;
-	private String elapsed;
+public class NarrativeEntry
+{
+  private final String text;
+  private final String date;
+  private final String elapsed;
 
-	public NarrativeEntry() {
-	}
+  public NarrativeEntry(String text, String date, String elapsed)
+  {
+    this.text = text;
+    this.date = date;
+    this.elapsed= elapsed;
+  }
 
-	public String getText() {
-		return text;
-	}
+  public String getDate()
+  {
+    return date;
+  }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+  public String getElapsed()
+  {
+    return elapsed;
+  }
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getElapsed() {
-		return elapsed;
-	}
-
-	public void setElapsed(String elapsed) {
-		this.elapsed = elapsed;
-	}
+  public String getText()
+  {
+    return text;
+  }
 }

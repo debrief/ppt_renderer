@@ -1,50 +1,68 @@
-import model.*;
-import net.lingala.zip4j.exception.ZipException;
-import org.apache.commons.cli.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class PlotGpx {
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
-	public static void main(String[] args) {
-		PlotGpx plotGpx = new PlotGpx();
-		Options arguments = new Options();
-		arguments.addOption("donor", true, "Path to donor pptx file");
-		arguments.addOption("tracks_path", true, "Path to gpx tracks file");
+import model.TrackData;
+import net.lingala.zip4j.exception.ZipException;
 
-		try {
-			CommandLineParser parser = new DefaultParser();
-			CommandLine commandLine = parser.parse(arguments, args);
+public class PlotGpx
+{
 
-			if ( !commandLine.hasOption("donor") || !commandLine.hasOption("tracks_path") ) {
-				plotGpx.printHelp(arguments);
-			}
+  public static void main(final String[] args)
+  {
+    final PlotGpx plotGpx = new PlotGpx();
+    final Options arguments = new Options();
+    arguments.addOption("donor", true, "Path to donor pptx file");
+    arguments.addOption("tracks_path", true, "Path to gpx tracks file");
 
-			String donor = commandLine.getOptionValue("donor");
-			String tracks_path = commandLine.getOptionValue("tracks_path");
+    try
+    {
+      final CommandLineParser parser = new DefaultParser();
+      final CommandLine commandLine = parser.parse(arguments, args);
 
-			byte[] encoded = Files.readAllBytes(Paths.get(tracks_path));
-			String trackXml = new String(encoded);
+      if (!commandLine.hasOption("donor") || !commandLine.hasOption(
+          "tracks_path"))
+      {
+        plotGpx.printHelp(arguments);
+      }
 
-			TrackData trackData = TrackParser.getInstance().parse(trackXml);
-			
-			PlotTracks plotter = new PlotTracks();
-			
-			plotter.export(trackData, donor);
-		} catch (ParseException e) {
-			plotGpx.printHelp(arguments);
-		} catch (ZipException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+      final String donor = commandLine.getOptionValue("donor");
+      final String tracks_path = commandLine.getOptionValue("tracks_path");
 
-	private void printHelp(Options arguments) {
-		HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp("Script to plot gpx data on pptx", arguments);
-		System.exit(1);
-	}
+      final byte[] encoded = Files.readAllBytes(Paths.get(tracks_path));
+      final String trackXml = new String(encoded);
+
+      final TrackData trackData = TrackParser.getInstance().parse(trackXml);
+
+      final PlotTracks plotter = new PlotTracks();
+
+      plotter.export(trackData, donor);
+    }
+    catch (final ParseException e)
+    {
+      plotGpx.printHelp(arguments);
+    }
+    catch (final ZipException e)
+    {
+      e.printStackTrace();
+    }
+    catch (final IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  private void printHelp(final Options arguments)
+  {
+    final HelpFormatter formatter = new HelpFormatter();
+    formatter.printHelp("Script to plot gpx data on pptx", arguments);
+    System.exit(1);
+  }
 }
