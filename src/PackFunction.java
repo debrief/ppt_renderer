@@ -15,7 +15,7 @@ public class PackFunction {
      * @param pptx_path pptx file path (Optional). Null to create the unpack_path filename
      * @param unpack_path Folder that contains the pptx slides/documents
      */
-    public void packFunction(String pptx_path, String unpack_path) {
+    public String packFunction(String pptx_path, String unpack_path) throws IOException, ZipException {
         if ( unpack_path == null ){
             System.out.println("Provide unpack_path (path to directory containing unpacked pptx)");
             System.exit(1);
@@ -38,23 +38,16 @@ public class PackFunction {
         }
 
         // Pack the unpack_path folder to pptx_path pptx file
-        try {
-            Files.deleteIfExists(new File(pptx_path).toPath());
-            ZipFile zipFile = new ZipFile(pptx_path);
+        Files.deleteIfExists(new File(pptx_path).toPath());
+        ZipFile zipFile = new ZipFile(pptx_path);
 
-            ZipParameters parameters = new ZipParameters();
-            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+        ZipParameters parameters = new ZipParameters();
+        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
 
-            parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-            parameters.setIncludeRootFolder(false);
-            zipFile.addFolder(unpack_path + "/", parameters);
-            System.out.println("File packed at " + pptx_path);
-        } catch (ZipException e) {
-            System.out.println("Unable to create the zip file");
-            System.exit(1);
-        } catch (IOException e) {
-            System.out.println("Unable to delete previous zip file");
-            System.exit(1);
-        }
+        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+        parameters.setIncludeRootFolder(false);
+        zipFile.addFolder(unpack_path + "/", parameters);
+        System.out.println("File packed at " + pptx_path);
+        return pptx_path;
     }
 }
