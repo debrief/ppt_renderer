@@ -1,3 +1,4 @@
+package com.debrief;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,10 +9,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import model.NarrativeEntry;
-import model.Track;
-import model.TrackData;
-import model.TrackPoint;
+import com.debrief.model.TrackData;
+import com.debrief.model.TrackPoint;
+import com.debrief.model.NarrativeEntry;
+import com.debrief.model.Track;
 
 public class TrackParser
 {

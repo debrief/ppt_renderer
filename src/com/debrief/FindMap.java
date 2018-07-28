@@ -1,3 +1,5 @@
+package com.debrief;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,9 +23,11 @@ public class FindMap
    * @param slides_path
    *          slides` path
    * @return shape of the rectangles (Map details)
+   * @throws DebriefException
+   *           In case we have a corrupted XML
    */
   private static HashMap<String, String> checkForMap(
-      final ArrayList<String> slides_path)
+      final ArrayList<String> slides_path) throws DebriefException
   {
     HashMap<String, String> mapDetails = new HashMap<>();
 
@@ -65,8 +69,7 @@ public class FindMap
       }
       catch (final IOException e)
       {
-        System.out.println("Corrupted xml file " + slidePath);
-        System.exit(1);
+        throw new DebriefException("Corrupted xml file " + slidePath);
       }
     }
 
@@ -74,6 +77,7 @@ public class FindMap
   }
 
   public static HashMap<String, String> getMapDetails(final String unpack_path)
+      throws DebriefException
   {
     final String slides_base_path = unpack_path + "/ppt/slides";
     final ArrayList<String> slides_path = getSlides(slides_base_path);
@@ -88,7 +92,7 @@ public class FindMap
    *          slide's path
    * @return list of the slides` paths
    */
-  private static ArrayList<String> getSlides(final String slides_base_path)
+  public static ArrayList<String> getSlides(final String slides_base_path)
   {
     final ArrayList<String> slides_path = new ArrayList<>();
     for (final File slide : new File(slides_base_path).listFiles())

@@ -1,3 +1,5 @@
+package com.debrief;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,6 +12,7 @@ import org.jsoup.parser.Parser;
 public class ParsePresentation
 {
   public String[] retrieveDimensions(final String unpack_path)
+      throws DebriefException
   {
     try
     {
@@ -25,10 +28,7 @@ public class ParsePresentation
     }
     catch (final IOException e)
     {
-      System.out.println("Corrupted xml file " + unpack_path);
-      System.exit(1);
+      throw new DebriefException("Corrupted xml file " + unpack_path);
     }
-    // It will never be reached.
-    return null;
   }
 }

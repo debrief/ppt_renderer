@@ -1,3 +1,6 @@
+package com.debrief;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,18 +10,23 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import model.NarrativeEntry;
-import model.Track;
-import model.TrackData;
-import model.TrackPoint;
+import com.debrief.model.NarrativeEntry;
+import com.debrief.model.Track;
+import com.debrief.model.TrackData;
+import com.debrief.model.TrackPoint;
+
 import net.lingala.zip4j.exception.ZipException;
 
 /**
@@ -29,6 +37,128 @@ import net.lingala.zip4j.exception.ZipException;
  */
 public class PlotTracks
 {
+
+  /**
+   * It returns null (for success) or a series of String messages for the invalid conditions.
+   * 
+   * @param donorTemplatePath
+   *          donor path
+   * @return null (for success) or a series of String messages for the invalid conditions.
+   */
+  public String validateDonorFile(final String donorTemplatePath)
+  {
+    String returnValue = null;
+    String temp_unpack_path = null;
+    try
+    {
+      String[] slideAndUnpackPath = checkPathandInitialization(
+          donorTemplatePath);
+
+      final String slide_path = slideAndUnpackPath[0];
+      temp_unpack_path = slideAndUnpackPath[1];
+      final String presentation_path = "/ppt/presentation.xml";
+
+      HashSet<String> allFiles = new HashSet<>();
+      for (File genFile : FileUtils.listFilesAndDirs(new File(temp_unpack_path),
+          TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE))
+      {
+        allFiles.add(genFile.getAbsolutePath().substring(temp_unpack_path
+            .length()));
+      }
+      final String[] mustContain = new String[]
+      {"/[Content_Types].xml", "/_rels", "/ppt", "/ppt/slides",
+          presentation_path, "/docProps", slide_path.substring(temp_unpack_path
+              .length())};
+      if (!allFiles.containsAll(Arrays.asList(mustContain)))
+      {
+        returnValue = "Corrupted File Structure";
+      }
+
+      final String slides_base_path = temp_unpack_path + "/ppt/slides";
+      ArrayList<String> slides = FindMap.getSlides(slides_base_path);
+      if (slides.size() != 1)
+      {
+        returnValue = "It must contains exactly one slide";
+      }
+      HashMap<String, String> map = FindMap.getMapDetails(temp_unpack_path);
+      if (map == null || map.size() != 5)
+      {
+        returnValue = "Corrupted Map";
+      }
+
+      final byte[] encoded = Files.readAllBytes(Paths.get(slide_path));
+
+      final Document soup = Jsoup.parse(new String(encoded), "", Parser
+          .xmlParser());
+      final Element[] shapes = getShapes(soup);
+      if (shapes[0] == null)
+      {
+        returnValue = "Corrupted Track or missing";
+      }
+      else if (shapes[1] == null)
+      {
+        returnValue = "Corrupted Marker or missing";
+      }
+      else if (shapes[2] == null)
+      {
+        returnValue = "Corrupted Time or missing";
+      }
+
+      try
+      {
+        final byte[] encodedPresentation = Files.readAllBytes(Paths.get(
+            temp_unpack_path + presentation_path));
+
+        Jsoup.parse(new String(encodedPresentation), "", Parser.xmlParser());
+      }
+      catch (Exception e)
+      {
+        returnValue = "Corrupted presentation file";
+      }
+
+    }
+    catch (DebriefException e)
+    {
+      returnValue = e.getMessage();
+    }
+    catch (IOException | ZipException e)
+    {
+      returnValue = "Unable to unzip the file given";
+    }
+    if (temp_unpack_path != null)
+    {
+      try
+      {
+        FileUtils.deleteDirectory(new File(temp_unpack_path));
+      }
+      catch (Exception e)
+      {
+
+      }
+    }
+
+    return returnValue;
+  }
+
+  public HashMap<String, String> retrieveMapProperties(
+      final String donorTemplatePath) throws IOException, ZipException,
+      DebriefException
+  {
+
+    String unpackPath = checkPathandInitialization(donorTemplatePath)[1];
+    HashMap<String, String> answer = FindMap.getMapDetails(unpackPath);
+
+    final int pointSize = 12700;
+    final String[] coordinates = new String[]
+    {"x", "y", "cx", "cy"};
+    for (String coordinate : coordinates)
+    {
+      answer.put(coordinate, (int) Math.round(Double.parseDouble(answer.get(
+          coordinate)) / pointSize) + "");
+    }
+    FileUtils.deleteDirectory(new File(unpackPath));
+    return answer;
+  }
 
   private void addAnimationObjects(
       final ArrayList<ArrayList<Element>> all_animation_objs,
@@ -96,9 +226,10 @@ public class PlotTracks
    *
    * @param donor
    *          donor file
+   * @throws DebriefException
    */
   private String[] checkPathandInitialization(final String donor)
-      throws IOException, ZipException
+      throws IOException, ZipException, DebriefException
   {
     if (Files.notExists(Paths.get(donor)))
     {
@@ -201,10 +332,11 @@ public class PlotTracks
    *          Temporary unpack folder path
    * @return Path to the new pptx
    * @throws IOException
+   * @throws DebriefException
    */
   private String createPptxFromTrackData(final TrackData trackData,
       final String slide_path, final String temp_unpack_path)
-      throws IOException, ZipException
+      throws IOException, ZipException, DebriefException
   {
     System.out.println("Number of tracks::: " + trackData.getTracks().size());
 
@@ -321,7 +453,7 @@ public class PlotTracks
       String trackName = track.getName();
 
       // trimming the trackname -
-      trackName = trackName.substring(0, 4);
+      trackName = trackName.substring(0, Math.min(4, trackName.length()));
       temp_arrow_tag.selectFirst("p|txBody").selectFirst("a|p").selectFirst(
           "a|r").selectFirst("a|t").text(trackName);
 
@@ -373,8 +505,9 @@ public class PlotTracks
         anim_x = anim_x - TailX - arrow_center_x_small;
         anim_y = anim_y - TailY - arrow_center_y_small;
 
-        animation_path = "M " + prev_anim_x + " " + prev_anim_y + " L " + anim_x
-            + " " + anim_y;
+        animation_path = "M " + String.format("%.12f", prev_anim_x) + " "
+            + String.format("%.12f", prev_anim_y) + " L " + String.format(
+                "%.12f", anim_x) + " " + anim_y;
         prev_anim_x = anim_x;
         prev_anim_y = anim_y;
 
@@ -595,7 +728,8 @@ public class PlotTracks
   }
 
   public String export(final TrackData trackData,
-      final String donorTemplateFilePath) throws IOException, ZipException
+      final String donorTemplateFilePath) throws IOException, ZipException,
+      DebriefException
   {
     final String[] output = checkPathandInitialization(donorTemplateFilePath);
 
@@ -734,6 +868,7 @@ public class PlotTracks
   }
 
   private void writeSoup(final String slide_path, final Document soup)
+      throws DebriefException
   {
     try
     {
@@ -745,8 +880,7 @@ public class PlotTracks
     }
     catch (final IOException e)
     {
-      System.out.println("Unable to write the slide file");
-      System.exit(1);
+      throw new DebriefException("Unable to write the slide file");
     }
   }
 

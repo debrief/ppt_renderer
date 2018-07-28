@@ -1,3 +1,5 @@
+package com.debrief;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,13 +13,14 @@ import net.lingala.zip4j.exception.ZipException;
 public class UnpackFunction
 {
 
-  public void unpackFunction(final String pptx_path) throws ZipException
+  public void unpackFunction(final String pptx_path) throws ZipException,
+      DebriefException
   {
     unpackFunction(pptx_path, "");
   }
 
   public void unpackFunction(final String pptx_path, String unpack_path)
-      throws ZipException
+      throws ZipException, DebriefException
   {
     if (unpack_path.isEmpty())
     {
@@ -27,8 +30,7 @@ public class UnpackFunction
     // check if unpack_path is directory or not
     if (!Files.exists(Paths.get(pptx_path)) || !pptx_path.endsWith("pptx"))
     {
-      System.out.println("pptx_path provided is not a pptx file");
-      System.exit(1);
+      throw new DebriefException("pptx_path provided is not a pptx file");
     }
 
     // Unpack the pptx file
@@ -46,8 +48,8 @@ public class UnpackFunction
       }
       catch (final IOException e)
       {
-        System.out.println("Impossible to remove the directory " + unpack_path);
-        System.exit(1);
+        throw new DebriefException("Impossible to remove the directory "
+            + unpack_path);
       }
     }
 

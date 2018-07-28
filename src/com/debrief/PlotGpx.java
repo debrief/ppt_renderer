@@ -1,6 +1,10 @@
+package com.debrief;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -9,7 +13,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import model.TrackData;
+import com.debrief.model.TrackData;
 import net.lingala.zip4j.exception.ZipException;
 
 public class PlotGpx
@@ -21,13 +25,32 @@ public class PlotGpx
     final Options arguments = new Options();
     arguments.addOption("donor", true, "Path to donor pptx file");
     arguments.addOption("tracks_path", true, "Path to gpx tracks file");
+    arguments.addOption("check_donor", true,
+        "Path to the donor file to be checked");
+    arguments.addOption("retrieve_map_dimensions", true, "Map Dimensions");
 
     try
     {
       final CommandLineParser parser = new DefaultParser();
       final CommandLine commandLine = parser.parse(arguments, args);
 
-      if (!commandLine.hasOption("donor") || !commandLine.hasOption(
+      if (commandLine.hasOption("check_donor"))
+      {
+        final PlotTracks plotter = new PlotTracks();
+        String answer = plotter.validateDonorFile(commandLine.getOptionValue(
+            "check_donor"));
+        System.out.println(answer);
+        System.exit(0);
+      }
+      else if (commandLine.hasOption("retrieve_map_dimensions"))
+      {
+        final PlotTracks plotter = new PlotTracks();
+        HashMap<String, String> answer = plotter.retrieveMapProperties(
+            commandLine.getOptionValue("retrieve_map_dimensions"));
+        System.out.println(Arrays.toString(answer.entrySet().toArray()));
+        System.exit(0);
+      }
+      else if (!commandLine.hasOption("donor") || !commandLine.hasOption(
           "tracks_path"))
       {
         plotGpx.printHelp(arguments);
@@ -54,6 +77,10 @@ public class PlotGpx
       e.printStackTrace();
     }
     catch (final IOException e)
+    {
+      e.printStackTrace();
+    }
+    catch (DebriefException e)
     {
       e.printStackTrace();
     }

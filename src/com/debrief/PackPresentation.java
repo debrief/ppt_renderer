@@ -1,7 +1,11 @@
+package com.debrief;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import org.apache.commons.io.FileUtils;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -18,15 +22,16 @@ public class PackPresentation
    *          pptx file path (Optional). Null to create the unpack_path filename
    * @param unpack_path
    *          Folder that contains the pptx slides/documents
+   * @throws DebriefException
+   *           In case we don't provide the unpack path or it is not a directory
    */
   public String pack(String pptx_path, final String unpack_path)
-      throws IOException, ZipException
+      throws IOException, ZipException, DebriefException
   {
     if (unpack_path == null)
     {
-      System.out.println(
+      throw new DebriefException(
           "Provide unpack_path (path to directory containing unpacked pptx)");
-      System.exit(1);
     }
 
     if (pptx_path == null)
@@ -46,8 +51,7 @@ public class PackPresentation
     // check if unpack_path is directory or not
     if (!Files.isDirectory(Paths.get(unpack_path)))
     {
-      System.out.println("unpack_path provided is not a directory");
-      System.exit(1);
+      throw new DebriefException("unpack_path provided is not a directory");
     }
 
     // Pack the unpack_path folder to pptx_path pptx file
@@ -61,6 +65,16 @@ public class PackPresentation
     parameters.setIncludeRootFolder(false);
     zipFile.addFolder(unpack_path + "/", parameters);
     System.out.println("File packed at " + pptx_path);
+
+    try
+    {
+      FileUtils.deleteDirectory(new File(unpack_path));
+    }
+    catch (final IOException e)
+    {
+      throw new DebriefException("Impossible to remove the directory "
+          + unpack_path);
+    }
     return pptx_path;
   }
 }

@@ -1,4 +1,4 @@
-package model;
+package com.debrief.model;
 
 import java.util.ArrayList;
 
