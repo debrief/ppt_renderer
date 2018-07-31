@@ -1,10 +1,11 @@
-package test;
+package com.debrief.test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.Iterator;
 
 import org.apache.commons.io.FileUtils;
@@ -32,7 +33,7 @@ class JUnitTests
   {"long_tracks.txt", "multi_tracks.txt", "scenario_long_range.txt",
       "scenario_short_range.txt", "speed_change.txt"};
   final private String trackFolder = "track_data";
-  final private String resultsFolder = "expected_test_results";
+  final private String resultsFolder = Utils.testFolder;
   final private String slide1Path = "ppt" + File.separator + "slides"
       + File.separator + "slide1.xml";
 
@@ -83,8 +84,8 @@ class JUnitTests
 
         // We compare the file structure first
 
-        Assert.assertTrue("Directories Structures are diferent",
-            compareDirectoriesStructures(generatedPptxTemporaryFolder,
+        Assert.assertTrue("Directories Structures are diferent", Utils
+            .compareDirectoriesStructures(generatedPptxTemporaryFolder,
                 expectedPptxTemporaryFolder));
 
         // Now we compare the slide1.xml structure
@@ -97,12 +98,14 @@ class JUnitTests
             Input.fromFile(generatedXml)).build();
         Iterator<Difference> iter = delta.getDifferences().iterator();
         int size = 0;
-        while (iter.hasNext()) {
-            String diff = iter.next().toString();
-            System.out.println(diff);
-            size++;
+        while (iter.hasNext())
+        {
+          String diff = iter.next().toString();
+          System.out.println(diff);
+          size++;
         }
         System.out.println(size);
+        assertFalse(delta.hasDifferences());
 
         FileUtils.deleteDirectory(generatedPptxTemporaryFolder);
         FileUtils.deleteDirectory(expectedPptxTemporaryFolder);
@@ -110,27 +113,6 @@ class JUnitTests
         System.out.println("Success!!");
       }
     }
-  }
-
-  private boolean compareDirectoriesStructures(
-      File generatedPptxTemporaryFolder, File expectedPptxTemporaryFolder)
-  {
-    HashSet<String> gen = new HashSet<>();
-    for (File genFile : FileUtils.listFiles(generatedPptxTemporaryFolder, null,
-        true))
-    {
-      gen.add(genFile.getAbsolutePath().substring(generatedPptxTemporaryFolder
-          .getAbsolutePath().length()));
-    }
-    HashSet<String> exp = new HashSet<>();
-    for (File expFile : FileUtils.listFiles(expectedPptxTemporaryFolder, null,
-        true))
-    {
-      exp.add(expFile.getAbsolutePath().substring(expectedPptxTemporaryFolder
-          .getAbsolutePath().length()));
-    }
-
-    return exp.containsAll(gen) && gen.containsAll(exp);
   }
 
 }

@@ -13,13 +13,13 @@ import net.lingala.zip4j.exception.ZipException;
 public class UnpackFunction
 {
 
-  public void unpackFunction(final String pptx_path) throws ZipException,
+  public String unpackFunction(final String pptx_path) throws ZipException,
       DebriefException
   {
-    unpackFunction(pptx_path, "");
+    return unpackFunction(pptx_path, "");
   }
 
-  public void unpackFunction(final String pptx_path, String unpack_path)
+  public String unpackFunction(final String pptx_path, String unpack_path)
       throws ZipException, DebriefException
   {
     if (unpack_path.isEmpty())
@@ -56,6 +56,6 @@ public class UnpackFunction
     final ZipFile zip_ref = new ZipFile(pptx_path);
     zip_ref.extractAll(unpack_path);
     System.out.println("File unpacked at " + unpack_path);
-
+    return unpack_path;
   }
 }

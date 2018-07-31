@@ -115,7 +115,6 @@ public class PlotTracks
       {
         returnValue = "Corrupted presentation file";
       }
-
     }
     catch (DebriefException e)
     {
@@ -123,7 +122,7 @@ public class PlotTracks
     }
     catch (IOException | ZipException e)
     {
-      returnValue = "Unable to unzip the file given";
+      returnValue = "Corrupted File";
     }
     if (temp_unpack_path != null)
     {
@@ -233,13 +232,7 @@ public class PlotTracks
   {
     if (Files.notExists(Paths.get(donor)))
     {
-      System.out.println("donor file does not exist");
-      System.exit(1);
-    }
-    if (Files.notExists(Paths.get(donor)))
-    {
-      System.out.println("donor file does not exist");
-      System.exit(1);
+      throw new DebriefException("donor file does not exist");
     }
 
     final Path temp_unpack_path = Files.createTempDirectory(Paths.get("")
@@ -267,7 +260,7 @@ public class PlotTracks
    * @param invertY
    * @return Scaled coordinates
    */
-  private float[] coordinateTransformation(float x, float y,
+  public float[] coordinateTransformation(float x, float y,
       final float dimensionWidth, final float dimensionHeight,
       final float rectX, final float rectY, final float rectWidth,
       final float rectHeight, final int invertY)
@@ -505,9 +498,9 @@ public class PlotTracks
         anim_x = anim_x - TailX - arrow_center_x_small;
         anim_y = anim_y - TailY - arrow_center_y_small;
 
-        animation_path = "M " + String.format("%.12f", prev_anim_x) + " "
-            + String.format("%.12f", prev_anim_y) + " L " + String.format(
-                "%.12f", anim_x) + " " + anim_y;
+        animation_path = "M " + String.format("%.4f", prev_anim_x) + " "
+            + String.format("%.4f", prev_anim_y) + " L " + String.format("%.4f",
+                anim_x) + " " + String.format("%.4f", anim_y);
         prev_anim_x = anim_x;
         prev_anim_y = anim_y;
 
