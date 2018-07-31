@@ -22,7 +22,8 @@ def packFunction(pptx_path=None, unpack_path=None):
         sys.exit(1)
 
     #We remove the old pptx folder, in case it exists
-    os.remove(pptx_path)
+    if os.path.exists(pptx_path):
+        os.remove(pptx_path)
 
     #Pack the unpack_path folder to pptx_path pptx file
     shutil.make_archive(pptx_path, 'zip', unpack_path)

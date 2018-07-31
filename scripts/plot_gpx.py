@@ -402,7 +402,7 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
             anim_x = anim_x - TailX  - arrow_center_x_small
             anim_y = anim_y - TailY - arrow_center_y_small
 
-            animation_path = "M "+str(prev_anim_x)+" "+str(prev_anim_y)+" L "+str(anim_x)+" "+str(anim_y)
+            animation_path = "M "+ ('%.4f' % prev_anim_x) + " " + ('%.4f' % prev_anim_y) + " L " + ('%.4f' % anim_x) + " " + ('%.4f' % anim_y)
             prev_anim_x = anim_x
             prev_anim_y = anim_y
 
