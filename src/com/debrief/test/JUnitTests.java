@@ -59,7 +59,7 @@ public class JUnitTests
 
         final PlotTracks plotter = new PlotTracks();
 
-        String pptxGenerated = plotter.export(trackData, donor);
+        String pptxGenerated = plotter.export(trackData, donor, "output_test.pptx");
 
         String cleanTrackName = track.substring(0, track.lastIndexOf('.'));
         String expectedPptx = resultsFolder + File.separator + donor.substring(
