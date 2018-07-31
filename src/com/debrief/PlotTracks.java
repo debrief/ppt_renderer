@@ -132,7 +132,7 @@ public class PlotTracks
       }
       catch (Exception e)
       {
-
+        System.err.println(e.getMessage());
       }
     }
 

@@ -11,7 +11,7 @@ public class TrackData
   private int width;
   private int intervals;
   private String name;
-  private final ArrayList<NarrativeEntry> narrativeEntries  = new ArrayList<>();
+  private final ArrayList<NarrativeEntry> narrativeEntries = new ArrayList<>();
   private final ArrayList<Track> tracks = new ArrayList<>();
 
   public int getHeight()
@@ -83,39 +83,54 @@ public class TrackData
   public boolean equals(Object obj)
   {
     if (this == obj)
+    {
       return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
+    }
     TrackData other = (TrackData) obj;
-    if (height != other.height)
-      return false;
-    if (intervals != other.intervals)
-      return false;
-    if (name == null)
+    if (!classComparison(obj) || !basicFieldComparison(other)
+        || !listFieldComparison(other))
     {
-      if (other.name != null)
-        return false;
-    }
-    else if (!name.equals(other.name))
       return false;
-    if (narrativeEntries == null)
+    }
+
+    return true;
+  }
+
+  private boolean listFieldComparison(TrackData other)
+  {
+    if ((narrativeEntries == null && other.narrativeEntries != null)
+        || !narrativeEntries.equals(other.narrativeEntries))
     {
-      if (other.narrativeEntries != null)
-        return false;
-    }
-    else if (!narrativeEntries.equals(other.narrativeEntries))
       return false;
-    if (tracks == null)
+    }
+    if ((tracks == null && other.tracks != null) || !tracks.equals(
+        other.tracks))
     {
-      if (other.tracks != null)
-        return false;
+      return false;
     }
-    else if (!tracks.equals(other.tracks))
+
+    return true;
+  }
+
+  private boolean basicFieldComparison(TrackData other)
+  {
+    if (height != other.height || intervals != other.intervals
+        || width != other.width || (name == null && other.name != null) || !name
+            .equals(other.name))
+    {
       return false;
-    if (width != other.width)
+    }
+
+    return true;
+  }
+
+  private boolean classComparison(Object obj)
+  {
+    if (obj == null || getClass() != obj.getClass())
+    {
       return false;
+    }
+
     return true;
   }
 }
