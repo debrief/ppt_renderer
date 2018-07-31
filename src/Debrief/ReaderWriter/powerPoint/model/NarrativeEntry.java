@@ -1,4 +1,4 @@
-package com.debrief.model;
+package Debrief.ReaderWriter.powerPoint.model;
 
 public class NarrativeEntry
 {
