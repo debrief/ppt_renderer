@@ -1,6 +1,6 @@
 package com.debrief.test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.builder.Input;
 import org.xmlunit.diff.Diff;
@@ -24,8 +24,12 @@ import com.debrief.model.TrackData;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
-class JUnitTests
+public class JUnitTests
 {
+  public JUnitTests()
+  {
+
+  }
 
   final private String[] donorFiles = new String[]
   {"donor.pptx", "designed.pptx"};
@@ -38,7 +42,7 @@ class JUnitTests
       + File.separator + "slide1.xml";
 
   @Test
-  void IntegrationTests() throws IOException, ZipException, DebriefException
+  public void IntegrationTests() throws IOException, ZipException, DebriefException
   {
     for (String donor : donorFiles)
     {

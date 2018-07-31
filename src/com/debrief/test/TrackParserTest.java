@@ -1,6 +1,6 @@
 package com.debrief.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.debrief.TrackParser;
 import com.debrief.model.NarrativeEntry;
@@ -19,14 +19,19 @@ import com.debrief.model.Track;
 import com.debrief.model.TrackData;
 import com.debrief.model.TrackPoint;
 
-class TrackParserTest
+public class TrackParserTest
 {
 
-  final String sampleTrack = Utils.testFolder + File.separator
-      + "TrackParser" + File.separator + "SampleTrack.txt";
-  
+  public TrackParserTest()
+  {
+
+  }
+
+  final String sampleTrack = Utils.testFolder + File.separator + "TrackParser"
+      + File.separator + "SampleTrack.txt";
+
   @Test
-  void testParse() throws IOException
+  public void testParse() throws IOException
   {
     final byte[] encoded = Files.readAllBytes(Paths.get(sampleTrack));
     final String trackXml = new String(encoded);
@@ -36,14 +41,13 @@ class TrackParserTest
     expectedResult.setIntervals(200);
     expectedResult.setWidth(690);
     expectedResult.setName("Exported DebriefNG tracks");
-    expectedResult.getNarrativeEntries().addAll(
-        Arrays.asList(new NarrativeEntry[] {
-            new NarrativeEntry("COMEX. Rule amendment Charlie 3", "120500.00", "0"),
-            new NarrativeEntry("CONFIRMED. OBTAIN SOLUTION", "121003.00", "12120")
-        })
-    );
+    expectedResult.getNarrativeEntries().addAll(Arrays.asList(
+        new NarrativeEntry[]
+        {new NarrativeEntry("COMEX. Rule amendment Charlie 3", "120500.00",
+            "0"), new NarrativeEntry("CONFIRMED. OBTAIN SOLUTION", "121003.00",
+                "12120")}));
     Track track1 = new Track("COLLINGWOOD", new Color(0, 100, 189));
-        
+
     final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
         "yyyy-MM-dd'T'HH:mm:ss'Z'");
     TrackPoint trackPoint = new TrackPoint();
@@ -52,12 +56,12 @@ class TrackParserTest
     trackPoint.setLatitude((float) 56.0);
     trackPoint.setLongitude((float) 511.0);
     trackPoint.setSpeed((float) 1.8006);
-    LocalDateTime dateTime = LocalDateTime.from(dateTimeFormatter
-        .parse("1995-12-12T05:05:00Z"));
+    LocalDateTime dateTime = LocalDateTime.from(dateTimeFormatter.parse(
+        "1995-12-12T05:05:00Z"));
     trackPoint.setTime(dateTime);
     track1.getSegments().add(trackPoint);
     expectedResult.getTracks().add(track1);
-    
+
     Track track2 = new Track("NELSON", new Color(224, 28, 62));
     trackPoint = new TrackPoint();
     trackPoint.setCourse((float) 269.4);
@@ -65,12 +69,12 @@ class TrackParserTest
     trackPoint.setLatitude((float) 585.0);
     trackPoint.setLongitude((float) 304.0);
     trackPoint.setSpeed((float) 1.0289);
-    dateTime = LocalDateTime.from(dateTimeFormatter
-        .parse("1995-12-12T05:05:00Z"));
+    dateTime = LocalDateTime.from(dateTimeFormatter.parse(
+        "1995-12-12T05:05:00Z"));
     trackPoint.setTime(dateTime);
     track2.getSegments().add(trackPoint);
     expectedResult.getTracks().add(track2);
-    
+
     assertTrue(result.equals(expectedResult));
   }
 

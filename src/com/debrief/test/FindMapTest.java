@@ -1,24 +1,28 @@
 package com.debrief.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.HashMap;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.debrief.DebriefException;
 import com.debrief.FindMap;
 
-class FindMapTest
+public class FindMapTest
 {
+  public FindMapTest()
+  {
+
+  }
 
   @Test
-  void testGetMapDetails() throws DebriefException
+  public void testGetMapDetails() throws DebriefException
   {
     final String sampleDonorPathFile = Utils.testFolder + File.separator
         + "FindMap";
-    
+
     assertEquals(FindMap.getMapDetails(sampleDonorPathFile),
         new HashMap<String, String>()
         {
