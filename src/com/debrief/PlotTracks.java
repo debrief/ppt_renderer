@@ -323,12 +323,13 @@ public class PlotTracks
    *          Slide path
    * @param temp_unpack_path
    *          Temporary unpack folder path
+ * @param output_filename 
    * @return Path to the new pptx
    * @throws IOException
    * @throws DebriefException
    */
   private String createPptxFromTrackData(final TrackData trackData,
-      final String slide_path, final String temp_unpack_path)
+      final String slide_path, final String temp_unpack_path, String output_filename)
       throws IOException, ZipException, DebriefException
   {
     System.out.println("Number of tracks::: " + trackData.getTracks().size());
@@ -575,7 +576,7 @@ public class PlotTracks
         time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big,
         time_anim_tag_big_insertion, narrative_tag);
     writeSoup(slide_path, soup);
-    return new PackPresentation().pack(null, temp_unpack_path);
+    return new PackPresentation().pack(output_filename, temp_unpack_path);
   }
 
   /**
@@ -721,7 +722,7 @@ public class PlotTracks
   }
 
   public String export(final TrackData trackData,
-      final String donorTemplateFilePath) throws IOException, ZipException,
+      final String donorTemplateFilePath, String output_filename) throws IOException, ZipException,
       DebriefException
   {
     final String[] output = checkPathandInitialization(donorTemplateFilePath);
@@ -729,7 +730,7 @@ public class PlotTracks
     final String slide_path = output[0];
     final String temp_unpack_path = output[1];
 
-    return createPptxFromTrackData(trackData, slide_path, temp_unpack_path);
+    return createPptxFromTrackData(trackData, slide_path, temp_unpack_path, output_filename);
   }
 
   /**

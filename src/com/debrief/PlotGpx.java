@@ -66,7 +66,7 @@ public class PlotGpx
 
       final PlotTracks plotter = new PlotTracks();
 
-      plotter.export(trackData, donor);
+      plotter.export(trackData, donor, "outputs.pptx");
     }
     catch (final ParseException e)
     {
