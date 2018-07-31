@@ -1,4 +1,4 @@
-package com.debrief;
+package Debrief.ReaderWriter.powerPoint;
 
 import java.io.File;
 import java.io.FileWriter;
