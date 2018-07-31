@@ -13,11 +13,12 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.debrief.TrackParser;
 import com.debrief.model.NarrativeEntry;
 import com.debrief.model.Track;
 import com.debrief.model.TrackData;
 import com.debrief.model.TrackPoint;
+
+import Debrief.ReaderWriter.powerPoint.TrackParser;
 
 public class TrackParserTest
 {

@@ -1,4 +1,4 @@
-package com.debrief;
+package Debrief.ReaderWriter.powerPoint;
 
 public class DebriefException extends Exception
 {

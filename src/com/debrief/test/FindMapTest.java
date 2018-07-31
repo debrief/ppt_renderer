@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import com.debrief.DebriefException;
-import com.debrief.FindMap;
+import Debrief.ReaderWriter.powerPoint.DebriefException;
+import Debrief.ReaderWriter.powerPoint.FindMap;
 
 public class FindMapTest
 {

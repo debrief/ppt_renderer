@@ -9,9 +9,8 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import com.debrief.DebriefException;
-import com.debrief.PlotTracks;
-
+import Debrief.ReaderWriter.powerPoint.DebriefException;
+import Debrief.ReaderWriter.powerPoint.PlotTracks;
 import net.lingala.zip4j.exception.ZipException;
 
 public class PlotTracksTest

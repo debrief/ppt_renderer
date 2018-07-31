@@ -8,9 +8,8 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import com.debrief.DebriefException;
-import com.debrief.UnpackFunction;
-
+import Debrief.ReaderWriter.powerPoint.DebriefException;
+import Debrief.ReaderWriter.powerPoint.UnpackFunction;
 import net.lingala.zip4j.exception.ZipException;
 
 public class UnpackFunctionTest

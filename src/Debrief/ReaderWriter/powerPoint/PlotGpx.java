@@ -1,4 +1,4 @@
-package com.debrief;
+package Debrief.ReaderWriter.powerPoint;
 
 import java.io.IOException;
 import java.nio.file.Files;

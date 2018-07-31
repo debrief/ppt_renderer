@@ -16,11 +16,11 @@ import org.xmlunit.builder.Input;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 
-import com.debrief.DebriefException;
-import com.debrief.PlotTracks;
-import com.debrief.TrackParser;
 import com.debrief.model.TrackData;
 
+import Debrief.ReaderWriter.powerPoint.DebriefException;
+import Debrief.ReaderWriter.powerPoint.PlotTracks;
+import Debrief.ReaderWriter.powerPoint.TrackParser;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
