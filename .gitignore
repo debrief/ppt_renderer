@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -102,3 +102,29 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+# *.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/
+/bin/
