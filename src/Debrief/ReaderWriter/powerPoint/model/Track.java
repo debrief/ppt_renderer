@@ -1,4 +1,4 @@
-package com.debrief.model;
+package Debrief.ReaderWriter.powerPoint.model;
 
 import java.awt.Color;
 import java.util.ArrayList;

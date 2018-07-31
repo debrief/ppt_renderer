@@ -1,4 +1,4 @@
-package com.debrief.test;
+package Debrief.ReaderWriter.powerPoint.test;
 
 import static org.junit.Assert.assertFalse;
 
@@ -16,11 +16,10 @@ import org.xmlunit.builder.Input;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 
-import com.debrief.model.TrackData;
-
 import Debrief.ReaderWriter.powerPoint.DebriefException;
 import Debrief.ReaderWriter.powerPoint.PlotTracks;
 import Debrief.ReaderWriter.powerPoint.TrackParser;
+import Debrief.ReaderWriter.powerPoint.model.TrackData;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 

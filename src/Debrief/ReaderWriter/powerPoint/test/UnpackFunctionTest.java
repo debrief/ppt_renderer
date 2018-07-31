@@ -1,4 +1,4 @@
-package com.debrief.test;
+package Debrief.ReaderWriter.powerPoint.test;
 
 import static org.junit.Assert.assertTrue;
 

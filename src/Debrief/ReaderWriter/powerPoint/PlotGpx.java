@@ -13,7 +13,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.debrief.model.TrackData;
+import Debrief.ReaderWriter.powerPoint.model.TrackData;
 import net.lingala.zip4j.exception.ZipException;
 
 public class PlotGpx

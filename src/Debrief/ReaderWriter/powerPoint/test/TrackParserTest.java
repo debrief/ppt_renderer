@@ -1,4 +1,4 @@
-package com.debrief.test;
+package Debrief.ReaderWriter.powerPoint.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -13,12 +13,11 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.debrief.model.NarrativeEntry;
-import com.debrief.model.Track;
-import com.debrief.model.TrackData;
-import com.debrief.model.TrackPoint;
-
 import Debrief.ReaderWriter.powerPoint.TrackParser;
+import Debrief.ReaderWriter.powerPoint.model.NarrativeEntry;
+import Debrief.ReaderWriter.powerPoint.model.Track;
+import Debrief.ReaderWriter.powerPoint.model.TrackData;
+import Debrief.ReaderWriter.powerPoint.model.TrackPoint;
 
 public class TrackParserTest
 {

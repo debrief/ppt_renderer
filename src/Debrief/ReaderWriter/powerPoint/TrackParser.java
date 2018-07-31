@@ -9,10 +9,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import com.debrief.model.TrackData;
-import com.debrief.model.TrackPoint;
-import com.debrief.model.NarrativeEntry;
-import com.debrief.model.Track;
+import Debrief.ReaderWriter.powerPoint.model.NarrativeEntry;
+import Debrief.ReaderWriter.powerPoint.model.Track;
+import Debrief.ReaderWriter.powerPoint.model.TrackData;
+import Debrief.ReaderWriter.powerPoint.model.TrackPoint;
 
 public class TrackParser
 {
