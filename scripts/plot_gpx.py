@@ -221,9 +221,9 @@ def getShapes(soup):
     return shape_tag, arrow_tag, time_tag, narrative_tag
 
 def fixCreationId(soup):
-    creationIdsoup = soup.find('creationId')
-    creationIdsoup.name = "p14:creationId"
-    creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
+    #creationIdsoup = soup.find('creationId')
+    #creationIdsoup.name = "p14:creationId"
+    # creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
     #save the p:extLst
     mainExt = None
     mainExtParent = None
