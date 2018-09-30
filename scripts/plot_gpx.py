@@ -157,11 +157,11 @@ def addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_u
 def addShapeMarkerFootPrintsObjects(spTreeobj, shape_objs, arrow_objs, all_footprints_objs):
     #for shape in shape_objs:
     #    spTreeobj.append(shape)
-    for arrow in arrow_objs:
-        spTreeobj.append(arrow)
     for footprintsTracks in all_footprints_objs:
         for footPrint in footprintsTracks:
             spTreeobj.append(footPrint)
+    for arrow in arrow_objs:
+        spTreeobj.append(arrow)
 
 def getColorinHex(track):
     colors = track['color']
