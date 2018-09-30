@@ -287,7 +287,7 @@ def cleanSpTree(soup):
         child.extract()
 
 
-def addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, trackData, intervalDuration, initialFootprintId):
+def addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, trackData, intervalDuration, initialFootprintId):
     # Create parent animation object for all time box
 
     for track in trackData:
@@ -506,7 +506,7 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
     spTreeobj = soup.find('spTree')
     addShapeMarkerFootPrintsObjects(spTreeobj, shape_objs, arrow_objs,all_footprints_objs)
     addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper)
-    addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, trackData, intervalDuration, initialFootprintId)
+    addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, trackData, intervalDuration, initialFootprintId)
     createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries, narrative_tag)
     writeSoup(slide_path, soup)
     packFunction(None, temp_unpack_path)
