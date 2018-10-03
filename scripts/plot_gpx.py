@@ -154,9 +154,12 @@ def addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_u
         track_num+=1
         anim_insertion_tag_upper.append(anim_tag_upper_temp)
 
-def addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs):
-    for shape in shape_objs:
-        spTreeobj.append(shape)
+def addShapeMarkerFootPrintsObjects(spTreeobj, shape_objs, arrow_objs, all_footprints_objs):
+    #for shape in shape_objs:
+    #    spTreeobj.append(shape)
+    for footprintsTracks in all_footprints_objs:
+        for footPrint in footprintsTracks:
+            spTreeobj.append(footPrint)
     for arrow in arrow_objs:
         spTreeobj.append(arrow)
 
@@ -177,6 +180,7 @@ def getShapes(soup):
     arrow_tag = None
     time_tag = None
     narrative_tag = None
+    footprint_tag = None
     #retrive the sample arrow and path tag
     all_shape_tags = soup.find_all('sp')
     for shape in all_shape_tags:
@@ -189,17 +193,20 @@ def getShapes(soup):
             time_tag = shape
         if(name=='narrative'):
             narrative_tag = shape
+        if(name=='footprint'):
+            footprint_tag = shape
 
     shape_tag.extract()
     arrow_tag.extract()
     time_tag.extract()
     narrative_tag.extract()
-    return shape_tag, arrow_tag, time_tag, narrative_tag
+    footprint_tag.extract()
+    return shape_tag, arrow_tag, time_tag, narrative_tag, footprint_tag
 
 def fixCreationId(soup):
-    creationIdsoup = soup.find('creationId')
-    creationIdsoup.name = "p14:creationId"
-    creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
+    #creationIdsoup = soup.find('creationId')
+    #creationIdsoup.name = "p14:creationId"
+    # creationIdsoup['xmlns:p14']="http://schemas.microsoft.com/office/powerpoint/2010/main"
     #save the p:extLst
     mainExt = None
     mainExtParent = None
@@ -279,6 +286,24 @@ def cleanSpTree(soup):
     for child in soup.find('spTree').findChildren():
         child.extract()
 
+
+def addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, trackData, intervalDuration, initialFootprintId):
+    # Create parent animation object for all time box
+
+    for track in trackData:
+        time_delay = intervalDuration
+        for coordinate in track['coordinates']:
+            # handle animation objs for time
+            temp_time_anim = copy.deepcopy(time_anim_tag_first)
+            temp_time_anim.find('spTgt')['spid'] = str(initialFootprintId)
+            temp_time_anim.find('cond')['delay'] = str(time_delay)
+            temp_time_anim.find('cTn')['nodeType'] = "withEffect"
+            anim_insertion_tag_upper.append(temp_time_anim)
+            time_delay += intervalDuration
+
+            initialFootprintId += 1
+
+
 def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_path, temp_unpack_path):
 
     trackData = GPXData['trackData']
@@ -310,13 +335,17 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
     animCY = BRy - TLy
 
     #getting shape tags
-    shape_tag, arrow_tag, time_tag, narrative_tag = getShapes(soup)
+    shape_tag, arrow_tag, time_tag, narrative_tag, footprint_tag = getShapes(soup)
     # Remove all the remaining shapes
     # cleanSpTree(soup)
     #Find time_animation objs -
     time_anim_tag_first, time_anim_tag_big, time_anim_tag_big_insertion = findTimeAnimationObjects(soup, time_tag)
     #Find anim_tags -
     anim_tag, anim_tag_upper, anim_insertion_tag_upper = findAnimationTagObjects(soup)
+
+    # Get Footprint ellipse size
+    footprint_x_size = int(footprint_tag.find('ext')['cx'])
+    footprint_y_size = int(footprint_tag.find('ext')['cy'])
 
     trackCount = 0
     current_shape_id = int(shape_tag.find('cNvPr')['id'])
@@ -330,6 +359,11 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
     shape_objs = []
     arrow_objs = []
     all_animation_objs = []
+    all_footprints_objs = []
+
+    # FOOT PRINTS initial id.
+    initialFootprintId = int(footprint_tag.find('cNvPr')['id'])
+    footprint_count = initialFootprintId
 
     for track in trackData:
         temp_arrow_tag = None
@@ -393,7 +427,12 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
         prev_anim_x = prev_anim_x  - TailX - arrow_center_x_small
         prev_anim_y = prev_anim_y  - TailY - arrow_center_y_small
 
+        #footprints
+
+        colorHexValue = getColorinHex(track).upper()
+
         track_anim_objs = []
+        footprints_objs = []
         for coordinate in coordinates:
             (x,y) = coordinate
 
@@ -417,6 +456,16 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
             y = round(float(y))
             x,y = coordinateTransformation(int(x), int(y), int(dimensionWidth), int(dimensionHeight), int(mapX), int(mapY), int(mapCX), int(mapCY),invertY=1)
 
+            temp_footprint_tag = copy.deepcopy(footprint_tag)
+            # We substract the ellipse size from the coordinate.
+            temp_footprint_tag.find('off')['x'] = x - footprint_x_size / 2
+            temp_footprint_tag.find('off')['y'] = y - footprint_y_size / 2
+            # Adding color to the footprint
+            temp_footprint_tag.find('srgbClr')['val'] = colorHexValue
+            temp_footprint_tag.find('cNvPr')['id'] = footprint_count
+            footprints_objs.append(temp_footprint_tag)
+            footprint_count += 1
+
             # remove the offsets for the track object
             x = x - temp_shape_x
             y = y - temp_shape_y
@@ -435,8 +484,8 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
             num_coordinate+=1
 
         all_animation_objs.append(track_anim_objs)
+        all_footprints_objs.append(footprints_objs)
         #Adding color to the track
-        colorHexValue = getColorinHex(track).upper()
         temp_shape_tag.find('srgbClr')['val'] = colorHexValue
         #changing arrow to rect callout -
         temp_arrow_tag.find('prstGeom')['prst'] = "wedgeRectCallout"
@@ -455,8 +504,9 @@ def createPptxFromTrackData(GPXData, narrativeEntries, intervalDuration, slide_p
 
     #Adding all shape and arrow objects
     spTreeobj = soup.find('spTree')
-    addShapeMarkerObjects(spTreeobj, shape_objs, arrow_objs)
+    addShapeMarkerFootPrintsObjects(spTreeobj, shape_objs, arrow_objs,all_footprints_objs)
     addAnimationObjects(all_animation_objs, anim_tag_upper, anim_insertion_tag_upper)
+    addAnimationFootPrints(time_anim_tag_first, anim_insertion_tag_upper, trackData, intervalDuration, initialFootprintId)
     createTimeNarrativeShapes(spTreeobj, intervalDuration, trackData, time_tag, time_anim_tag_first, anim_insertion_tag_upper, time_anim_tag_big, time_anim_tag_big_insertion, narrativeEntries, narrative_tag)
     writeSoup(slide_path, soup)
     packFunction(None, temp_unpack_path)
