@@ -903,36 +903,41 @@ public class PlotTracks
 
     // retrieve the sample arrow and path tag
     final Elements all_shape_tags = soup.select("p|sp");
+    ArrayList<Element> toRemove = new ArrayList<>();
     for (final Element shape : all_shape_tags)
     {
       final String name = shape.select("p|cNvPr").get(0).attr("name");
       if ("track".equals(name))
       {
         shape_tag = shape;
+        toRemove.add(shape_tag);
       }
       else if ("marker".equals(name))
       {
         arrow_tag = shape;
+        toRemove.add(arrow_tag);
       }
       else if ("time".equals(name))
       {
         time_tag = shape;
+        toRemove.add(time_tag);
       }
       else if ("narrative".equals(name))
       {
         narrative_tag = shape;
+        toRemove.add(narrative_tag);
       }
       else if ("footprint".equals(name))
       {
         footprint_tag = shape;
+        toRemove.add(footprint_tag);
       }
     }
 
-    shape_tag.remove();
-    arrow_tag.remove();
-    time_tag.remove();
-    narrative_tag.remove();
-    footprint_tag.remove();
+    for (Element toRemoveElement : toRemove)
+    {
+      toRemoveElement.remove();
+    }
     return new Element[]
     {shape_tag, arrow_tag, time_tag, narrative_tag, footprint_tag};
   }
